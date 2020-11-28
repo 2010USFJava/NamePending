@@ -1,4 +1,4 @@
-package utility;
+package com.revature.utility;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
