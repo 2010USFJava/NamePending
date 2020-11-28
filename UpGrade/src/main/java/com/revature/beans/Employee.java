@@ -9,7 +9,7 @@ public class Employee {
 	private String password;
 	private double availableR;
 	private int supervisorID;
-	private String department;
+	private int deptHeadID;
 	
 	public int getEmpID() {
 		return empID;
