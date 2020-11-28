@@ -53,11 +53,11 @@ public class Employee {
 	public void setSupervisorID(int supervisorID) {
 		this.supervisorID = supervisorID;
 	}
-	public String getDepartment() {
-		return department;
+	public int getDeptHeadID() {
+		return deptHeadID;
 	}
-	public void setDepartment(String department) {
-		this.department = department;
+	public void setDeptHeadID(int deptHeadID) {
+		this.deptHeadID = deptHeadID;
 	}
 	
 	public Employee() {
@@ -66,7 +66,7 @@ public class Employee {
 	}
 	
 	public Employee(int empID, String firstName, String lastName, String userName, String password, double availableR,
-			int supervisorID, String department) {
+			int supervisorID, int deptHeadID) {
 		super();
 		this.empID = empID;
 		this.firstName = firstName;
@@ -75,16 +75,14 @@ public class Employee {
 		this.password = password;
 		this.availableR = availableR;
 		this.supervisorID = supervisorID;
-		this.department = department;
+		this.deptHeadID = deptHeadID;
 	}
 	
 	@Override
 	public String toString() {
 		return "Employee [empID=" + empID + ", firstName=" + firstName + ", lastName=" + lastName + ", userName="
 				+ userName + ", password=" + password + ", availableR=" + availableR + ", supervisorID=" + supervisorID
-				+ ", department=" + department + "]";
+				+ ", deptHeadID=" + deptHeadID + "]";
 	}
-	
-	
 
 }
