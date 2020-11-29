@@ -19,7 +19,7 @@ public class EmpLoginController {
 			return "wrongcreds.change";
 		} else {
 			req.getSession().setAttribute("activeemp", emp);
-			return "home.change";
+			return "emphome.change";
 		}
 	}
 }

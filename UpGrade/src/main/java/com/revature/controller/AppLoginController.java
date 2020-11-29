@@ -19,7 +19,7 @@ public class AppLoginController {
 			return "wrongcreds.change";
 		} else {
 			req.getSession().setAttribute("activeapp", app);
-			return "home.change";
+			return "apphome.change";
 		}
 		
 	}

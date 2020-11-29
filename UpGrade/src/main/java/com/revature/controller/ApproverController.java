@@ -11,7 +11,7 @@ import com.revature.beans.Approver;
 
 public class ApproverController {
 	public static void getSessionEmp(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException {
-		Approver app= (Approver) req.getSession().getAttribute("activeemp");
+		Approver app= (Approver) req.getSession().getAttribute("activeapp");
 		res.getWriter().write(new ObjectMapper().writeValueAsString(app));
 	}
 }
