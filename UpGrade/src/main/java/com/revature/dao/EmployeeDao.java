@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.revature.beans.Employee;
 
-public interface EmployeeDao {
+public interface EmployeeDAO {
 	public List<Employee> getAllEmployees();
 	public void insertEmployee(Employee emp);
 	public Employee getEmployeeByUsername(String username);

@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.beans.Employee;
-import com.revature.dao.EmployeeDao;
+import com.revature.dao.EmployeeDAO;
 import com.revature.utility.ConnFactory;
 
-public class EmployeeDaoImpl implements EmployeeDao {
+public class EmployeeDAOImpl implements EmployeeDAO {
 	public static ConnFactory cf=ConnFactory.getInstance();
 	static {
 		try { Class.forName("org.postgresql.Driver");
@@ -23,8 +23,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	@Override
 	public List<Employee> getAllEmployees() {
 		List<Employee> empList = new ArrayList<Employee>();
-		
-		
 		try {
 			Connection conn = cf.getConnection();
 			String sql = "SELECT * FROM employees";
@@ -40,9 +38,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	@Override
-	public void insertEmployee(Employee emp) {
-		
-		
+	public void insertEmployee(Employee emp) {	
 		try {
 			Connection conn = cf.getConnection();
 			String sql = "INSERT INTO employees values(?,?,?,?,?,?,?,?)";
@@ -64,8 +60,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	@Override
 	public Employee getEmployeeByUsername(String username) {
 		Employee emp = new Employee();
-		
-		
 		PreparedStatement ps;
 		try {
 			Connection conn = cf.getConnection();

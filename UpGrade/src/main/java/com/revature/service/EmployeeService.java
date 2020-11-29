@@ -3,8 +3,8 @@ package com.revature.service;
 import java.util.List;
 
 import com.revature.beans.Employee;
-import com.revature.dao.EmployeeDao;
-import com.revature.daoimpl.EmployeeDaoImpl;
+import com.revature.dao.EmployeeDAO;
+import com.revature.daoimpl.EmployeeDAOImpl;
 
 public class EmployeeService {
 	
@@ -12,7 +12,7 @@ public class EmployeeService {
 		super();
 	}
 
-	EmployeeDao empDao = new EmployeeDaoImpl();
+	EmployeeDAO empDao = new EmployeeDAOImpl();
 	
 	public boolean loginVerify(String username, String password) {
 		List<Employee> empList = empDao.getAllEmployees();

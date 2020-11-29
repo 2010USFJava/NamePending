@@ -1,8 +1,8 @@
 package com.revature.driver;
 
 import com.revature.beans.Employee;
-import com.revature.dao.EmployeeDao;
-import com.revature.daoimpl.EmployeeDaoImpl;
+import com.revature.dao.EmployeeDAO;
+import com.revature.daoimpl.EmployeeDAOImpl;
 import com.revature.service.EmployeeService;
 import com.revature.utility.ConnFactory;
 
@@ -32,7 +32,7 @@ public class Main {
 //			e.printStackTrace();
 //		}
 //		System.out.println(empList.toString());
-		EmployeeDao empDao= new EmployeeDaoImpl();
+		EmployeeDAO empDao= new EmployeeDAOImpl();
 		System.out.println(empDao.getAllEmployees().toString());
 		EmployeeService test = new EmployeeService();
 //		System.out.println(test.loginVerify("david", "password1"));
