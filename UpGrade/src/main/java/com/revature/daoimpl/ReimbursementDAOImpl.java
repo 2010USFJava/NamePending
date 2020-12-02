@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import com.revature.beans.Employee;
 import com.revature.beans.Reimbursement;
 import com.revature.dao.EmployeeDAO;
 import com.revature.dao.ReimbursementDAO;
@@ -29,12 +28,11 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 	public void submitReimbursement(Reimbursement form) {
 		try {
 			Connection conn = cf.getConnection();
-			String sql = "INSERT INTO reimbursements VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO reimbursements VALUES (DEFAULT,?,?,TO_DATE(?,'DDMMYYYY'),TO_TIMESTAMP(?,'HH12:MI:SS'),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, form.getEmpID());
 			ps.setString(2, form.getEventName());
-			//ps.setString(3, form.getEventDate());
-			ps.setDate(3, form.getEventDate());
+			ps.setString(3, form.getEventDate());
 			ps.setString(4, form.getEventTime());
 			ps.setString(5, form.getEventLocation());
 			ps.setString(6, form.getEventLocation());
