@@ -1,18 +1,17 @@
 package com.revature.utility;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
 
 public class ConnFactory {
 	private static ConnFactory cf;
 	private ConnFactory() {
 		super();
 	}
+	private String url="jdbc:postgresql://project1.cqb6pzj3paxs.us-east-2.rds.amazonaws.com:5432/projecttrms";
+	private String username="rootadmin";
+	private String password="l0ckmeplease";
 	public static synchronized ConnFactory getInstance() {
 		 if (cf==null) {
 			 cf= new ConnFactory();
@@ -21,15 +20,9 @@ public class ConnFactory {
 	 }
 	 
 	 public Connection getConnection() {
-		 Connection conn = null;
-		 Properties prop = new Properties();
+		 Connection conn = null; 
 		 try {
-			prop.load(new FileReader("database.properties"));
-			 conn = DriverManager.getConnection(prop.getProperty("url"),prop.getProperty("username"), prop.getProperty("password"));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+			 conn = DriverManager.getConnection(this.url,this.username,this.password);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

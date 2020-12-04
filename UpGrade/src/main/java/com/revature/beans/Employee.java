@@ -10,7 +10,7 @@ public class Employee {
 	private double availableR;
 	private int supervisorID;
 	private int deptHeadID;
-	
+
 	public int getEmpID() {
 		return empID;
 	}
@@ -84,5 +84,4 @@ public class Employee {
 				+ userName + ", password=" + password + ", availableR=" + availableR + ", supervisorID=" + supervisorID
 				+ ", deptHeadID=" + deptHeadID + "]";
 	}
-
 }

@@ -29,7 +29,7 @@ public class Reimbursement {
 	
 	private boolean awarded;
 	private String denialReason;
-	
+
 	public int getEmpID() {
 		return empID;
 	}
@@ -156,6 +156,7 @@ public class Reimbursement {
 	public void setDenialReason(String denialReason) {
 		this.denialReason = denialReason;
 	}
+	
 	public Reimbursement() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -198,6 +199,7 @@ public class Reimbursement {
 				+ ", dhApproval=" + dhApproval + ", bcApproval=" + bcApproval + ", alteredAmt=" + alteredAmt
 				+ ", alteredReason=" + alteredReason + ", exceedingFunds=" + exceedingFunds + ", awarded=" + awarded
 				+ ", denialReason=" + denialReason + "]";
+
 	}
 	
 }

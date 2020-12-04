@@ -59,6 +59,4 @@ public class Approver {
 				+ role + ", department=" + department + "]";
 	}
 	
-	
-
 }

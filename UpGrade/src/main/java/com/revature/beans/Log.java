@@ -1,7 +1,7 @@
 package com.revature.beans;
 
 public class Log {
-
+	
 	private int logID;
 	private int rID;
 	private String logLevel;
@@ -49,6 +49,4 @@ public class Log {
 	public String toString() {
 		return "Log [logID=" + logID + ", rID=" + rID + ", logLevel=" + logLevel + ", logmessage=" + logmessage + "]";
 	}
-	
-	
 }
