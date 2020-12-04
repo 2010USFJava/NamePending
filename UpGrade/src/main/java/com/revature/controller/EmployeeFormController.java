@@ -42,7 +42,8 @@ public class EmployeeFormController {
 		String approval = req.getParameter("approval");
 		Integer approvalType = Integer.valueOf(approval);
 		
-		Reimbursement form = new Reimbursement(eServ.loginGetEmpID(), approvalType, approval, approval, approval, approval, approval, approvalType, approval, approval, approval, approval, approval, approvalType, approvalType, false, approvalType, approval, false, false, approval);
+		Reimbursement form = new Reimbursement(eServ.loginGetEmpID(),eventName, date,time,location,description,costAmt,attachmentEvent,gradingFormat,typeOfEvent,justification,attachmentEmail,
+				supervisorID, 1, true, 0, null, false, false, null);
 		reDao.submitReimbursement(form);
 		
 		return "pending.change";

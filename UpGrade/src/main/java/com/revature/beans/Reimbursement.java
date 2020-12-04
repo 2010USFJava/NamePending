@@ -25,6 +25,34 @@ public class Reimbursement {
 	public Reimbursement() {
 		super();
 	}
+	
+	public Reimbursement(int empID, String eventName, String eventDate, String eventTime, String eventLocation,
+			String description, double eventCost, String eventFile, String gradingFormat, String eventType,
+			String justification, String approvalFile, int dsApprove, int dhApprove, boolean bcApprove,
+			int alteredAmount, String alteredReason, boolean exceedingFunds, boolean awarded, String denialReason) {
+		super();
+		this.empID = empID;
+		this.eventName = eventName;
+		this.eventDate = eventDate;
+		this.eventTime = eventTime;
+		this.eventLocation = eventLocation;
+		this.description = description;
+		this.eventCost = eventCost;
+		this.eventFile = eventFile;
+		this.gradingFormat = gradingFormat;
+		this.eventType = eventType;
+		this.justification = justification;
+		this.approvalFile = approvalFile;
+		this.dsApprove = dsApprove;
+		this.dhApprove = dhApprove;
+		this.bcApprove = bcApprove;
+		this.alteredAmount = alteredAmount;
+		this.alteredReason = alteredReason;
+		this.exceedingFunds = exceedingFunds;
+		this.awarded = awarded;
+		this.denialReason = denialReason;
+	}
+
 	public Reimbursement(int requestID, int empID, String eventName, String eventDate, String eventTime, String eventLocation,
 			String description, double eventCost, String eventFile, String gradingFormat, String eventType,
 			String justification, String approvalFile, int dsApprove, int dhApprove, boolean bcApprove,
