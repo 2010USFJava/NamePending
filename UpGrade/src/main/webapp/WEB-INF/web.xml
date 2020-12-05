@@ -21,16 +21,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>JSONMasterServlet</servlet-name>
-    <url-pattern>/JSONMasterServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>JSONRequestHelper</display-name>
-    <servlet-name>JSONRequestHelper</servlet-name>
-    <servlet-class>com.revature.servlet.JSONRequestHelper</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>JSONRequestHelper</servlet-name>
-    <url-pattern>/JSONRequestHelper</url-pattern>
+    <url-pattern>*.json</url-pattern>
   </servlet-mapping>
 </web-app>

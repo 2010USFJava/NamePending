@@ -9,6 +9,10 @@ window.onload=function(){
 function getEmployee(){
 	let xhttp = new XMLHttpRequest();
 	
+	xhttp.open("GET", "/UpGrade/getsession.json", true);
+	
+	xhttp.send();
+	
 	xhttp.onreadystatechange = function(){
 		console.log("ready state go BBBBRRRRRRRR")
 		if(xhttp.readyState==4 && xhttp.status==200){
@@ -16,7 +20,5 @@ function getEmployee(){
 			console.log(emp);
 		}
 	}
-	xhttp.open("GET", "http://localhost:8085/UpGrade/getsession.json", true);
 	
-	xhttp.send();
 }

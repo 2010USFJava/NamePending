@@ -12,7 +12,6 @@ public class MasterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest req,HttpServletResponse res) throws IOException,ServletException {
-		System.out.println("in wrong servlet");
 		req.getRequestDispatcher(RequestHelper.process(req)).forward(req,res);
 	}
 	
