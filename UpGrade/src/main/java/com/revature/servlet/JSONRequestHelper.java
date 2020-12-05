@@ -15,6 +15,7 @@ public class JSONRequestHelper{
 			EmployeeController.getSessionEmp(req, res);
 		default:
 			System.out.println("Not twerking");
+			EmployeeController.getSessionEmp(req, res);
 		}
 		
 	}

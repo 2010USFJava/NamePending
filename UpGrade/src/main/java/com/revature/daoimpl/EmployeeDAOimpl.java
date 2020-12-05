@@ -83,5 +83,25 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return emp;
 	}
 	
-	
+	@Override
+	public Employee getEmployeeById(int empID) {
+		PreparedStatement ps;
+		Employee emp = null;
+		try {
+			Connection conn = cf.getConnection();
+			String sql = "SELECT * FROM employees WHERE empid=?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, empID);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				emp = new Employee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getInt(7), rs.getInt(8));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return emp;
+	}
 }
