@@ -1,6 +1,7 @@
 package com.revature.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.revature.beans.Employee;
 import com.revature.service.EmployeeService;
@@ -18,7 +19,9 @@ public class EmpLoginController {
 		if(emp==null) {
 			return "wrongcreds.change";
 		} else {
-			req.getSession().setAttribute("activeemp", emp);
+			HttpSession session = req.getSession();
+			session.setAttribute("activeemp", emp.getEmpID());
+			System.out.println();
 			return "emphome.change";
 		}
 	}
