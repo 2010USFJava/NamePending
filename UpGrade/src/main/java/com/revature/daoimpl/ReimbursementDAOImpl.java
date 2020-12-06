@@ -2,7 +2,10 @@ package com.revature.daoimpl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.revature.beans.Reimbursement;
 import com.revature.dao.EmployeeDAO;
@@ -57,4 +60,24 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public List<Reimbursement> getPendingReimbursement() {
+		List<Reimbursement> forms = new ArrayList<Reimbursement>();
+		PreparedStatement ps;
+		try {
+			Connection conn = cf.getConnection();
+			String sql = "SELECT * FROM reimbursements WHERE bc_approve=false";
+			ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				forms.add(new Reimbursement(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getDouble(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getInt(14),rs.getInt(15),rs.getBoolean(16),rs.getInt(17),rs.getString(18),rs.getBoolean(19),rs.getBoolean(20),rs.getString(21)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return forms;
+	}
+	
+	
 }

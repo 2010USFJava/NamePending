@@ -1,11 +1,13 @@
 package com.revature.servlet;
 
 import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.revature.controller.EmployeeController;
+import com.revature.controller.EmployeeFormController;
 
 public class JSONRequestHelper{
 	public static void process(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException {
@@ -13,6 +15,12 @@ public class JSONRequestHelper{
 		case "/UpGrade/getsession.json":
 			System.out.println("in request helper");
 			EmployeeController.getSessionEmp(req, res);
+		case "/UpGrade/getPending.json":
+			System.out.println("in pending request helper");
+			EmployeeFormController.getPending(req, res);
+//		default:
+//			System.out.println("Not twerking");
+//			EmployeeController.getSessionEmp(req, res);
 		}
 		
 	}
