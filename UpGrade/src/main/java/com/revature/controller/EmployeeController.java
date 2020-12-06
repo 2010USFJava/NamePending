@@ -22,8 +22,8 @@ public class EmployeeController {
 		System.out.println(empObj);
 		ObjectMapper mapper = new ObjectMapper ();
 		String empString = mapper.writeValueAsString(empObj);
-		//String newString = "{'employee':" + empString + "}";
-		System.out.println(empString);
-		res.getWriter().write(empString);
+		String newString = "{\"employee\":" + empString + "}";
+		System.out.println(newString);
+		res.getWriter().write(newString);
 	}
 }

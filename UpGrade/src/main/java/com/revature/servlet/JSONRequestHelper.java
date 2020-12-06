@@ -13,9 +13,6 @@ public class JSONRequestHelper{
 		case "/UpGrade/getsession.json":
 			System.out.println("in request helper");
 			EmployeeController.getSessionEmp(req, res);
-		default:
-			System.out.println("Not twerking");
-			EmployeeController.getSessionEmp(req, res);
 		}
 		
 	}

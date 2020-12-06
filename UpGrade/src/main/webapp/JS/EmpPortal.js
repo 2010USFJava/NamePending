@@ -15,6 +15,8 @@ function getEmployee() {
 		if (xhttp.readyState == 4 && xhttp.status == 200) {
 			let emp = JSON.parse(xhttp.responseText);
 			console.log(emp);
+			console.log(emp.employee.firstName);
+			loadElements(emp);
 		}
 
 	}
@@ -25,3 +27,7 @@ function getEmployee() {
 	xhttp.send();
 }
 
+function loadElements(emp){
+	document.getElementById("empName").innerHTML=emp.employee.firstName;
+	document.getElementById("amt").innerHTML=emp.employee.availableR;
+}
