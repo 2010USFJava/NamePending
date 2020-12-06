@@ -10,21 +10,7 @@ public class Employee {
 	private double availableR;
 	private int supervisorID;
 	private int deptHeadID;
-	public Employee() {
-		super();
-	}
-	public Employee(int empID, String firstName, String lastName, String userName, String password, double availableR,
-			int supervisorID, int deptHeadID) {
-		super();
-		this.empID = empID;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.userName = userName;
-		this.password = password;
-		this.availableR = availableR;
-		this.supervisorID = supervisorID;
-		this.deptHeadID = deptHeadID;
-	}
+
 	public int getEmpID() {
 		return empID;
 	}
@@ -73,11 +59,29 @@ public class Employee {
 	public void setDeptHeadID(int deptHeadID) {
 		this.deptHeadID = deptHeadID;
 	}
+	
+	public Employee() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Employee(int empID, String firstName, String lastName, String userName, String password, double availableR,
+			int supervisorID, int deptHeadID) {
+		super();
+		this.empID = empID;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.userName = userName;
+		this.password = password;
+		this.availableR = availableR;
+		this.supervisorID = supervisorID;
+		this.deptHeadID = deptHeadID;
+	}
+	
 	@Override
 	public String toString() {
 		return "Employee [empID=" + empID + ", firstName=" + firstName + ", lastName=" + lastName + ", userName="
 				+ userName + ", password=" + password + ", availableR=" + availableR + ", supervisorID=" + supervisorID
 				+ ", deptHeadID=" + deptHeadID + "]";
 	}
-	
 }
