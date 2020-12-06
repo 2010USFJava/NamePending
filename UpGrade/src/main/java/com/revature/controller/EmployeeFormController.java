@@ -1,7 +1,14 @@
 package com.revature.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.Reimbursement;
 import com.revature.dao.ReimbursementDAO;
 import com.revature.daoimpl.ReimbursementDAOImpl;
@@ -47,6 +54,15 @@ public class EmployeeFormController {
 		reDao.submitReimbursement(form);
 		
 		return "pending.change";
+	}
+	
+	public static void getPending(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException {
+		List<Reimbursement>forms = new ArrayList<>();
+		forms = reDao.getPendingReimbursement();
+		System.out.println("getting pending forms");
+		ObjectMapper mapper = new ObjectMapper();
+		String formsString = mapper.writeValueAsString(forms);
+		res.getWriter().write(formsString);
 	}
 
 }

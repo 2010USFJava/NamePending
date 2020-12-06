@@ -1,96 +1,46 @@
 package com.revature.beans;
 
 public class Reimbursement {
-	private int requestID;
+
 	private int empID;
+	private int r_ID;
 	private String eventName;
-	private String eventDate;
-	private String eventTime;
-	private String eventLocation;
+	
+	//Ask Donna how to use this with DateTimeUtility
+	private String date;
+	private String time;
+	
+	private String location;
 	private String description;
-	private double eventCost;
+	private double cost;
 	private String eventFile;
 	private String gradingFormat;
 	private String eventType;
 	private String justification;
+	
 	private String approvalFile;
-	private int dsApprove;
-	private int dhApprove;
-	private boolean bcApprove;
-	private int alteredAmount;
+	private int dsApproval;
+	private int dhApproval;
+	private boolean bcApproval;
+	
+	private double alteredAmt;
 	private String alteredReason;
 	private boolean exceedingFunds;
+	
 	private boolean awarded;
 	private String denialReason;
-	public Reimbursement() {
-		super();
-	}
-	
-	public Reimbursement(int empID, String eventName, String eventDate, String eventTime, String eventLocation,
-			String description, double eventCost, String eventFile, String gradingFormat, String eventType,
-			String justification, String approvalFile, int dsApprove, int dhApprove, boolean bcApprove,
-			int alteredAmount, String alteredReason, boolean exceedingFunds, boolean awarded, String denialReason) {
-		super();
-		this.empID = empID;
-		this.eventName = eventName;
-		this.eventDate = eventDate;
-		this.eventTime = eventTime;
-		this.eventLocation = eventLocation;
-		this.description = description;
-		this.eventCost = eventCost;
-		this.eventFile = eventFile;
-		this.gradingFormat = gradingFormat;
-		this.eventType = eventType;
-		this.justification = justification;
-		this.approvalFile = approvalFile;
-		this.dsApprove = dsApprove;
-		this.dhApprove = dhApprove;
-		this.bcApprove = bcApprove;
-		this.alteredAmount = alteredAmount;
-		this.alteredReason = alteredReason;
-		this.exceedingFunds = exceedingFunds;
-		this.awarded = awarded;
-		this.denialReason = denialReason;
-	}
 
-	public Reimbursement(int requestID, int empID, String eventName, String eventDate, String eventTime, String eventLocation,
-			String description, double eventCost, String eventFile, String gradingFormat, String eventType,
-			String justification, String approvalFile, int dsApprove, int dhApprove, boolean bcApprove,
-			int alteredAmount, String alteredReason, boolean exceedingFunds, boolean awarded, String denialReason) {
-		super();
-		this.requestID = requestID;
-		this.empID = empID;
-		this.eventName = eventName;
-		this.eventDate = eventDate;
-		this.eventTime = eventTime;
-		this.eventLocation = eventLocation;
-		this.description = description;
-		this.eventCost = eventCost;
-		this.eventFile = eventFile;
-		this.gradingFormat = gradingFormat;
-		this.eventType = eventType;
-		this.justification = justification;
-		this.approvalFile = approvalFile;
-		this.dsApprove = dsApprove;
-		this.dhApprove = dhApprove;
-		this.bcApprove = bcApprove;
-		this.alteredAmount = alteredAmount;
-		this.alteredReason = alteredReason;
-		this.exceedingFunds = exceedingFunds;
-		this.awarded = awarded;
-		this.denialReason = denialReason;
-	}
-	public int getRequestID() {
-		return requestID;
-	}
-	public void setRequestID(int requestID) {
-		this.requestID = requestID;
-	}
 	public int getEmpID() {
 		return empID;
 	}
 	public void setEmpID(int empID) {
 		this.empID = empID;
+	}
+	public int getR_ID() {
+		return r_ID;
+	}
+	public void setR_ID(int r_ID) {
+		this.r_ID = r_ID;
 	}
 	public String getEventName() {
 		return eventName;
@@ -98,23 +48,23 @@ public class Reimbursement {
 	public void setEventName(String eventName) {
 		this.eventName = eventName;
 	}
-	public String getEventDate() {
-		return eventDate;
+	public String getDate() {
+		return date;
 	}
-	public void setEventDate(String eventDate) {
-		this.eventDate = eventDate;
+	public void setDate(String date) {
+		this.date = date;
 	}
-	public String getEventTime() {
-		return eventTime;
+	public String getTime() {
+		return time;
 	}
-	public void setEventTime(String eventTime) {
-		this.eventTime = eventTime;
+	public void setTime(String time) {
+		this.time = time;
 	}
-	public String getEventLocation() {
-		return eventLocation;
+	public String getLocation() {
+		return location;
 	}
-	public void setEventLocation(String eventLocation) {
-		this.eventLocation = eventLocation;
+	public void setLocation(String location) {
+		this.location = location;
 	}
 	public String getDescription() {
 		return description;
@@ -122,11 +72,11 @@ public class Reimbursement {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public double getEventCost() {
-		return eventCost;
+	public double getCost() {
+		return cost;
 	}
-	public void setEventCost(double eventCost) {
-		this.eventCost = eventCost;
+	public void setCost(double cost) {
+		this.cost = cost;
 	}
 	public String getEventFile() {
 		return eventFile;
@@ -158,29 +108,29 @@ public class Reimbursement {
 	public void setApprovalFile(String approvalFile) {
 		this.approvalFile = approvalFile;
 	}
-	public int getDsApprove() {
-		return dsApprove;
+	public int getDsApproval() {
+		return dsApproval;
 	}
-	public void setDsApprove(int dsApprove) {
-		this.dsApprove = dsApprove;
+	public void setDsApproval(int dsApproval) {
+		this.dsApproval = dsApproval;
 	}
-	public int getDhApprove() {
-		return dhApprove;
+	public int getDhApproval() {
+		return dhApproval;
 	}
-	public void setDhApprove(int dhApprove) {
-		this.dhApprove = dhApprove;
+	public void setDhApproval(int dhApproval) {
+		this.dhApproval = dhApproval;
 	}
-	public boolean isBcApprove() {
-		return bcApprove;
+	public boolean isBcApproval() {
+		return bcApproval;
 	}
-	public void setBcApprove(boolean bcApprove) {
-		this.bcApprove = bcApprove;
+	public void setBcApproval(boolean bcApproval) {
+		this.bcApproval = bcApproval;
 	}
-	public int getAlteredAmount() {
-		return alteredAmount;
+	public double getAlteredAmt() {
+		return alteredAmt;
 	}
-	public void setAlteredAmount(int alteredAmount) {
-		this.alteredAmount = alteredAmount;
+	public void setAlteredAmt(double alteredAmt) {
+		this.alteredAmt = alteredAmt;
 	}
 	public String getAlteredReason() {
 		return alteredReason;
@@ -206,15 +156,79 @@ public class Reimbursement {
 	public void setDenialReason(String denialReason) {
 		this.denialReason = denialReason;
 	}
+	
+	public Reimbursement() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Reimbursement(int empID, int r_ID, String eventName, String date, String time, String location,
+			String description, double cost, String eventFile, String gradingFormat, String eventType,
+			String justification, String approvalFile, int dsApproval, int dhApproval, boolean bcApproval,
+			double alteredAmt, String alteredReason, boolean exceedingFunds, boolean awarded, String denialReason) {
+		super();
+		this.empID = empID;
+		this.r_ID = r_ID;
+		this.eventName = eventName;
+		this.date = date;
+		this.time = time;
+		this.location = location;
+		this.description = description;
+		this.cost = cost;
+		this.eventFile = eventFile;
+		this.gradingFormat = gradingFormat;
+		this.eventType = eventType;
+		this.justification = justification;
+		this.approvalFile = approvalFile;
+		this.dsApproval = dsApproval;
+		this.dhApproval = dhApproval;
+		this.bcApproval = bcApproval;
+		this.alteredAmt = alteredAmt;
+		this.alteredReason = alteredReason;
+		this.exceedingFunds = exceedingFunds;
+		this.awarded = awarded;
+		this.denialReason = denialReason;
+	}
+	//args constructor without rid to submit forms without conflicting with database
+	public Reimbursement(int empID, String eventName, String date, String time, String location, String description,
+			double cost, String eventFile, String gradingFormat, String eventType, String justification,
+			String approvalFile, int dsApproval, int dhApproval, boolean bcApproval, double alteredAmt,
+			String alteredReason, boolean exceedingFunds, boolean awarded, String denialReason) {
+		super();
+		this.empID = empID;
+		this.eventName = eventName;
+		this.date = date;
+		this.time = time;
+		this.location = location;
+		this.description = description;
+		this.cost = cost;
+		this.eventFile = eventFile;
+		this.gradingFormat = gradingFormat;
+		this.eventType = eventType;
+		this.justification = justification;
+		this.approvalFile = approvalFile;
+		this.dsApproval = dsApproval;
+		this.dhApproval = dhApproval;
+		this.bcApproval = bcApproval;
+		this.alteredAmt = alteredAmt;
+		this.alteredReason = alteredReason;
+		this.exceedingFunds = exceedingFunds;
+		this.awarded = awarded;
+		this.denialReason = denialReason;
+	}
+	
+	
 	@Override
 	public String toString() {
-		return "Reimbursement [requestID=" + requestID + ", empID=" + empID + ", eventName=" + eventName
-				+ ", eventTime=" + eventTime + ", eventLocation=" + eventLocation + ", description=" + description
-				+ ", eventCost=" + eventCost + ", eventFile=" + eventFile + ", gradingFormat=" + gradingFormat
-				+ ", eventType=" + eventType + ", justification=" + justification + ", approvalFile=" + approvalFile
-				+ ", dsApprove=" + dsApprove + ", dhApprove=" + dhApprove + ", bcApprove=" + bcApprove
-				+ ", alteredAmount=" + alteredAmount + ", alteredReason=" + alteredReason + ", exceedingFunds="
-				+ exceedingFunds + ", awarded=" + awarded + ", denialReason=" + denialReason + "]";
+		return "Reimbursement [empID=" + empID + ", r_ID=" + r_ID + ", eventName=" + eventName + ", date=" + date
+				+ ", time=" + time + ", location=" + location + ", description=" + description + ", cost=" + cost
+				+ ", eventFile=" + eventFile + ", gradingFormat=" + gradingFormat + ", eventType=" + eventType
+				+ ", justification=" + justification + ", approvalFile=" + approvalFile + ", dsApproval=" + dsApproval
+				+ ", dhApproval=" + dhApproval + ", bcApproval=" + bcApproval + ", alteredAmt=" + alteredAmt
+				+ ", alteredReason=" + alteredReason + ", exceedingFunds=" + exceedingFunds + ", awarded=" + awarded
+				+ ", denialReason=" + denialReason + "]";
+
 	}
+
 	
 }

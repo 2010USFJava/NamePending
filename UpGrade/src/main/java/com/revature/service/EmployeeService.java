@@ -43,4 +43,8 @@ public class EmployeeService {
 		return 0;
 	}
 	
+	public Employee getSessionEmp(int empID) {
+		return empDao.getEmployeeById(empID);
+	}
+	
 }

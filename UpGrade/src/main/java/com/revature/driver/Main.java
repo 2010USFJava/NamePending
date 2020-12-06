@@ -32,16 +32,13 @@ public class Main {
 //			e.printStackTrace();
 //		}
 //		System.out.println(empList.toString());
-//		EmployeeDAO empDao= new EmployeeDAOImpl();
-//		System.out.println(empDao.getAllEmployees().toString());
-//		EmployeeService test = new EmployeeService();
+		EmployeeDAO empDao= new EmployeeDAOImpl();
+		System.out.println(empDao.getAllEmployees().toString());
+		EmployeeService test = new EmployeeService();
 //		System.out.println(test.loginVerify("david", "password1"));
 //		System.out.println(test.loginGetEmp("david", "password1"));
-//		Employee emp = test.loginGetEmp("david", "password1");
-//		System.out.println(emp.toString());
-		String cost = "800.00";
-		Double amtCost = Double.parseDouble(cost);
-		System.out.println(amtCost);
+		Employee emp = test.loginGetEmp("david", "password1");
+		System.out.println(emp.toString());
 	}
 
 	

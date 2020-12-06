@@ -8,4 +8,5 @@ public interface ApproverDAO {
 	public List<Approver> getAllApprovers();
 	public void insertApprover(Approver app);
 	public Approver getApproverByUsername(String username);
+	public Approver getApproverById(int appID);
 }

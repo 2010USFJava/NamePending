@@ -2,7 +2,10 @@ package com.revature.daoimpl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.revature.beans.Reimbursement;
 import com.revature.dao.EmployeeDAO;
@@ -28,33 +31,53 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 	public void submitReimbursement(Reimbursement form) {
 		try {
 			Connection conn = cf.getConnection();
-			System.out.println(form.getEmpID());
-			String sql = "INSERT INTO reimbursements VALUES (DEFAULT,?,?,TO_DATE(?,'DDMMYYYY'),TO_TIMESTAMP(?,'HH12:MI:SS'),?,?,?::NUMERIC,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO reimbursements VALUES (DEFAULT,?,?,TO_DATE(?,'DDMMYYYY'),TO_TIMESTAMP(?,'HH12:MI:SS'),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, form.getEmpID());
 			ps.setString(2, form.getEventName());
-			ps.setString(3, form.getEventDate());
-			ps.setString(4, form.getEventTime());
-			ps.setString(5, form.getEventLocation());
-			ps.setString(6, form.getDescription());
-			ps.setDouble(7, form.getEventCost());
-			ps.setString(8, form.getEventFile());
-			ps.setString(9, form.getGradingFormat());
-			ps.setString(10, form.getEventType());
-			ps.setString(11, form.getJustification());
-			ps.setString(12, form.getApprovalFile());
-			ps.setInt(13, form.getDsApprove());
-			ps.setInt(14, form.getDhApprove());
-			ps.setBoolean(15, form.isBcApprove());
-			ps.setInt(16, form.getAlteredAmount());
+			ps.setString(3, form.getDate());
+			ps.setString(4, form.getTime());
+			ps.setString(5, form.getLocation());
+			ps.setString(6, form.getLocation());
+			ps.setString(7, form.getLocation());
+			ps.setString(8, form.getDescription());
+			ps.setDouble(9, form.getCost());
+			ps.setString(10, form.getEventFile());
+			ps.setString(11, form.getGradingFormat());
+			ps.setString(12, form.getEventType());
+			ps.setString(13, form.getJustification());
+			ps.setString(14, form.getApprovalFile());
+			ps.setInt(13, form.getDsApproval());
+			ps.setInt(15, form.getDhApproval());
+			ps.setBoolean(16, form.isBcApproval());
+			ps.setDouble(16, form.getAlteredAmt());
 			ps.setString(17, form.getAlteredReason());
 			ps.setBoolean(18, form.isExceedingFunds());
 			ps.setBoolean(19, form.isAwarded());
 			ps.setString(20, form.getDenialReason());
-			ps.executeUpdate();
-			
+			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public List<Reimbursement> getPendingReimbursement() {
+		List<Reimbursement> forms = new ArrayList<Reimbursement>();
+		PreparedStatement ps;
+		try {
+			Connection conn = cf.getConnection();
+			String sql = "SELECT * FROM reimbursements WHERE bc_approve=false";
+			ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				forms.add(new Reimbursement(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getDouble(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getInt(14),rs.getInt(15),rs.getBoolean(16),rs.getInt(17),rs.getString(18),rs.getBoolean(19),rs.getBoolean(20),rs.getString(21)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return forms;
+	}
+	
+	
 }
