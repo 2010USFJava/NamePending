@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.revature.controller.EmployeeController;
 import com.revature.controller.EmployeeFormController;
+import com.revature.controller.LogOutController;
 
 public class JSONRequestHelper{
 	public static void process(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException {
@@ -20,6 +21,8 @@ public class JSONRequestHelper{
 			System.out.println("in pending request helper");
 			EmployeeFormController.getPending(req, res);
 			break;
+		case "/UpGrade/logout.json":
+			LogOutController.closeSession(req, res);
 		default:
 			System.out.println("Not twerking");
 			EmployeeController.getSessionEmp(req, res);

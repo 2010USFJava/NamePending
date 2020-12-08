@@ -33,4 +33,14 @@
     <servlet-name>RulesController</servlet-name>
     <url-pattern>/RulesController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LogOutController</display-name>
+    <servlet-name>LogOutController</servlet-name>
+    <servlet-class>com.revature.controller.LogOutController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogOutController</servlet-name>
+    <url-pattern>/LogOutController</url-pattern>
+  </servlet-mapping>
 </web-app>
