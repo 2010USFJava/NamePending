@@ -62,7 +62,9 @@ public class EmployeeFormController {
 		System.out.println("getting pending forms");
 		ObjectMapper mapper = new ObjectMapper();
 		String formsString = mapper.writeValueAsString(forms);
-		res.getWriter().write(formsString);
+		String formsJson = "{\"forms\":" + formsString + "}";
+		res.getWriter().write(formsJson);
+		System.out.println(formsJson);
 	}
 
 }

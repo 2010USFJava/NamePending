@@ -1,16 +1,14 @@
 package com.revature.controller;
+
 import javax.servlet.http.HttpServletRequest;
 
-public class EmployeePortalController {
+public class DeptHeadPortalController {
 
-	public EmployeePortalController() {
+	public DeptHeadPortalController() {
 		super();
-		
 	}
 	
 	public static String home(HttpServletRequest req) {
-		return "HTML/EmpPortal/EmpPortal.html";
+		return "HTML/AdminPortal/DeptHeadPortal.html";
 	}
-	
-	
 }

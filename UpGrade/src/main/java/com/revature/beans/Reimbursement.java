@@ -217,7 +217,6 @@ public class Reimbursement {
 		this.denialReason = denialReason;
 	}
 	
-	
 	@Override
 	public String toString() {
 		return "Reimbursement [empID=" + empID + ", r_ID=" + r_ID + ", eventName=" + eventName + ", date=" + date
