@@ -11,4 +11,6 @@ public class EmployeePortalController {
 	public static String home(HttpServletRequest req) {
 		return "HTML/EmpPortal/EmpPortal.html";
 	}
+	
+	
 }

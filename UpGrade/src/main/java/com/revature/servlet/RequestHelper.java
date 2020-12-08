@@ -8,6 +8,7 @@ import com.revature.controller.EmpLoginController;
 import com.revature.controller.EmployeeFormController;
 import com.revature.controller.EmployeePendingController;
 import com.revature.controller.EmployeePortalController;
+import com.revature.controller.RulesController;
 
 public class RequestHelper {
 
@@ -33,6 +34,8 @@ public class RequestHelper {
 		case "/UpGrade/pending.change":
 			System.out.println("in pending.change");
 			return EmployeePendingController.pendingPage(req);
+		case "/UpGrade/rules.change":
+			return RulesController.rules(req);
 		default:
 			System.out.println("in default case");
 			return "HTML/unsuccesfullogin.html";

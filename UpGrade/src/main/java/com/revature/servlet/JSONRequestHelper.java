@@ -15,12 +15,14 @@ public class JSONRequestHelper{
 		case "/UpGrade/getsession.json":
 			System.out.println("in request helper");
 			EmployeeController.getSessionEmp(req, res);
+			break;
 		case "/UpGrade/getPending.json":
 			System.out.println("in pending request helper");
 			EmployeeFormController.getPending(req, res);
-//		default:
-//			System.out.println("Not twerking");
-//			EmployeeController.getSessionEmp(req, res);
+			break;
+		default:
+			System.out.println("Not twerking");
+			EmployeeController.getSessionEmp(req, res);
 		}
 		
 	}
