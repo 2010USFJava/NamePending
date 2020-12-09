@@ -11,9 +11,11 @@ import com.revature.controller.EmployeeFormController;
 import com.revature.controller.EmployeePendingController;
 import com.revature.controller.EmployeePortalController;
 import com.revature.controller.GradesController;
+import com.revature.controller.IncorrectLoginController;
 import com.revature.controller.PendingReqController;
 import com.revature.controller.ReportsController;
 import com.revature.controller.RulesController;
+import com.revature.controller.StreetCredsController;
 
 public class RequestHelper {
 
@@ -54,6 +56,14 @@ public class RequestHelper {
 			return GradesController.home(req);
 		case "/UpGrade/deets.change":
 			return ReportsController.home(req);
+		case "/UpGrade/wrongcredsAdmin.change":
+			return IncorrectLoginController.wrongAdmin(req);
+		case "/UpGrade/wrongcredsEmp.change":
+			return IncorrectLoginController.wrongEmp(req);
+		case "/UpGrade/adminCredCheck.change":
+			return StreetCredsController.adminCreds(req);
+		case "/UpGrade/empCredCheck.change":
+			return StreetCredsController.empCreds(req);
 		default:
 			System.out.println("in default case");
 			return "HTML/unsuccesfullogin.html";
