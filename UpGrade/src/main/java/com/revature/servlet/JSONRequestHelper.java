@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.revature.controller.EmpLoginController;
 import com.revature.controller.EmployeeController;
 import com.revature.controller.EmployeeFormController;
 import com.revature.controller.LogOutController;
@@ -23,6 +24,7 @@ public class JSONRequestHelper{
 			break;
 		case "/UpGrade/logout.json":
 			LogOutController.closeSession(req, res);
+			break;
 		default:
 			System.out.println("Not twerking");
 			EmployeeController.getSessionEmp(req, res);

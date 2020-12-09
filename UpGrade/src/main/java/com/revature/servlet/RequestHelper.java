@@ -54,6 +54,9 @@ public class RequestHelper {
 			return GradesController.home(req);
 		case "/UpGrade/deets.change":
 			return ReportsController.home(req);
+		case "/UpGrade/admin.change":
+			System.out.println("in admin.change");
+			return EmpLoginController.adminLogin(req);
 		default:
 			System.out.println("in default case");
 			return "HTML/unsuccesfullogin.html";
