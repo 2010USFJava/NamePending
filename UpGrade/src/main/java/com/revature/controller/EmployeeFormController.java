@@ -1,5 +1,6 @@
 package com.revature.controller;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,11 +61,12 @@ public class EmployeeFormController {
 		List<Reimbursement>forms = new ArrayList<>();
 		forms = reDao.getPendingReimbursement();
 		System.out.println("getting pending forms");
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		ObjectMapper mapper = new ObjectMapper();
-		String formsString = mapper.writeValueAsString(forms);
-		String formsJson = "{\"forms\":" + formsString + "}";
-		res.getWriter().write(formsJson);
-		System.out.println(formsJson);
+		mapper.writeValue(out, forms);
+		byte [] data = out.toByteArray();
+		res.getWriter().write("{\"forms\":" + new String(data) + "}");
+		System.out.println(new String(data));
 	}
 
 }
