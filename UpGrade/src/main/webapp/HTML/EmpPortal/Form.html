@@ -21,24 +21,7 @@
 <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.24.min.js"></script>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script type="text/javascript">
-//Bucket Configurations
-	var bucketName = BUCKET_NAME;
-	var bucketRegion = us-east-2;
-	var IdentityPoolId = us-east-2:487fefa3-8423-4170-ba92-b5b52b7016f4;
-
- AWS.config.update({
-                region: bucketRegion,
-                credentials: new AWS.CognitoIdentityCredentials({
-                    IdentityPoolId: IdentityPoolId
-                })
-            });
-
-            var s3 = new AWS.S3({
-                apiVersion: '2006-03-01',
-                params: {Bucket: bucketName}
-        });
-</script>
+<script type="text/javascript" src="JS/S3Upload.js"></script>
 
 <title>Tuition Reimbursement Form</title>
 </head>
@@ -155,19 +138,21 @@
 												id="inputGroupFile01"
 												aria-describedby="inputGroupFileAddon01"
 												name="attachmentEvent"> <label
-												class="custom-file-label" for="inputGroupFile01">Event
-												Related Attachments</label>
+												class="custom-file-label" for="inputGroupFile01"
+												id="forInputGroupFile01">Event Related Attachments</label>
 										</div>
+										<progress max="100" value="0"></progress>
 									</div>
 									<div class="col-md-4">
 										<div class="custom-file">
 											<input type="file" class="custom-file-input"
-												id="inputGroupFile01"
+												id="inputGroupFile02"
 												aria-describedby="inputGroupFileAddon01"
-												name="attachmentEmail"> <label
-												class="custom-file-label" for="inputGroupFile01">Approval
-												Email Attachments</label>
+												name="attachmentEmail">
+											<label class="custom-file-label" for="inputGroupFile02"
+												id="forInputGroupFile02">Approval Email Attachments</label>
 										</div>
+										<progress max="100" value="0"></progress>
 									</div>
 									<div class="col-md-4">
 										<select class="custom-select" name="approval">

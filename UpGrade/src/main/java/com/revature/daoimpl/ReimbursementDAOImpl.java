@@ -31,25 +31,23 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 	public void submitReimbursement(Reimbursement form) {
 		try {
 			Connection conn = cf.getConnection();
-			String sql = "INSERT INTO reimbursements VALUES (DEFAULT,?,?,TO_DATE(?,'DDMMYYYY'),TO_TIMESTAMP(?,'HH12:MI:SS'),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO reimbursements VALUES (DEFAULT,?,?,TO_DATE(?,'YYYY-MM-DD'),TO_TIMESTAMP(?,'HH12:MI:SS'),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, form.getEmpID());
 			ps.setString(2, form.getEventName());
 			ps.setString(3, form.getDate());
 			ps.setString(4, form.getTime());
 			ps.setString(5, form.getLocation());
-			ps.setString(6, form.getLocation());
-			ps.setString(7, form.getLocation());
-			ps.setString(8, form.getDescription());
-			ps.setDouble(9, form.getCost());
-			ps.setString(10, form.getEventFile());
-			ps.setString(11, form.getGradingFormat());
-			ps.setString(12, form.getEventType());
-			ps.setString(13, form.getJustification());
-			ps.setString(14, form.getApprovalFile());
+			ps.setString(6, form.getDescription());
+			ps.setDouble(7, form.getCost());
+			ps.setString(8, form.getEventFile());
+			ps.setString(9, form.getGradingFormat());
+			ps.setString(10, form.getEventType());
+			ps.setString(11, form.getJustification());
+			ps.setString(12, form.getApprovalFile());
 			ps.setInt(13, form.getDsApproval());
-			ps.setInt(15, form.getDhApproval());
-			ps.setBoolean(16, form.isBcApproval());
+			ps.setInt(14, form.getDhApproval());
+			ps.setBoolean(15, form.isBcApproval());
 			ps.setDouble(16, form.getAlteredAmt());
 			ps.setString(17, form.getAlteredReason());
 			ps.setBoolean(18, form.isExceedingFunds());

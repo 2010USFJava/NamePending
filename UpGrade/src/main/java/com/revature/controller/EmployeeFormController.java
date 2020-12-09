@@ -53,7 +53,7 @@ public class EmployeeFormController {
 		String attachmentEvent = req.getParameter("attachmentEvent");
 		String attachmentEmail = req.getParameter("attachmentEmail");
 		String approval = req.getParameter("approval");
-		Integer.valueOf(approval);
+		Integer approvalID = Integer.valueOf(approval);
 		
 		boolean exceedsFunds;
 		if(empObj.getAvailableR()>costAmt) {
@@ -64,7 +64,7 @@ public class EmployeeFormController {
 		
 		
 		Reimbursement form = new Reimbursement(empObj.getEmpID(),eventName, date,time,location,description,costAmt,attachmentEvent,gradingFormat,typeOfEvent,justification,attachmentEmail,
-				supervisorID, 2, false, 0, null, exceedsFunds, false, null);
+				supervisorID, approvalID, false, 0, null, exceedsFunds, false, null);
 		reDao.submitReimbursement(form);
 		
 		return "pending.change";
