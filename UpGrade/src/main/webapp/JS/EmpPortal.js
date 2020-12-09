@@ -27,6 +27,13 @@ function getEmployee() {
 	xhttp.send();
 }
 
+function logout(){
+	let xhttp = new XMLHttpRequest();
+	
+	xhttp.open("GET", "/UpGrade/logout.json", false);
+	xhttp.send();
+}
+
 function loadElements(emp){
 	document.getElementById("empName").innerHTML=emp.employee.firstName;
 	document.getElementById("amt").innerHTML=emp.employee.availableR;

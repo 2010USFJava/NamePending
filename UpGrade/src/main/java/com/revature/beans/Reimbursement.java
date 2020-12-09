@@ -189,6 +189,33 @@ public class Reimbursement {
 		this.awarded = awarded;
 		this.denialReason = denialReason;
 	}
+	//args constructor without rid to submit forms without conflicting with database
+	public Reimbursement(int empID, String eventName, String date, String time, String location, String description,
+			double cost, String eventFile, String gradingFormat, String eventType, String justification,
+			String approvalFile, int dsApproval, int dhApproval, boolean bcApproval, double alteredAmt,
+			String alteredReason, boolean exceedingFunds, boolean awarded, String denialReason) {
+		super();
+		this.empID = empID;
+		this.eventName = eventName;
+		this.date = date;
+		this.time = time;
+		this.location = location;
+		this.description = description;
+		this.cost = cost;
+		this.eventFile = eventFile;
+		this.gradingFormat = gradingFormat;
+		this.eventType = eventType;
+		this.justification = justification;
+		this.approvalFile = approvalFile;
+		this.dsApproval = dsApproval;
+		this.dhApproval = dhApproval;
+		this.bcApproval = bcApproval;
+		this.alteredAmt = alteredAmt;
+		this.alteredReason = alteredReason;
+		this.exceedingFunds = exceedingFunds;
+		this.awarded = awarded;
+		this.denialReason = denialReason;
+	}
 	
 	@Override
 	public String toString() {
@@ -201,5 +228,6 @@ public class Reimbursement {
 				+ ", denialReason=" + denialReason + "]";
 
 	}
+
 	
 }
