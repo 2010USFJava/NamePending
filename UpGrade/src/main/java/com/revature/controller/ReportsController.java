@@ -1,6 +1,7 @@
 package com.revature.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 public class ReportsController {
 
@@ -8,6 +9,12 @@ public class ReportsController {
 	}
 	
 	public static String home(HttpServletRequest req) {
-		return "HTML/AdminPortal/ViewDeets.html";
+		HttpSession session = req.getSession(false);
+		if(session !=null) {
+			return "HTML/AdminPortal/ViewDeets.html";
+		}
+		else {
+			return "HTML/Login/EmpLogin.html";
+		}
 	}
 }

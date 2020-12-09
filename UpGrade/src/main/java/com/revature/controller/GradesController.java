@@ -1,6 +1,7 @@
 package com.revature.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 public class GradesController {
 
@@ -8,6 +9,11 @@ public class GradesController {
 	}
 	
 	public static String home(HttpServletRequest req) {
-		return "HTML/AdminPortal/Grades.html";
+		HttpSession session = req.getSession(false);
+		if(session != null) {
+			return "HTML/AdminPortal/Grades.html";
+		} else {
+			return "HTML/Login/EmpLogin.html";
+		}
 	}
 }
