@@ -17,20 +17,24 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
 	crossorigin="anonymous"></script>
-	
+<script type="text/javascript" src="JS/ViewDeets.js"></script>
+
 <title>Reimbursement Reports</title>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<h4 class="text-white mt-2">Benefits Coordinator Portal</h4>
+			<h4 class="text-white mt-2">Benefits Coordinator Portal</h4>
 			<ul class="navbar-nav mr-auto ml-5">
-				<li class="nav-item"><a class="nav-link" href="#">Pending Reimbursement Requests
-						
+				<li class="nav-item"><a class="nav-link"
+					href="/UpGrade/requests.change">Pending Reimbursement Requests
+
 				</a></li>
-				<li class="nav-item ml-3"><a class="nav-link" href="#">Grades and Presentations</a></li>
-				<li class="nav-item active ml-3"><a class="nav-link" href="#">Reimbursement Reports
-				<span class="sr-only">(current)</span>
+				<li class="nav-item ml-3"><a class="nav-link"
+					href="/UpGrade/grades.change">Grades and Presentations</a></li>
+				<li class="nav-item active ml-3"><a class="nav-link"
+					href="/UpGrade/deets.change">Reimbursement Reports <span
+						class="sr-only">(current)</span>
 				</a></li>
 			</ul>
 			<div class="d-flex justify-content-center">
@@ -39,5 +43,40 @@
 			</div>
 		</div>
 	</nav>
+	<div class="row">
+		<h1 class="m-5">Reimbursement Reports:</h1>
+	</div>
+	<div class="table-responsive">
+		<table id="detailTable" class="table">
+			<thead>
+				<tr>
+					<th scope="col">Request ID:</th>
+					<th scope="col">Employee ID:</th>
+					<th scope="col">Event:</th>
+					<th scope="col">Date:</th>
+					<th scope="col">Time:</th>
+					<th scope="col">Location:</th>
+					<th scope="col">Description:</th>
+					<th scope="col">Cost:</th>
+					<th scope="col">File:</th>
+					<th scope="col">Grade:</th>
+					<th scope="col">Type:</th>
+					<th scope="col">Justification:</th>
+					<th scope="col">Email Approval:</th>
+					<th scope="col">Supervisor Approval:</th>
+					<th scope="col">Dept Head Approval:</th>
+					<th scope="col">BenCo Approve:</th>
+					<th scope="col">Altered Amount:</th>
+					<th scope="col">Altered Reason:</th>
+					<th scope="col">Exceeds Funds:</th>
+					<th scope="col">Awarded:</th>
+					<th scope="col">Denial Reason:</th>
+					
+				</tr>
+			</thead>
+			<tbody id="formData"></tbody>
+		</table>
+	</div>
+	<div></div>
 </body>
 </html>

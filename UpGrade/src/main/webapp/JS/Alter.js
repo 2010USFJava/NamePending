@@ -6,10 +6,9 @@ window.onload = function() {
 	getPending();
 }
 
-function loadForms(forms) {
-	document.getElementById("empid").innerHTML=forms.forms[0].empID;
-	document.getElementById("amount").innerHTML=forms.forms[0].cost;
-	console.log(forms);
+function loadForms(emp) {
+	document.getElementById("empid").innerHTML=emp.empID;
+	document.getElementById("amount").innerHTML=emp.cost;
 }
 
 function getPending() {
@@ -19,11 +18,9 @@ function getPending() {
 		console.log("cmon do the thing")
 		console.log(xhttp.responseText);
 		if (xhttp.readyState == 4 && xhttp.status == 200) {
-			var forms = JSON.parse(xhttp.responseText);
-			console.log(forms);
-			console.log(forms.forms[0].empID);
-			loadForms(forms);
-			
+			let emp = xhttp.responseText;
+			console.log(emp);
+			loadForms(emp);
 		}
 
 	}

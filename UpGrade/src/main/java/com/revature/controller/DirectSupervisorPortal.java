@@ -2,13 +2,11 @@ package com.revature.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class BenCoPortalController {
+public class DirectSupervisorPortal {
 
-	public BenCoPortalController() {
-		super();
+	public DirectSupervisorPortal() {
 	}
-
 	public static String home(HttpServletRequest req) {
-		return "HTML/AdminPortal/BenCoPortal.html";
+		return "HTML/AdminPortal/DirSupPortal.html";
 	}
 }
