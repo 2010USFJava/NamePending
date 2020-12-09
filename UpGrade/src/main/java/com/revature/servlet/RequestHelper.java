@@ -11,6 +11,7 @@ import com.revature.controller.EmployeeFormController;
 import com.revature.controller.EmployeePendingController;
 import com.revature.controller.EmployeePortalController;
 import com.revature.controller.GradesController;
+import com.revature.controller.LogOutController;
 import com.revature.controller.PendingReqController;
 import com.revature.controller.ReportsController;
 import com.revature.controller.RulesController;
@@ -57,6 +58,8 @@ public class RequestHelper {
 		case "/UpGrade/admin.change":
 			System.out.println("in admin.change");
 			return EmpLoginController.adminLogin(req);
+		case "/UpGrade/logout.change":
+			return LogOutController.closeSession(req);
 		default:
 			System.out.println("in default case");
 			return "HTML/unsuccesfullogin.html";

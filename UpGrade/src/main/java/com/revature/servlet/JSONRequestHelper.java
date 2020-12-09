@@ -22,9 +22,6 @@ public class JSONRequestHelper{
 			System.out.println("in pending request helper");
 			EmployeeFormController.getPending(req, res);
 			break;
-		case "/UpGrade/logout.json":
-			LogOutController.closeSession(req, res);
-			break;
 		default:
 			System.out.println("Not twerking");
 			EmployeeController.getSessionEmp(req, res);

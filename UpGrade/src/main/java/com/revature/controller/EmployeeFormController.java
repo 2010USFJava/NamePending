@@ -58,7 +58,7 @@ public class EmployeeFormController {
 	}
 	
 	public static void getPending(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException {
-		List<Reimbursement>forms = new ArrayList<>();
+		List<Reimbursement> forms = new ArrayList<>();
 		forms = reDao.getPendingReimbursement();
 		System.out.println("getting pending forms");
 		ByteArrayOutputStream out = new ByteArrayOutputStream();

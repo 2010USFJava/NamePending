@@ -18,7 +18,7 @@ public class AppLoginController {
 		if(app==null) {
 			return "wrongcreds.change";
 		} else {
-			req.getSession().setAttribute("activeapp", app);
+			req.getSession().setAttribute("activeapp", app.getApproverID());
 			switch(app.getRole()) {
 			case "benco":
 				System.out.println("in benco");

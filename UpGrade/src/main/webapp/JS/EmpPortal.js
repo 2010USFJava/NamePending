@@ -4,7 +4,7 @@
 window.onload = function() {
 	console.log("this baby is working!!");
 	getEmployee();
-}
+};
 
 function getEmployee() {
 	let xhttp = new XMLHttpRequest();
