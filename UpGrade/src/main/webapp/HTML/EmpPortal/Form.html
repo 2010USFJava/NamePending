@@ -18,24 +18,49 @@
 	integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
 	crossorigin="anonymous"></script>
 
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.24.min.js"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+//Bucket Configurations
+	var bucketName = BUCKET_NAME;
+	var bucketRegion = us-east-2;
+	var IdentityPoolId = us-east-2:487fefa3-8423-4170-ba92-b5b52b7016f4;
+
+ AWS.config.update({
+                region: bucketRegion,
+                credentials: new AWS.CognitoIdentityCredentials({
+                    IdentityPoolId: IdentityPoolId
+                })
+            });
+
+            var s3 = new AWS.S3({
+                apiVersion: '2006-03-01',
+                params: {Bucket: bucketName}
+        });
+</script>
+
 <title>Tuition Reimbursement Form</title>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="/UpGrade/emphome.change">Home </a></li>
-				<li class="nav-item"><a class="nav-link" href="/UpGrade/rules.change">Reimbursement
-						Rules</a></li>
-				<li class="nav-item active"><a class="nav-link" href="/UpGrade/empForm.change">Submission
-						Form <span class="sr-only">(current)</span>
+				<li class="nav-item"><a class="nav-link"
+					href="/UpGrade/emphome.change">Home </a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="/UpGrade/rules.change">Reimbursement Rules</a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="/UpGrade/empForm.change">Submission Form <span
+						class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="/UpGrade/pending.change">Pending
-						Reimbursements</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="/UpGrade/pending.change">Pending Reimbursements</a></li>
 				</li>
 			</ul>
 			<div class="d-flex justify-content-center">
-				<a href=""><button type="button" class="btn btn-primary">Log Out</button></a>
+				<a href=""><button type="button" class="btn btn-primary">Log
+						Out</button></a>
 			</div>
 		</div>
 	</nav>
@@ -50,10 +75,12 @@
 							<div class="card-body">
 								<div class="row mt-3 d-flex justify-content-center">
 									<div class="col">
-										<input placeholder="First Name" name="firstName" class="form-control">
+										<input placeholder="First Name" name="firstName"
+											class="form-control">
 									</div>
 									<div class="col">
-										<input placeholder="Last Name" name="lastName" class="form-control">
+										<input placeholder="Last Name" name="lastName"
+											class="form-control">
 									</div>
 									<div class="col">
 										<select class="custom-select" name="department">
@@ -73,22 +100,26 @@
 								</div>
 								<div class="row d-flex justify-content-center mt-3">
 									<div class="col-md-6">
-										<input placeholder="Event Name" name="eventName" class="form-control">
+										<input placeholder="Event Name" name="eventName"
+											class="form-control">
 									</div>
 									<div class="col-md-2">
-										<input type="date" name="date" placeholder="Date" class="form-control">
+										<input type="date" name="date" placeholder="Date"
+											class="form-control">
 									</div>
 									<div class="col-md-2">
-										<input type="time" name="time" placeholder="Time" class="form-control">
+										<input type="time" name="time" placeholder="Time"
+											class="form-control">
 									</div>
 									<div class="col-md-2">
-										<input placeholder="Location" name="location" class="form-control">
+										<input placeholder="Location" name="location"
+											class="form-control">
 									</div>
 								</div>
 								<div class="row d-flex justify-content-center mt-3">
 									<div class="col-md-6">
-										<input type="text" placeholder="Work Time Missed" name="workTimeMissed"
-											class="form-control">
+										<input type="text" placeholder="Work Time Missed"
+											name="workTimeMissed" class="form-control">
 									</div>
 									<div class="col-md-6">
 										<textarea class="form-control" name="description">Description</textarea>
