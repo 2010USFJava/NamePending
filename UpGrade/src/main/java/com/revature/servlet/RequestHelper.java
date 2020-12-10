@@ -16,6 +16,7 @@ import com.revature.controller.PendingReqController;
 import com.revature.controller.ReportsController;
 import com.revature.controller.RulesController;
 import com.revature.controller.StreetCredsController;
+import com.revature.controller.UploadFormController;
 
 public class RequestHelper {
 
@@ -37,6 +38,7 @@ public class RequestHelper {
 			return BenCoPortalController.home(req);
 		case "/UpGrade/empForm.change":
 			System.out.println("in empForm.change");
+			UploadFormController.uploadForms(req);
 			return EmployeeFormController.submission(req);
 		case "/UpGrade/pending.change":
 			System.out.println("in pending.change");
@@ -64,6 +66,7 @@ public class RequestHelper {
 			return StreetCredsController.adminCreds(req);
 		case "/UpGrade/empCredCheck.change":
 			return StreetCredsController.empCreds(req);
+			
 		default:
 			System.out.println("in default case");
 			return "HTML/unsuccesfullogin.html";

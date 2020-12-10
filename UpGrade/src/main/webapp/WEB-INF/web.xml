@@ -33,4 +33,14 @@
     <servlet-name>RulesController</servlet-name>
     <url-pattern>/RulesController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FileUploadMaster</display-name>
+    <servlet-name>FileUploadMaster</servlet-name>
+    <servlet-class>com.revature.servlet.FileUploadMaster</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FileUploadMaster</servlet-name>
+    <url-pattern>*.upload</url-pattern>
+  </servlet-mapping>
 </web-app>

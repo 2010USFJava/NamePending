@@ -18,6 +18,7 @@ import com.revature.daoimpl.ReimbursementDAOImpl;
 import com.revature.service.EmployeeService;
 
 
+
 public class EmployeeFormController {
 	
 	public EmployeeFormController() {
@@ -31,9 +32,12 @@ public class EmployeeFormController {
 		if(!req.getMethod().equals("POST")) {
 			return "HTML/EmpPortal/Form.html";
 		}
+		
+		
 		HttpSession session = req.getSession();
 		int emp= (int) session.getAttribute("activeemp");
 		Employee empObj = eServ.getSessionEmp(emp);
+		req.getParameter("firstName");
 		req.getParameter("firstName");
 		req.getParameter("lastName");
 		req.getParameter("department");
@@ -61,7 +65,7 @@ public class EmployeeFormController {
 		} else {
 			exceedsFunds = true;
 		}
-		
+		UploadFormController.uploadForms(req);
 		
 		Reimbursement form = new Reimbursement(empObj.getEmpID(),eventName, date,time,location,description,costAmt,attachmentEvent,gradingFormat,typeOfEvent,justification,attachmentEmail,
 				supervisorID, approvalID, false, 0, null, exceedsFunds, false, null);

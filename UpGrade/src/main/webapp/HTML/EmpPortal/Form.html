@@ -18,11 +18,6 @@
 	integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
 	crossorigin="anonymous"></script>
 
-<script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.24.min.js"></script>
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="JS/S3Upload.js"></script>
-
 <title>Tuition Reimbursement Form</title>
 </head>
 <body>
@@ -39,7 +34,6 @@
 				</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="/UpGrade/pending.change">Pending Reimbursements</a></li>
-				</li>
 			</ul>
 			<div class="d-flex justify-content-center">
 				<a href=""><button type="button" class="btn btn-primary">Log
@@ -52,7 +46,7 @@
 	<div class="container">
 		<div class="row mt-5">
 			<div class="col">
-				<form method="post" action="/UpGrade/empForm.change">
+				<form method="POST" action="/UpGrade/empForm.change" enctype="multipart/form-data">
 					<div class="card-group">
 						<div class="card">
 							<div class="card-body">
@@ -148,8 +142,8 @@
 											<input type="file" class="custom-file-input"
 												id="inputGroupFile02"
 												aria-describedby="inputGroupFileAddon01"
-												name="attachmentEmail">
-											<label class="custom-file-label" for="inputGroupFile02"
+												name="attachmentEmail"> <label
+												class="custom-file-label" for="inputGroupFile02"
 												id="forInputGroupFile02">Approval Email Attachments</label>
 										</div>
 										<progress max="100" value="0"></progress>
