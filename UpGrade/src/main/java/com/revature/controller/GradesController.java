@@ -8,7 +8,8 @@ public class GradesController {
 	public GradesController() {
 	}
 	
-	public static String home(HttpServletRequest req) {
+	public static String grades(HttpServletRequest req) {
+		System.out.println("in Grades Controller");
 		HttpSession session = req.getSession(false);
 		if(session != null) {
 			return "HTML/AdminPortal/Grades.html";

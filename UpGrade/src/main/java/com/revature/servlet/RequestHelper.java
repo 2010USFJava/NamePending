@@ -51,8 +51,9 @@ public class RequestHelper {
 		case "/UpGrade/requests.change":
 			System.out.println("in alter helper");
 			return PendingReqController.home(req);
-		case "/UpGrade/grades.change":
-			return GradesController.home(req);
+		case "/UpGrade/presentations.change":
+			System.out.println("in grades helper");
+			return GradesController.grades(req);
 		case "/UpGrade/deets.change":
 			return ReportsController.home(req);
 		case "/UpGrade/admin.change":
