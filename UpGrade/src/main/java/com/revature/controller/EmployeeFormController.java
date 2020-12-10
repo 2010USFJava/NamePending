@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.Reimbursement;
 import com.revature.dao.ReimbursementDAO;
 import com.revature.daoimpl.ReimbursementDAOImpl;
+import com.revature.data.Pending;
 import com.revature.service.EmployeeService;
 
 
@@ -58,15 +59,17 @@ public class EmployeeFormController {
 	}
 	
 	public static void getPending(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException {
-		List<Reimbursement> forms = new ArrayList<>();
+		Pending forms = new Pending();
 		forms = reDao.getPendingReimbursement();
+		System.out.println(forms);
 		System.out.println("getting pending forms");
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.writeValue(out, forms);
 		byte [] data = out.toByteArray();
-		res.getWriter().write("{\"forms\":" + new String(data) + "}");
 		System.out.println(new String(data));
+		res.getWriter().write(new String(data));
+		
 	}
 
 }

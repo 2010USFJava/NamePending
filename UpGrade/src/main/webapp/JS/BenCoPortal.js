@@ -7,9 +7,8 @@ window.onload = function() {
 }
 
 function loadForms(forms) {
-	document.getElementById("empid").innerHTML=forms.forms[0].empID;
-	document.getElementById("amount").innerHTML=forms.forms[0].cost;
-	console.log(forms);
+	document.getElementById("empFName").innerHTML=forms.empObj.firstName;
+	document.getElementById("empLName").innerHTML=forms.empObj.lastName;
 }
 
 function getPending() {
@@ -21,7 +20,7 @@ function getPending() {
 		if (xhttp.readyState == 4 && xhttp.status == 200) {
 			var forms = JSON.parse(xhttp.responseText);
 			console.log(forms);
-			console.log(forms.forms[0].empID);
+			console.log(forms.empObj.firstName);
 			loadForms(forms);
 			
 		}
@@ -33,3 +32,5 @@ function getPending() {
 
 	xhttp.send();
 }
+
+

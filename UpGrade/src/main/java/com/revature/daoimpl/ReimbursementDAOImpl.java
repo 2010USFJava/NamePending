@@ -4,16 +4,19 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
+import com.revature.beans.Employee;
 import com.revature.beans.Reimbursement;
 import com.revature.dao.EmployeeDAO;
 import com.revature.dao.ReimbursementDAO;
+import com.revature.data.Pending;
 import com.revature.service.EmployeeService;
 import com.revature.utility.ConnFactory;
 
 public class ReimbursementDAOImpl implements ReimbursementDAO {
+	
+	HashMap<Employee, Reimbursement> x = new HashMap<Employee, Reimbursement>();
 	
 	public static ConnFactory cf=ConnFactory.getInstance();
 	EmployeeDAO empDao = new EmployeeDAOImpl();
@@ -62,21 +65,31 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 	}
 
 	@Override
-	public List<Reimbursement> getPendingReimbursement() {
-		List<Reimbursement> forms = new ArrayList<Reimbursement>();
+	public Pending getPendingReimbursement() {
+		
+		Employee emp = new Employee();
+		Reimbursement r = new Reimbursement();
+		Pending p = null;
 		PreparedStatement ps;
 		try {
 			Connection conn = cf.getConnection();
-			String sql = "SELECT * FROM reimbursements WHERE bc_approve=false";
+			String sql = "select first_name, last_name, event_name, event_date, ds_approve, dh_approve from reimbursements inner join employees on reimbursements.empid = employees.empid where bc_approve=false";
 			ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				forms.add(new Reimbursement(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getDouble(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getInt(14),rs.getInt(15),rs.getBoolean(16),rs.getInt(17),rs.getString(18),rs.getBoolean(19),rs.getBoolean(20),rs.getString(21)));
+				emp.setFirstName(rs.getString(1));
+				emp.setLastName(rs.getString(2));
+				r.setEventName(rs.getString(3));
+				r.setDate(rs.getString(4));
+				r.setDsApproval(rs.getInt(5));
+				r.setDhApproval(rs.getInt(6));
+				p = new Pending(emp, r);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return forms;
+		System.out.println(p);
+		return p;
 	}
 	
 	
