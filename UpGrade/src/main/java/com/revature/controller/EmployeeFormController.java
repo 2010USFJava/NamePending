@@ -2,6 +2,7 @@ package com.revature.controller;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import com.revature.beans.Reimbursement;
 import com.revature.dao.ReimbursementDAO;
 import com.revature.daoimpl.ReimbursementDAOImpl;
 import com.revature.service.EmployeeService;
+import com.revature.utility.logit;
 
 
 public class EmployeeFormController {
@@ -69,7 +71,11 @@ public class EmployeeFormController {
 		Reimbursement form = new Reimbursement(empObj.getEmpID(),eventName, date,time,location,description,costAmt,attachmentEvent,gradingFormat,typeOfEvent,justification,attachmentEmail,
 				supervisorID, approvalID, false, 0, null, exceedsFunds, false, null);
 		reDao.submitReimbursement(form);
-		
+		try {
+			logit.LogIt("info", empObj.getFirstName()+ " has submitted a form");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return "pending.change";
 	}
 	
