@@ -3,16 +3,15 @@ package com.revature.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-public class BenCoPortalController {
+public class SingleViewController {
+    public SingleViewController() {
+    }
 
-	public BenCoPortalController() {
-		super();
-	}
-
-	public static String home(HttpServletRequest req) {
+    public static String single(HttpServletRequest req) {
+		System.out.println("in Single View Controller");
 		HttpSession session = req.getSession(false);
 		if(session != null) {
-			return "HTML/AdminPortal/BenCoPortal.html";
+			return "HTML/EmpPortal/SingleView.html";
 		} else {
 			return "HTML/Login/EmpLogin.html";
 		}

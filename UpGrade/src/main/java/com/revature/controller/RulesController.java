@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
+
 public class RulesController {
        
     public RulesController() {
@@ -18,7 +19,6 @@ public class RulesController {
     	}else {
     		return "HTML/Login/EmpLogin.html";
     	}
-		
 	}
 
 }

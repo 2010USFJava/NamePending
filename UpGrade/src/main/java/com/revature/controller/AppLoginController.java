@@ -18,8 +18,20 @@ public class AppLoginController {
 		if(app==null) {
 			return "wrongcreds.change";
 		} else {
-			req.getSession().setAttribute("activeapp", app);
-			return "apphome.change";
+			req.getSession().setAttribute("activeapp", app.getApproverID());
+			switch(app.getRole()) {
+			case "benco":
+				System.out.println("in benco");
+				return "bencohome.change";
+			case "depthead":
+				System.out.println("in dept head");
+				return "depthead.change";
+			case "supervisor":
+				System.out.println("in super");
+				return "super.change";
+			default:
+				return "what";
+			}
 		}
 		
 	}

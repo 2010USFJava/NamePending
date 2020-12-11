@@ -17,51 +17,66 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
 	crossorigin="anonymous"></script>
-<script type="text/javascript" src="JS/BenCoPortal.js"></script>
+<!--<script type="text/javascript" src="JS/Reports.js"></script>-->
 
-
-<title>Benefits Coordinator Portal</title>
+<title>Reimbursement Reports</title>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<h4 class="text-white mt-2">Benefits Coordinator Portal</h4>
 			<ul class="navbar-nav mr-auto ml-5">
-				<li class="nav-item active"><a class="nav-link"
+				<li class="nav-item"><a class="nav-link"
 					href="/UpGrade/bencohome.change">Pending Reimbursement Requests
-						<span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item ml-3"><a class="nav-link"
 					href="/UpGrade/presentations.change">Grades and Presentations</a></li>
 				<li class="nav-item ml-3"><a class="nav-link" href="/UpGrade/details.change">Approve Reimbursements</a></li>
-				<li class="nav-item ml-3"><a class="nav-link"
-					href="/UpGrade/reports.change">Reimbursement Reports</a></li>
+				<li class="nav-item active ml-3"><a class="nav-link"
+					href="/UpGrade/reports.change">Reimbursement Reports <span
+						class="sr-only">(current)</span>
+				</a></li>
 			</ul>
 			<div class="d-flex justify-content-center">
-				<a href="/UpGrade/logout.change"><button type="button"
-						class="btn btn-primary">Log Out</button></a>
+				<a href="/UpGrade/logout.change"><button type="button" class="btn btn-primary">Log
+						Out</button></a>
 			</div>
 		</div>
 	</nav>
 	<div class="row">
-		<h1 class="m-5">Employees with Requests Pending Approval</h1>
+		<h1 class="m-5">Reimbursement Reports:</h1>
 	</div>
-	<div class="row ml-5">
-		<table class="table table-hover ml-5">
+	<div class="table-responsive">
+		<table class="table">
 			<thead>
 				<tr>
-					<th>Employee ID</th>
-					<th>Reimbursement ID</th>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Event Name</th>
-					<th># Days Left to Approve</th>
+					<th scope="col">Request ID:</th>
+					<th scope="col">Employee ID:</th>
+					<th scope="col">Event:</th>
+					<th scope="col">Date:</th>
+					<th scope="col">Time:</th>
+					<th scope="col">Location:</th>
+					<th scope="col">Description:</th>
+					<th scope="col">Cost:</th>
+					<th scope="col">File:</th>
+					<th scope="col">Grade:</th>
+					<th scope="col">Type:</th>
+					<th scope="col">Justification:</th>
+					<th scope="col">Email Approval:</th>
+					<th scope="col">Supervisor Approval:</th>
+					<th scope="col">Dept Head Approval:</th>
+					<th scope="col">BenCo Approve:</th>
+					<th scope="col">Altered Amount:</th>
+					<th scope="col">Altered Reason:</th>
+					<th scope="col">Exceeds Funds:</th>
+					<th scope="col">Awarded:</th>
+					<th scope="col">Denial Reason:</th>
+					
 				</tr>
 			</thead>
-			<tbody id="tableData">
-			</tbody>
+			<tbody></tbody>
 		</table>
 	</div>
-
+	<div></div>
 </body>
 </html>

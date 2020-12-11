@@ -30,12 +30,13 @@
 				<li class="nav-item active"><a class="nav-link" href="/UpGrade/empForm.change">Submission
 						Form <span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="/UpGrade/pending.change">Pending
+				<li class="nav-item"><a class="nav-link" href="/UpGrade/allpending.change">Pending
 						Reimbursements</a></li>
-				</li>
+				<li class="nav-item"><a class="nav-link"
+					href="/UpGrade/viewsingle.change">View Reimbursement Details</a></li>
 			</ul>
 			<div class="d-flex justify-content-center">
-				<a href=""><button type="button" class="btn btn-primary">Log Out</button></a>
+				<a href="/UpGrade/logout.change"><button type="button" class="btn btn-primary">Log Out</button></a>
 			</div>
 		</div>
 	</nav>
@@ -57,17 +58,20 @@
 									</div>
 									<div class="col">
 										<select class="custom-select" name="department">
-											<option selected disabled>Department</option>
-											<option value="1">Accounting</option>
-											<option value="2">Information Technology</option>
-											<option value="3">Management</option>
+											<option selected disabled>Department Head</option>
+											<option value="6">Gandalf</option>
+											<option value="2">Saruman</option>
+											<option value="3">Ray</option>
+											<option value="4">Tina</option>
+											<option value="5">Boromir</option>
 										</select>
 									</div>
 									<div class="col">
 										<select class="custom-select" name="supervisor">
 											<option selected disabled>Employee Supervisor</option>
-											<option value="1">Ray</option>
-											<option value="2">Tina</option>
+											<option value="3">Ray</option>
+											<option value="4">Tina</option>
+											<option value="6">Gandalf</option>
 										</select>
 									</div>
 								</div>
@@ -101,16 +105,16 @@
 									<div class="col-md-4">
 										<select class="custom-select" name="gradingFormat">
 											<option selected disabled>Grading Format</option>
-											<option value="1">Grade</option>
-											<option value="2">Presentation</option>
+											<option value="Grade">Grade</option>
+											<option value="Presentation">Presentation</option>
 										</select> <select class="custom-select mt-1" name="typeOfEvent">
 											<option selected disabled>Type of Event</option>
-											<option value="1">University</option>
-											<option value="2">Seminar</option>
-											<option value="3">Certification Preparation</option>
-											<option value="4">Certification</option>
-											<option value="5">Technical Training</option>
-											<option value="6">Other</option>
+											<option value="University">University</option>
+											<option value="Seminar">Seminar</option>
+											<option value="Certification Preparation">Certification Preparation</option>
+											<option value="Certification">Certification</option>
+											<option value="Technical Training">Technical Training</option>
+											<option value="Other">Other</option>
 										</select>
 									</div>
 									<div class="col-md-6">
@@ -140,9 +144,10 @@
 									</div>
 									<div class="col-md-4">
 										<select class="custom-select" name="approval">
-											<option selected disabled>Type of Approval</option>
+											<option selected disabled></option>
 											<option value="1">Direct Supervisor</option>
 											<option value="2">Department Head</option>
+											<option value="3">Both</option>
 										</select>
 									</div>
 								</div>

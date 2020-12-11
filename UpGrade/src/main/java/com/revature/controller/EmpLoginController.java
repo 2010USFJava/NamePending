@@ -1,6 +1,7 @@
 package com.revature.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.revature.beans.Employee;
@@ -24,5 +25,10 @@ public class EmpLoginController {
 			System.out.println();
 			return "emphome.change";
 		}
+	}
+	
+	public static String adminLogin(HttpServletRequest req) {
+		System.out.println("in emp login controller");
+		return AppLoginController.login(req);
 	}
 }

@@ -3,12 +3,20 @@ package com.revature.servlet;
 import javax.servlet.http.HttpServletRequest;
 
 import com.revature.controller.AppLoginController;
-import com.revature.controller.ApprovalPortalController;
+import com.revature.controller.BenCoPortalController;
+import com.revature.controller.DeptHeadPortalController;
+import com.revature.controller.DetailsController;
+import com.revature.controller.DirectSupervisorPortal;
 import com.revature.controller.EmpLoginController;
 import com.revature.controller.EmployeeFormController;
 import com.revature.controller.EmployeePendingController;
 import com.revature.controller.EmployeePortalController;
+import com.revature.controller.GradesController;
+import com.revature.controller.LogOutController;
+import com.revature.controller.PendingReqController;
+import com.revature.controller.ReportsController;
 import com.revature.controller.RulesController;
+import com.revature.controller.SingleViewController;
 
 public class RequestHelper {
 
@@ -25,17 +33,41 @@ public class RequestHelper {
 		case "/UpGrade/applogin.change":
 			System.out.println("in login.change rhelper");
 			return AppLoginController.login(req);
-		case "/UpGrade/apphome.change":
-			System.out.println("in home.change rhelper");
-			return ApprovalPortalController.home(req);
+		case "/UpGrade/bencohome.change":
+			System.out.println("in benco rhelper");
+			return BenCoPortalController.home(req);
 		case "/UpGrade/empForm.change":
 			System.out.println("in empForm.change");
 			return EmployeeFormController.submission(req);
-		case "/UpGrade/pending.change":
+		case "/UpGrade/allpending.change":
 			System.out.println("in pending.change");
 			return EmployeePendingController.pendingPage(req);
 		case "/UpGrade/rules.change":
 			return RulesController.rules(req);
+		case "/UpGrade/depthead.change":
+			System.out.println("in depthead rhelper");
+			return DeptHeadPortalController.home(req);
+		case "/UpGrade/super.change":
+			System.out.println("in super rhelper");
+			return DirectSupervisorPortal.home(req);
+		case "/UpGrade/requests.change":
+			System.out.println("in alter helper");
+			return PendingReqController.home(req);
+		case "/UpGrade/presentations.change":
+			System.out.println("in grades helper");
+			return GradesController.grades(req);
+		case "/UpGrade/reports.change":
+			System.out.println("in request helper");
+			return ReportsController.home(req);
+		case "/UpGrade/details.change":
+			return DetailsController.details(req);
+		case "/UpGrade/admin.change":
+			System.out.println("in admin.change");
+			return EmpLoginController.adminLogin(req);
+		case "/UpGrade/viewsingle.change":
+			return SingleViewController.single(req);
+		case "/UpGrade/logout.change":
+			return LogOutController.closeSession(req);
 		default:
 			System.out.println("in default case");
 			return "HTML/unsuccesfullogin.html";
