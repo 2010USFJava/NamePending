@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -18,7 +19,6 @@ import com.revature.daoimpl.ReimbursementDAOImpl;
 import com.revature.service.EmployeeService;
 
 
-
 public class EmployeeFormController {
 	
 	public EmployeeFormController() {
@@ -28,7 +28,7 @@ public class EmployeeFormController {
 	static ReimbursementDAO reDao =new ReimbursementDAOImpl();
 	static EmployeeService eServ = new EmployeeService();
 	
-	public static String submission(HttpServletRequest req) {
+	public static String submission(HttpServletRequest req) throws IOException, ServletException {
 		if(!req.getMethod().equals("POST")) {
 			return "HTML/EmpPortal/Form.html";
 		}
@@ -41,7 +41,7 @@ public class EmployeeFormController {
 		req.getParameter("firstName");
 		req.getParameter("lastName");
 		req.getParameter("department");
-		String supervisor = req.getParameter("supervisor");
+		String supervisor =req.getParameter("supervisor");
 		Integer supervisorID = Integer.valueOf(supervisor);
 		String eventName = req.getParameter("eventName");
 		String date = req.getParameter("date");
@@ -65,7 +65,6 @@ public class EmployeeFormController {
 		} else {
 			exceedsFunds = true;
 		}
-		UploadFormController.uploadForms(req);
 		
 		Reimbursement form = new Reimbursement(empObj.getEmpID(),eventName, date,time,location,description,costAmt,attachmentEvent,gradingFormat,typeOfEvent,justification,attachmentEmail,
 				supervisorID, approvalID, false, 0, null, exceedsFunds, false, null);

@@ -40,11 +40,11 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 			ps.setString(5, form.getLocation());
 			ps.setString(6, form.getDescription());
 			ps.setDouble(7, form.getCost());
-			ps.setString(8, form.getEventFile());
+			ps.setString(8, "Attachments/"+form.getEventFile());
 			ps.setString(9, form.getGradingFormat());
 			ps.setString(10, form.getEventType());
 			ps.setString(11, form.getJustification());
-			ps.setString(12, form.getApprovalFile());
+			ps.setString(12, "Attachments/"+form.getApprovalFile());
 			ps.setInt(13, form.getDsApproval());
 			ps.setInt(14, form.getDhApproval());
 			ps.setBoolean(15, form.isBcApproval());

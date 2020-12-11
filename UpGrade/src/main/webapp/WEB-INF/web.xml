@@ -4,6 +4,10 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
+  <context-param>
+    <param-name>tempfile.dir</param-name>
+    <param-value>../stsworkspaces/UpGrade/src/main/webapp/Attachments</param-value>
+  </context-param>
   <servlet>
     <servlet-name>MasterServlet</servlet-name>
     <servlet-class>com.revature.servlet.MasterServlet</servlet-class>
@@ -32,15 +36,5 @@
   <servlet-mapping>
     <servlet-name>RulesController</servlet-name>
     <url-pattern>/RulesController</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>FileUploadMaster</display-name>
-    <servlet-name>FileUploadMaster</servlet-name>
-    <servlet-class>com.revature.servlet.FileUploadMaster</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>FileUploadMaster</servlet-name>
-    <url-pattern>*.upload</url-pattern>
   </servlet-mapping>
 </web-app>
