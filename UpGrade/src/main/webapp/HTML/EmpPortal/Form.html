@@ -93,16 +93,16 @@
 											class="form-control">
 									</div>
 									<div class="col">
-										<select class="custom-select" name="department">
-											<option selected disabled>Department</option>
+										<select class="custom-select" name="department" required>
+											<option selected disabled value="0">Department</option>
 											<option value="1">Accounting</option>
 											<option value="2">Information Technology</option>
 											<option value="3">Management</option>
 										</select>
 									</div>
 									<div class="col">
-										<select class="custom-select" name="supervisor">
-											<option selected disabled>Employee Supervisor</option>
+										<select class="custom-select" name="supervisor" required>
+											<option selected disabled value="0">Employee Supervisor</option>
 											<option value="1">Ray</option>
 											<option value="2">Tina</option>
 										</select>
@@ -111,40 +111,40 @@
 								<div class="row d-flex justify-content-center mt-3">
 									<div class="col-md-6">
 										<input placeholder="Event Name" name="eventName"
-											class="form-control">
+											class="form-control" required>
 									</div>
 									<div class="col-md-2">
 										<input type="date" name="date" placeholder="Date"
-											class="form-control">
+											class="form-control" required>
 									</div>
 									<div class="col-md-2">
 										<input type="time" name="time" placeholder="Time"
-											class="form-control">
+											class="form-control" required>
 									</div>
 									<div class="col-md-2">
 										<input placeholder="Location" name="location"
-											class="form-control">
+											class="form-control" required>
 									</div>
 								</div>
 								<div class="row d-flex justify-content-center mt-3">
 									<div class="col-md-6">
 										<input type="text" placeholder="Work Time Missed"
-											name="workTimeMissed" class="form-control">
+											name="workTimeMissed" class="form-control" required>
 									</div>
 									<div class="col-md-6">
-										<textarea class="form-control" name="description">Description</textarea>
+										<textarea class="form-control" name="description" required>Description</textarea>
 									</div>
 								</div>
 								<div class="row d-flex justify-content-center mt-3">
 									<div class="col-md-2">
-										<input placeholder="Cost" name="cost" class="form-control">
+										<input placeholder="Cost" name="cost" class="form-control" required>
 									</div>
 									<div class="col-md-4">
-										<select class="custom-select" name="gradingFormat">
+										<select class="custom-select" name="gradingFormat" required>
 											<option selected disabled>Grading Format</option>
 											<option value="1">Grade</option>
 											<option value="2">Presentation</option>
-										</select> <select class="custom-select mt-1" name="typeOfEvent">
+										</select> <select class="custom-select mt-1" name="typeOfEvent" required>
 											<option selected disabled>Type of Event</option>
 											<option value="1">University</option>
 											<option value="2">Seminar</option>
@@ -155,7 +155,7 @@
 										</select>
 									</div>
 									<div class="col-md-6">
-										<textarea class="form-control" name="justification">Work Related Justification</textarea>
+										<textarea class="form-control" name="justification" required>Work Related Justification</textarea>
 									</div>
 								</div>
 								<div class="row d-flex justify-content-center mt-3">
@@ -182,8 +182,8 @@
 										<progress></progress>
 									</div>
 									<div class="col-md-4">
-										<select class="custom-select" name="approval">
-											<option selected disabled>Type of Approval</option>
+										<select class="custom-select" name="approval" required>
+											<option selected disabled value="0">Type of Approval</option>
 											<option value="1">Direct Supervisor</option>
 											<option value="2">Department Head</option>
 										</select>

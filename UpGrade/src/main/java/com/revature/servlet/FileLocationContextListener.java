@@ -23,7 +23,6 @@ public class FileLocationContextListener implements ServletContextListener {
 	}
 
 	public void contextDestroyed(ServletContextEvent servletContextEvent) {
-		// do cleanup if needed
 	}
 
 }
