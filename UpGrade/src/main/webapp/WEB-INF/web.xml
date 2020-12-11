@@ -23,5 +23,14 @@
     <servlet-name>JSONMasterServlet</servlet-name>
     <url-pattern>*.json</url-pattern>
   </servlet-mapping>
-
+  <servlet>
+    <description></description>
+    <display-name>DetailsController</display-name>
+    <servlet-name>DetailsController</servlet-name>
+    <servlet-class>com.revature.controller.DetailsController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DetailsController</servlet-name>
+    <url-pattern>/DetailsController</url-pattern>
+  </servlet-mapping>
 </web-app>
