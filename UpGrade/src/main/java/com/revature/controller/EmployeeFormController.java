@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,13 +27,18 @@ public class EmployeeFormController {
 	static ReimbursementDAO reDao =new ReimbursementDAOImpl();
 	static EmployeeService eServ = new EmployeeService();
 	
+	
 	public static String submission(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		int emp = (int) session.getAttribute("activeemp");
+		System.out.println(emp);
 		if(!req.getMethod().equals("POST")) {
 			return "HTML/EmpPortal/Form.html";
 		}
 		String firstName = req.getParameter("firstName");
 		String lastName = req.getParameter("lastName");
 		String department = req.getParameter("department");
+		Integer deptheadID = Integer.valueOf(department);
 		String supervisor = req.getParameter("supervisor");
 		Integer supervisorID = Integer.valueOf(supervisor);
 		String eventName = req.getParameter("eventName");
@@ -49,10 +55,15 @@ public class EmployeeFormController {
 		String attachmentEvent = req.getParameter("attachmentEvent");
 		String attachmentEmail = req.getParameter("attachmentEmail");
 		String approval = req.getParameter("approval");
+		if(approval != null) {
 		Integer approvalType = Integer.valueOf(approval);
+		}
 		
-		Reimbursement form = new Reimbursement(eServ.loginGetEmpID(),eventName, date,time,location,description,costAmt,attachmentEvent,gradingFormat,typeOfEvent,justification,attachmentEmail,
-				supervisorID, 1, true, 0, null, false, false, null);
+		Reimbursement form = new Reimbursement(
+				emp,eventName,date,time,location,description,costAmt,attachmentEvent,
+				gradingFormat,typeOfEvent,justification,attachmentEmail,
+				supervisorID, deptheadID, false, 0, null, false, false, null);
+		System.out.println("this is the form" + form);
 		reDao.submitReimbursement(form);
 		
 		return "pending.change";
