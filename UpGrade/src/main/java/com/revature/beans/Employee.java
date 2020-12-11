@@ -65,6 +65,17 @@ public class Employee {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Employee(String firstName, String lastName, String userName, String password, double availableR,
+			int supervisorID, int deptHeadID) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.userName = userName;
+		this.password = password;
+		this.availableR = availableR;
+		this.supervisorID = supervisorID;
+		this.deptHeadID = deptHeadID;
+	}
 	public Employee(int empID, String firstName, String lastName, String userName, String password, double availableR,
 			int supervisorID, int deptHeadID) {
 		super();
