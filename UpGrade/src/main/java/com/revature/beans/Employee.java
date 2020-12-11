@@ -78,6 +78,23 @@ public class Employee {
 		this.deptHeadID = deptHeadID;
 	}
 	
+	public Employee(int empID, String firstName, String lastName, String userName, String password, double availableR) {
+		super();
+		this.empID = empID;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.userName = userName;
+		this.password = password;
+		this.availableR = availableR;
+	}
+	
+	public Employee(int empID, int supervisorID, int deptHeadID) {
+		super();
+		this.empID = empID;
+		this.supervisorID = supervisorID;
+		this.deptHeadID = deptHeadID;
+	}
+	
 	@Override
 	public String toString() {
 		return "Employee [empID=" + empID + ", firstName=" + firstName + ", lastName=" + lastName + ", userName="

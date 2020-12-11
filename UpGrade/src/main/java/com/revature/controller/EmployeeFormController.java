@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.beans.Employee;
 import com.revature.beans.Reimbursement;
 import com.revature.dao.ReimbursementDAO;
 import com.revature.daoimpl.ReimbursementDAOImpl;
@@ -61,10 +62,10 @@ public class EmployeeFormController {
 		
 		Reimbursement form = new Reimbursement(
 				emp,eventName,date,time,location,description,costAmt,attachmentEvent,
-				gradingFormat,typeOfEvent,justification,attachmentEmail,
-				supervisorID, deptheadID, false, 0, null, false, false, null);
+				gradingFormat,typeOfEvent,justification,attachmentEmail);
+		Employee empObj = new Employee(emp, supervisorID, deptheadID);
 		System.out.println("this is the form" + form);
-		reDao.submitReimbursement(form);
+		reDao.submitReimbursement(form, empObj);
 		
 		return "pending.change";
 	}
@@ -80,6 +81,10 @@ public class EmployeeFormController {
 		byte [] data = out.toByteArray();
 		System.out.println(new String(data));
 		res.getWriter().write(new String(data));
+		
+	}
+	
+	public static void getAll(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException {
 		
 	}
 

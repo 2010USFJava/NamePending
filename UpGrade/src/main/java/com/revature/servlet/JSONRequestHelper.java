@@ -22,6 +22,10 @@ public class JSONRequestHelper{
 			System.out.println("in pending request helper");
 			EmployeeFormController.getPending(req, res);
 			break;
+		case "/UpGrade/getAll.json":
+			System.out.println("in getAll request helper");
+			EmployeeFormController.getAll(req, res);
+			break;
 		default:
 			System.out.println("Not twerking");
 			EmployeeController.getSessionEmp(req, res);

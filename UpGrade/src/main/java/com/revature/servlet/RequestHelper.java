@@ -16,6 +16,7 @@ import com.revature.controller.LogOutController;
 import com.revature.controller.PendingReqController;
 import com.revature.controller.ReportsController;
 import com.revature.controller.RulesController;
+import com.revature.controller.SingleViewController;
 
 public class RequestHelper {
 
@@ -63,6 +64,8 @@ public class RequestHelper {
 		case "/UpGrade/admin.change":
 			System.out.println("in admin.change");
 			return EmpLoginController.adminLogin(req);
+		case "/UpGrade/viewsingle.change":
+			return SingleViewController.single(req);
 		case "/UpGrade/logout.change":
 			return LogOutController.closeSession(req);
 		default:

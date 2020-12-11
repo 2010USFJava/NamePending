@@ -28,7 +28,7 @@ function loadForms(forms) {
 		event.innerHTML = forms[i].rObj.eventName;
 		let days = row.insertCell(5);
 		let day = new Date(forms[i].rObj.date);
-		let date = Math.round((today.getTime() - day.getTime()) / (1000 * 60 * 60 * 24));
+		let date = Math.round((day.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
 		if (date < 12) {
 			days.innerHTML = date + " days URGENT";
 		}

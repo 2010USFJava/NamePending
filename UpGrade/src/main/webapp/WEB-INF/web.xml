@@ -33,4 +33,14 @@
     <servlet-name>DetailsController</servlet-name>
     <url-pattern>/DetailsController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SingleViewController</display-name>
+    <servlet-name>SingleViewController</servlet-name>
+    <servlet-class>com.revature.controller.SingleViewController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SingleViewController</servlet-name>
+    <url-pattern>/SingleViewController</url-pattern>
+  </servlet-mapping>
 </web-app>
