@@ -1,8 +1,5 @@
 package com.revature.utility;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,7 +11,7 @@ public class logit {
 	
  static Logger logger = LogManager.getLogger();
      
-     public static void LogIt(String level, String message) throws SQLException{
+     public static void LogIt(String level, String message) {
     	 switch(level) {
  		case "debug":
  			logger.debug(message);
@@ -37,13 +34,6 @@ public class logit {
  		default:
  			System.err.println("utoh");
  		} 
-    	 String sql = "insert into logs(log_level, log_message) values (?,?)";
-    	 PreparedStatement ps =Stmnt.makePrStmnt(sql);
-         //ps.setString(1, username);
-         ps.setString(1, level);
-         ps.setString(2, message);
-         //ps.setInt(3, 0);
-         ps.executeUpdate();
      }
 
 }
