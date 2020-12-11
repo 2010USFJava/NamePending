@@ -96,5 +96,10 @@ public class EmployeeFormController {
 		System.out.println(new String(data));
 		res.getWriter().write(new String(data));
 	}
+	
+	public static void getOne(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException {
+		
+		
+	}
 
 }

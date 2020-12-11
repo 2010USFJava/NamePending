@@ -27,6 +27,8 @@ public class JSONRequestHelper{
 			System.out.println("in getAll request helper");
 			EmployeeFormController.getAll(req, res);
 			break;
+		case "/UpGrade/getEmpDetails.json":
+			
 		default:
 			System.out.println("Not twerking");
 			EmployeeController.getSessionEmp(req, res);
