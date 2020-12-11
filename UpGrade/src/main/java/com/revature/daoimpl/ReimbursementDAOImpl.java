@@ -31,7 +31,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 	public void submitReimbursement(Reimbursement form) {
 		try {
 			Connection conn = cf.getConnection();
-			String sql = "INSERT INTO reimbursements VALUES (DEFAULT,?,?,TO_DATE(?,'YYYY-MM-DD'),TO_TIMESTAMP(?,'HH12:MI:SS'),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO reimbursements VALUES (DEFAULT,?,?,TO_DATE(?,'YYYY-MM-DD'),TO_TIMESTAMP(?,'HH24:MI:SS'),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, form.getEmpID());
 			ps.setString(2, form.getEventName());
@@ -65,7 +65,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 		PreparedStatement ps;
 		try {
 			Connection conn = cf.getConnection();
-			String sql = "SELECT * FROM reimbursements WHERE bc_approve=false";
+			String sql = "SELECT * FROM reimbursements WHERE bc_approve is null";
 			ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
