@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration>
+-
+
+-<Appenders>
+-<JDBC  name="databaseAppender" tableName= "LOGS">
+   <ConnectionFactory class="com.revature.utility.ConnFactory" method = "getConnection"/>
+ 
+  <Column name= "DATE" isEventTimestamp= "true"/>
+  <Column name= "LOGGER" pattern= "%logger"/>
+  <Column name= "LEVEL" pattern= "%level"/>
+  <Column name= "MESSAGE" pattern= "%message"/>
+</JDBC>
+
+-<Console name="Console" target="System_out">
+-
+
+-<PatternLayout>
+
+<Pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n </Pattern>
+
+</PatternLayout>
+
+</Console>
+-
+
+-<File name="File" fileName="C:/Users/User/Desktop/Revature Training/BondD/Project0/logging.log">
+-
+
+-<PatternLayout>
+
+<Pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n </Pattern>
+
+</PatternLayout>
+
+</File>
+
+</Appenders>
+-
+
+-<Loggers>
+-
+
+-<Logger name="com.revature.utility.BankLogger" level="info" additivity="false">
+
+<AppenderRef ref="Console"/>
+
+<AppenderRef ref="File"/>
+<AppenderRef ref="JDBC"/>
+
+</Logger>
+-
+
+-<Root>
+
+<AppenderRef ref="Console"/>
+
+<AppenderRef ref="File"/>
+
+</Root>
+
+</Loggers>
+
+</Configuration>

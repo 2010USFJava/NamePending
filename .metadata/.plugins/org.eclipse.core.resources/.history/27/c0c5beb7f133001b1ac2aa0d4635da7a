@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration>
+-
+
+-<Appenders>
+-<JDBC  name="databaseAppender" class="org.apache.log4j.jdbc.JDBCAppender">
+   <ConnectionFactory class="com.revature.utility.ConnFactory" method = "getConnection"/>
+   <param name="Driver" value="org.postgresql.Driver"/>
+   <param name="user" value="Tech"/>
+   <param name="password" value="password"/>
+   <param name="sql" value="INSERT INTO LOGS (USER_ID, DATED, LOGGER, LEVEL, MESSAGE) VALUES('%x','%d','%C','%p','%msg')"/>
+   
+   <layout class="org.apache.log4j.PatternLayout">
+   </layout>
+</JDBC>
+
+-<Console name="Console" target="System_out">
+-
+
+-<PatternLayout>
+
+<Pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n </Pattern>
+
+</PatternLayout>
+
+</Console>
+-
+
+-<File name="File" fileName="C:/Users/User/Desktop/Revature Training/BondD/Project0/logging.log">
+-
+
+-<PatternLayout>
+
+<Pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n </Pattern>
+
+</PatternLayout>
+
+</File>
+
+</Appenders>
+-
+
+-<Loggers>
+-
+
+-<Logger name="com.revature.utility.BankLogger" level="info" additivity="false">
+
+<AppenderRef ref="Console"/>
+
+<AppenderRef ref="File"/>
+<AppenderRef ref="JDBC"/>
+
+</Logger>
+-
+
+-<Root>
+
+<AppenderRef ref="Console"/>
+
+<AppenderRef ref="File"/>
+
+</Root>
+
+</Loggers>
+
+</Configuration>

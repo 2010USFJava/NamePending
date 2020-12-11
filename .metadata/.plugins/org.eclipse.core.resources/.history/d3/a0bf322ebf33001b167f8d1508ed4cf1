@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration>
+- -
+
+-<Appenders>
+- -
+
+-<Console target="System_out" name="Console">
+- -
+
+-<PatternLayout>
+
+<Pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n </Pattern>
+
+</PatternLayout>
+
+</Console>
+- -
+
+-<File name="File" fileName="C:/Users/User/Desktop/Revature Training/NamePending/logging.log">
+- -
+
+-<PatternLayout>
+
+<Pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n </Pattern>
+
+</PatternLayout>
+
+</File>
+<appender name="DB" class="org.apache.log4j.jdbc.JDBCAppender">
+   <param name="url" value="jdbc:postgresql://revature.ceqcayfrb4do.us-east-2.rds.amazonaws.com:5432/postgres"/>
+   
+   <param name="user" value="Tech"/>
+   <param name="password" value="password"/>
+   <param name="sql" value="INSERT INTO LOGS VALUES('%x','%d','%C','%p','%m')"/>
+   
+   <layout class="org.apache.log4j.PatternLayout">
+   </layout>
+</appender>
+</Appenders>
+- -
+
+-<Loggers>
+- -
+
+-<Logger name="com.revature.utility.logIt" additivity="false" level="info">
+
+<AppenderRef ref="Console"/>
+
+<AppenderRef ref="File"/>
+
+</Logger>
+- -
+
+-<Root>
+
+<AppenderRef ref="Console"/>
+
+<AppenderRef ref="File"/>
+
+</Root>
+
+</Loggers>
+
+</Configuration>
