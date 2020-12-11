@@ -7,11 +7,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.revature.beans.Employee;
 import com.revature.beans.Reimbursement;
 import com.revature.dao.EmployeeDAO;
 import com.revature.dao.ReimbursementDAO;
 import com.revature.service.EmployeeService;
 import com.revature.utility.ConnFactory;
+import com.revature.utility.Stmnt;
+import com.revature.utility.logit;
 
 public class ReimbursementDAOImpl implements ReimbursementDAO {
 	
@@ -31,7 +34,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 	public void submitReimbursement(Reimbursement form) {
 		try {
 			Connection conn = cf.getConnection();
-			String sql = "INSERT INTO reimbursements VALUES (DEFAULT,?,?,TO_DATE(?,'YYYY-MM-DD'),TO_TIMESTAMP(?,'HH24:MI:SS'),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO reimbursements VALUES (DEFAULT,?,?,TO_DATE(?,'YYYY-MM-DD'),TO_TIMESTAMP(?,'HH12:MI:SS'),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, form.getEmpID());
 			ps.setString(2, form.getEventName());
@@ -54,6 +57,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 			ps.setBoolean(19, form.isAwarded());
 			ps.setString(20, form.getDenialReason());
 			ps.execute();
+			logit.LogIt("info", "Reimbursement: "+form.getR_ID()+" for Employee ID: "+form.getEmpID()+" was submitted.");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -65,7 +69,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 		PreparedStatement ps;
 		try {
 			Connection conn = cf.getConnection();
-			String sql = "SELECT * FROM reimbursements WHERE bc_approve is null";
+			String sql = "SELECT * FROM reimbursements WHERE bc_approve=false";
 			ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
@@ -73,9 +77,106 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			System.out.println("Check getPendingReimbursement SQL " + e.getSQLState() + " " + e.getMessage());
 		}
 		return forms;
 	}
 	
+	//search reimbursements by ID
+	public Reimbursement getReimbursementByID(int id) {
+		String sql ="SELECT * FROM reimbursements WHERE rid =? ";
+		Reimbursement r = null;
+		try {
+			PreparedStatement ps = Stmnt.makePrStmnt(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			if (rs !=null) {
+			    rs.equals(r);
+			    return r;
+			}
+			
+		}
+		catch (SQLException e) {
+			System.out.println("Check getReimbursementByID SQL " + e.getSQLState() + " " + e.getMessage());
+		}
+		
+		return null;
+	}
 	
+	// update reimbursement to approved
+	public void  reimbursementApproved(Reimbursement r) {
+		int id = r.getR_ID();
+		String sql ="UPDATE reimbursements SET bc_approve = true  where rid = ? ";
+		
+			try {
+				PreparedStatement ps = Stmnt.makePrStmnt(sql);
+				ps.setInt(1, id);
+				ps.executeUpdate();
+				logit.LogIt("info", "Reimbursement: "+id+" for Employee ID: "+r.getEmpID()+" Was Approved");
+			}
+		catch (SQLException e) {
+			System.out.println("Check reimbursementApproved SQL " + e.getSQLState() + " " + e.getMessage());
+		}
+	}
+	
+	//update reimbursement to denied
+	public void reimbursementDenied(Reimbursement r) {
+		int id = r.getR_ID();
+		String sql ="UPDATE reimbursements SET bc_approve = false, awarded = false, denial_reason = ? where rid = ?";
+		try {
+			PreparedStatement ps = Stmnt.makePrStmnt(sql);
+			ps.setString(1, r.getDenialReason());
+			ps.setInt(2, id);
+			ps.executeUpdate();
+			logit.LogIt("info", "Reimbursement: "+id+" for Employee ID: "+r.getEmpID()+" Was declined due to "+ r.getDenialReason());
+		}catch  (SQLException e) {
+			System.out.println("Check reimbursementDenied SQL " + e.getSQLState() + " " + e.getMessage());
+		}
+	}
+	
+	public double reimbursementAmountApproved( Reimbursement r) {
+		EmployeeDAOImpl eImp = new EmployeeDAOImpl();
+		Employee ex = eImp.getEmployeeById(r.getEmpID());
+		double cost = r.getCost(); //full cost of th event
+		double amount = 0;        // amount awarded
+		double available = ex.getAvailableR(); //available 
+		double pendingTotal =0 ;// pending requests from other reimbursement requests
+		
+		
+	if (cost > 0 ) {	
+		// applies the percentage of amount covered per event type
+		String type = r.getEventType();
+		  switch (type) {
+		  case"University": 
+			  amount = amount*.8;
+			  break;
+		  case"Seminar": 
+			  amount = amount*.6;
+			  break;
+		  case"Certification Preparation": 
+			  amount = amount*.75;
+			  break;
+		  case"Certification": 
+			  amount = amount;
+			  break;
+		  case"Technical Training": 
+			  amount = amount*.9;
+			  break;
+		  case"Other": 
+			  amount = amount*.3;
+			  break;
+					  
+		  }
+		if (amount <= available) {
+		ex.setAvailableR(available - amount);
+		
+		return amount;
+	} else if (available < amount) {
+		ex.setAvailableR(0);
+		return available;
+	}else { return 0;}
+	}
+	
+	return 0 ;
+	}
 }
