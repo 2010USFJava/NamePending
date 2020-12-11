@@ -17,6 +17,39 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
 	crossorigin="anonymous"></script>
+	<script>
+  function doSubmit(){
+    // Form Data
+    var formData = new FormData();
+    var formData2 = new FormData();
+    
+    var fileSelect = document.getElementById("inputGroupFile01");
+    var fileSelect2 = document.getElementById("inputGroupFile02");
+    
+    if(fileSelect.files && fileSelect.files.length == 1 && fileSelect2.files && fileSelect2.files.length == 1){
+     var file = fileSelect.files[0]
+     formData.set("file", file , file.name);
+    }
+    
+    if(fileSelect2.files && fileSelect2.files.length == 1){
+        var file2 = fileSelect2.files[0]
+        formData2.set("file", file2 , file2.name);
+       }
+    
+    var input1 = document.getElementById("forInputGroupFile01");
+    var input2 = document.getElementById("forInputGroupFile02");
+    
+    formData.set("forInputGroupFile01", input1.value);
+    formData2.set("forInputGroupFile02", input2.value);
+    
+    var request = new XMLHttpRequest();
+    var request2 = new XMLHttpRequest();
+    request.open("POST", "UploadDownloadFileServlet", true);
+    request.send(formData);
+    request2.open("POST", "UploadDownloadFileServlet", true);
+    request2.send(formData2);
+  }
+</script>
 
 <title>Tuition Reimbursement Form</title>
 </head>
@@ -24,18 +57,20 @@
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="#">Home </a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Reimbursement
-						Rules</a></li>
-				<li class="nav-item active"><a class="nav-link" href="#">Submission
-						Form <span class="sr-only">(current)</span>
+				<li class="nav-item"><a class="nav-link"
+					href="/UpGrade/emphome.change">Home </a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="/UpGrade/rules.change">Reimbursement Rules</a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="/UpGrade/empForm.change">Submission Form <span
+						class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Pending
-						Reimbursements</a></li>
-				</li>
+				<li class="nav-item"><a class="nav-link"
+					href="/UpGrade/pending.change">Pending Reimbursements</a></li>
 			</ul>
 			<div class="d-flex justify-content-center">
-				<a href=""><button type="button" class="btn btn-primary">Log Out</button></a>
+				<a href=""><button type="button" class="btn btn-primary">Log
+						Out</button></a>
 			</div>
 		</div>
 	</nav>
@@ -44,19 +79,21 @@
 	<div class="container">
 		<div class="row mt-5">
 			<div class="col">
-				<form>
+				<form method="POST" action="/UpGrade/empForm.change">
 					<div class="card-group">
 						<div class="card">
 							<div class="card-body">
 								<div class="row mt-3 d-flex justify-content-center">
 									<div class="col">
-										<input placeholder="First Name" class="form-control">
+										<input placeholder="First Name" name="firstName"
+											class="form-control">
 									</div>
 									<div class="col">
-										<input placeholder="Last Name" class="form-control">
+										<input placeholder="Last Name" name="lastName"
+											class="form-control">
 									</div>
 									<div class="col">
-										<select class="custom-select">
+										<select class="custom-select" name="department">
 											<option selected disabled>Department</option>
 											<option value="1">Accounting</option>
 											<option value="2">Information Technology</option>
@@ -64,7 +101,7 @@
 										</select>
 									</div>
 									<div class="col">
-										<select class="custom-select">
+										<select class="custom-select" name="supervisor">
 											<option selected disabled>Employee Supervisor</option>
 											<option value="1">Ray</option>
 											<option value="2">Tina</option>
@@ -73,38 +110,41 @@
 								</div>
 								<div class="row d-flex justify-content-center mt-3">
 									<div class="col-md-6">
-										<input placeholder="Event Name" class="form-control">
+										<input placeholder="Event Name" name="eventName"
+											class="form-control">
 									</div>
 									<div class="col-md-2">
-										<input type="date" placeholder="Date" class="form-control">
+										<input type="date" name="date" placeholder="Date"
+											class="form-control">
 									</div>
 									<div class="col-md-2">
-										<input type="time" placeholder="Time" class="form-control">
+										<input type="time" name="time" placeholder="Time"
+											class="form-control">
 									</div>
 									<div class="col-md-2">
-										<input placeholder="Location" class="form-control">
+										<input placeholder="Location" name="location"
+											class="form-control">
 									</div>
-
 								</div>
 								<div class="row d-flex justify-content-center mt-3">
 									<div class="col-md-6">
 										<input type="text" placeholder="Work Time Missed"
-											class="form-control">
+											name="workTimeMissed" class="form-control">
 									</div>
 									<div class="col-md-6">
-										<textarea class="form-control">Description</textarea>
+										<textarea class="form-control" name="description">Description</textarea>
 									</div>
 								</div>
 								<div class="row d-flex justify-content-center mt-3">
 									<div class="col-md-2">
-										<input placeholder="Cost" class="form-control">
+										<input placeholder="Cost" name="cost" class="form-control">
 									</div>
 									<div class="col-md-4">
-										<select class="custom-select">
+										<select class="custom-select" name="gradingFormat">
 											<option selected disabled>Grading Format</option>
 											<option value="1">Grade</option>
 											<option value="2">Presentation</option>
-										</select> <select class="custom-select mt-1">
+										</select> <select class="custom-select mt-1" name="typeOfEvent">
 											<option selected disabled>Type of Event</option>
 											<option value="1">University</option>
 											<option value="2">Seminar</option>
@@ -115,7 +155,7 @@
 										</select>
 									</div>
 									<div class="col-md-6">
-										<textarea class="form-control">Work Related Justification</textarea>
+										<textarea class="form-control" name="justification">Work Related Justification</textarea>
 									</div>
 								</div>
 								<div class="row d-flex justify-content-center mt-3">
@@ -123,22 +163,26 @@
 										<div class="custom-file">
 											<input type="file" class="custom-file-input"
 												id="inputGroupFile01"
-												aria-describedby="inputGroupFileAddon01"> <label
-												class="custom-file-label" for="inputGroupFile01">Event
-												Related Attachments</label>
+												aria-describedby="inputGroupFileAddon01"
+												name="attachmentEvent"> <label
+												class="custom-file-label" for="inputGroupFile01"
+												id="forInputGroupFile01">Event Related Attachments</label>
 										</div>
+										<progress></progress>
 									</div>
 									<div class="col-md-4">
 										<div class="custom-file">
 											<input type="file" class="custom-file-input"
-												id="inputGroupFile01"
-												aria-describedby="inputGroupFileAddon01"> <label
-												class="custom-file-label" for="inputGroupFile01">Approval
-												Email Attachments</label>
+												id="inputGroupFile02"
+												aria-describedby="inputGroupFileAddon01"
+												name="attachmentEmail"> <label
+												class="custom-file-label" for="inputGroupFile02"
+												id="forInputGroupFile02">Approval Email Attachments</label>
 										</div>
+										<progress></progress>
 									</div>
 									<div class="col-md-4">
-										<select class="custom-select">
+										<select class="custom-select" name="approval">
 											<option selected disabled>Type of Approval</option>
 											<option value="1">Direct Supervisor</option>
 											<option value="2">Department Head</option>
@@ -147,7 +191,7 @@
 								</div>
 								<div class="row d-flex justify-content-center mt-5">
 									<div class="col-md-2">
-										<button type="submit" class="btn btn-primary m-1">Submit
+										<button type="submit" onclick="doSubmit()" class="btn btn-primary m-1">Submit
 											Form</button>
 									</div>
 								</div>

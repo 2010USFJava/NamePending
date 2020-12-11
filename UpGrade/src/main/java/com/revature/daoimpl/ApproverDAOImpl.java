@@ -73,5 +73,23 @@ public class ApproverDAOImpl implements ApproverDAO{
 			}
 			return app;
 	}
+	@Override
+	public Approver getApproverById(int appID) {
+		PreparedStatement ps;
+		Approver app = null;
+		try {
+			Connection conn = cf.getConnection();
+			String sql = "SELECT * FROM approvers WHERE approver_id=?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, appID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				app = new Approver(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return app;
+	}
 
 }
