@@ -54,7 +54,8 @@ public class RequestHelper {
 		case "/UpGrade/presentations.change":
 			System.out.println("in grades helper");
 			return GradesController.grades(req);
-		case "/UpGrade/deets.change":
+		case "/UpGrade/reports.change":
+			System.out.println("in request helper");
 			return ReportsController.home(req);
 		case "/UpGrade/admin.change":
 			System.out.println("in admin.change");

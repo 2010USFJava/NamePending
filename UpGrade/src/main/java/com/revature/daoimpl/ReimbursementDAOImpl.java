@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import com.revature.beans.Employee;
 import com.revature.beans.Reimbursement;
@@ -65,31 +67,34 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 	}
 
 	@Override
-	public Pending getPendingReimbursement() {
-		
-		Employee emp = new Employee();
-		Reimbursement r = new Reimbursement();
-		Pending p = null;
+	public List<Pending> getPendingReimbursement() {
+		List<Pending> pendingList = new ArrayList<Pending>();
 		PreparedStatement ps;
 		try {
 			Connection conn = cf.getConnection();
-			String sql = "select first_name, last_name, event_name, event_date, ds_approve, dh_approve from reimbursements inner join employees on reimbursements.empid = employees.empid where bc_approve=false";
+			String sql = "select rid, reimbursements.empid, first_name, last_name, event_name, event_date, ds_approve, dh_approve from reimbursements inner join employees on reimbursements.empid = employees.empid where bc_approve=false";
 			ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
+			System.out.println(rs);
 			while(rs.next()) {
-				emp.setFirstName(rs.getString(1));
-				emp.setLastName(rs.getString(2));
-				r.setEventName(rs.getString(3));
-				r.setDate(rs.getString(4));
-				r.setDsApproval(rs.getInt(5));
-				r.setDhApproval(rs.getInt(6));
-				p = new Pending(emp, r);
+				Employee emp = new Employee();
+				Reimbursement r = new Reimbursement();
+				emp.setEmpID(rs.getInt(2));
+				emp.setFirstName(rs.getString(3));
+				emp.setLastName(rs.getString(4));
+				r.setR_ID(rs.getInt(1));
+				r.setEventName(rs.getString(5));
+				r.setDate(rs.getString(6));
+				r.setDsApproval(rs.getInt(7));
+				r.setDhApproval(rs.getInt(8));
+				pendingList.add(new Pending(emp, r));
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println(p);
-		return p;
+		System.out.println(pendingList);
+		return pendingList;
 	}
 	
 	

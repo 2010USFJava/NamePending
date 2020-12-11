@@ -9,9 +9,10 @@ public class ReportsController {
 	}
 	
 	public static String home(HttpServletRequest req) {
+		System.out.println("in Reports Controller");
 		HttpSession session = req.getSession(false);
 		if(session !=null) {
-			return "HTML/AdminPortal/ViewDeets.html";
+			return "HTML/AdminPortal/Reports.html";
 		}
 		else {
 			return "HTML/Login/EmpLogin.html";
