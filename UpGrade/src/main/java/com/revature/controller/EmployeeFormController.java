@@ -85,7 +85,16 @@ public class EmployeeFormController {
 	}
 	
 	public static void getAll(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException {
-		
+		HttpSession session = req.getSession();
+		int emp = (int) session.getAttribute("activeemp");
+		List<Reimbursement> rList = new ArrayList<Reimbursement>();
+		rList = reDao.getAllReimbursement(emp);
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.writeValue(out, rList);
+		byte [] data = out.toByteArray();
+		System.out.println(new String(data));
+		res.getWriter().write(new String(data));
 	}
 
 }

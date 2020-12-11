@@ -95,5 +95,45 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 		return pendingList;
 	}
 	
+	@Override
+	public List<Reimbursement> getAllReimbursement(int empID){
+		List<Reimbursement> rList = new ArrayList<Reimbursement>();
+		PreparedStatement ps;
+		try {
+			Connection conn = cf.getConnection();
+			String sql = "SELECT * FROM reimbursements where empid=?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, empID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				rList.add(new Reimbursement(
+						rs.getInt(1),
+						rs.getInt(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getString(5),
+						rs.getString(6),
+						rs.getString(7),
+						rs.getDouble(8),
+						rs.getString(9),
+						rs.getString(10),
+						rs.getString(11),
+						rs.getString(12),
+						rs.getString(13),
+						rs.getInt(14),
+						rs.getInt(15),
+						rs.getBoolean(16),
+						rs.getDouble(17),
+						rs.getString(18),
+						rs.getBoolean(19),
+						rs.getBoolean(20),
+						rs.getString(21)
+						));
+			}
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		return rList;
+	}
 	
 }

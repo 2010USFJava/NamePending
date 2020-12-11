@@ -39,7 +39,7 @@ public class RequestHelper {
 		case "/UpGrade/empForm.change":
 			System.out.println("in empForm.change");
 			return EmployeeFormController.submission(req);
-		case "/UpGrade/pending.change":
+		case "/UpGrade/allpending.change":
 			System.out.println("in pending.change");
 			return EmployeePendingController.pendingPage(req);
 		case "/UpGrade/rules.change":

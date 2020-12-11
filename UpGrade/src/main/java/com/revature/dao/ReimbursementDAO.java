@@ -10,4 +10,5 @@ import com.revature.data.Pending;
 public interface ReimbursementDAO {
 	public void submitReimbursement(Reimbursement form, Employee emp);
 	public List<Pending> getPendingReimbursement();
+	public List<Reimbursement> getAllReimbursement(int empID);
 }
