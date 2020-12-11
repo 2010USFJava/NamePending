@@ -14,6 +14,7 @@ import com.revature.controller.EmployeeFormController;
 import com.revature.controller.EmployeeInsertController;
 import com.revature.controller.EmployeePendingController;
 import com.revature.controller.EmployeePortalController;
+import com.revature.controller.EnterEmployeeController;
 import com.revature.controller.GradesController;
 import com.revature.controller.IncorrectLoginController;
 import com.revature.controller.PendingReqController;
@@ -71,11 +72,12 @@ public class RequestHelper {
 		case "/UpGrade/upload.change":
 			System.out.println("in upload change?");
 		case "/UpGrade/enterEmployee.change":
-			return "HTML/AdminPortal/EnterEmployee.html";
+			return EnterEmployeeController.home(req);
 		case "/UpGrade/insertEmployee.change":
-			EmployeeInsertController.insertEmployee(req);
+			return EmployeeInsertController.insertEmployee(req);
 		default:
 			System.out.println("in default case");
+			System.out.println(req.getRequestURI());
 			return "HTML/unsuccesfullogin.html";
 		}
 	}

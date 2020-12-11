@@ -13,7 +13,9 @@ public class EmployeeInsertController {
 	static EmployeeDAO eDao = new EmployeeDAOImpl();
 	
 	public static String insertEmployee(HttpServletRequest req) throws ServletException{
-		
+		if(!req.getMethod().equals("POST")) {
+			return "HTML/AdminPortal/EnterEmployee.html";
+		}
 		HttpSession session = req.getSession();
 		session.getAttribute("activeapp");
 		String firstName = req.getParameter("firstName");
