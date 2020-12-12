@@ -192,8 +192,7 @@ public class Reimbursement {
 	//args constructor without rid to submit forms without conflicting with database
 	public Reimbursement(int empID, String eventName, String date, String time, String location, String description,
 			double cost, String eventFile, String gradingFormat, String eventType, String justification,
-			String approvalFile, int dsApproval, int dhApproval, boolean bcApproval, double alteredAmt,
-			String alteredReason, boolean exceedingFunds, boolean awarded, String denialReason) {
+			String approvalFile) {
 		super();
 		this.empID = empID;
 		this.eventName = eventName;
@@ -207,14 +206,6 @@ public class Reimbursement {
 		this.eventType = eventType;
 		this.justification = justification;
 		this.approvalFile = approvalFile;
-		this.dsApproval = dsApproval;
-		this.dhApproval = dhApproval;
-		this.bcApproval = bcApproval;
-		this.alteredAmt = alteredAmt;
-		this.alteredReason = alteredReason;
-		this.exceedingFunds = exceedingFunds;
-		this.awarded = awarded;
-		this.denialReason = denialReason;
 	}
 	
 	@Override

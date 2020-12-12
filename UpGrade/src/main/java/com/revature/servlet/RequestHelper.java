@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.revature.controller.AppLoginController;
 import com.revature.controller.BenCoPortalController;
 import com.revature.controller.DeptHeadPortalController;
+import com.revature.controller.DetailsController;
 import com.revature.controller.DirectSupervisorPortal;
 import com.revature.controller.EmpLoginController;
 import com.revature.controller.EmployeeFormController;
@@ -57,7 +58,7 @@ public class RequestHelper {
 		case "/UpGrade/requests.change":
 			System.out.println("in alter helper");
 			return PendingReqController.home(req);
-		case "/UpGrade/grades.change":
+		case "/UpGrade/presentations.change":
 			return GradesController.home(req);
 		case "/UpGrade/deets.change":
 			return ReportsController.home(req);
@@ -75,6 +76,8 @@ public class RequestHelper {
 			return EnterEmployeeController.home(req);
 		case "/UpGrade/insertEmployee.change":
 			return EmployeeInsertController.insertEmployee(req);
+		case "/UpGrade/details.change":
+			return DetailsController.details(req);
 		default:
 			System.out.println("in default case");
 			System.out.println(req.getRequestURI());

@@ -89,6 +89,13 @@ public class Employee {
 		this.deptHeadID = deptHeadID;
 	}
 	
+	public Employee(int empID, int supervisorID, int deptHeadID) {
+		super();
+		this.empID = empID;
+		this.supervisorID = supervisorID;
+		this.deptHeadID = deptHeadID;
+	}
+	
 	@Override
 	public String toString() {
 		return "Employee [empID=" + empID + ", firstName=" + firstName + ", lastName=" + lastName + ", userName="
