@@ -18,9 +18,11 @@ import com.revature.controller.EmployeePortalController;
 import com.revature.controller.EnterEmployeeController;
 import com.revature.controller.GradesController;
 import com.revature.controller.IncorrectLoginController;
+import com.revature.controller.LogOutController;
 import com.revature.controller.PendingReqController;
 import com.revature.controller.ReportsController;
 import com.revature.controller.RulesController;
+import com.revature.controller.SingleViewController;
 import com.revature.controller.StreetCredsController;
 
 public class RequestHelper {
@@ -59,7 +61,7 @@ public class RequestHelper {
 			System.out.println("in alter helper");
 			return PendingReqController.home(req);
 		case "/UpGrade/presentations.change":
-			return GradesController.home(req);
+			return GradesController.grades(req);
 		case "/UpGrade/deets.change":
 			return ReportsController.home(req);
 		case "/UpGrade/wrongcredsAdmin.change":
@@ -78,6 +80,16 @@ public class RequestHelper {
 			return EmployeeInsertController.insertEmployee(req);
 		case "/UpGrade/details.change":
 			return DetailsController.details(req);
+		case "/UpGrade/reports.change":
+			System.out.println("in request helper");
+			return ReportsController.home(req);
+		case "/UpGrade/logout.change":
+			return LogOutController.closeSession(req);
+		case "/UpGrade/viewsingle.change":
+			return SingleViewController.single(req);
+		case "/UpGrade/admin.change":
+			System.out.println("in admin.change");
+			return EmpLoginController.adminLogin(req);
 		default:
 			System.out.println("in default case");
 			System.out.println(req.getRequestURI());

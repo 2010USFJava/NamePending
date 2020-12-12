@@ -25,4 +25,9 @@ public class EmpLoginController {
 			return "emphome.change";
 		}
 	}
+	
+	public static String adminLogin(HttpServletRequest req) {
+		System.out.println("in emp login controller");
+		return AppLoginController.login(req);
+	}
 }
