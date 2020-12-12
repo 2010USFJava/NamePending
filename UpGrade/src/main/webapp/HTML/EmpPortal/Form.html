@@ -17,38 +17,39 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
 	crossorigin="anonymous"></script>
-	<script>
-  function doSubmit(){
-    // Form Data
-    var formData = new FormData();
-    var formData2 = new FormData();
-    
-    var fileSelect = document.getElementById("inputGroupFile01");
-    var fileSelect2 = document.getElementById("inputGroupFile02");
-    
-    if(fileSelect.files && fileSelect.files.length == 1 && fileSelect2.files && fileSelect2.files.length == 1){
-     var file = fileSelect.files[0]
-     formData.set("file", file , file.name);
-    }
-    
-    if(fileSelect2.files && fileSelect2.files.length == 1){
-        var file2 = fileSelect2.files[0]
-        formData2.set("file", file2 , file2.name);
-       }
-    
-    var input1 = document.getElementById("forInputGroupFile01");
-    var input2 = document.getElementById("forInputGroupFile02");
-    
-    formData.set("forInputGroupFile01", input1.value);
-    formData2.set("forInputGroupFile02", input2.value);
-    
-    var request = new XMLHttpRequest();
-    var request2 = new XMLHttpRequest();
-    request.open("POST", "UploadDownloadFileServlet", true);
-    request.send(formData);
-    request2.open("POST", "UploadDownloadFileServlet", true);
-    request2.send(formData2);
-  }
+<script>
+	function doSubmit() {
+		// Form Data
+		var formData = new FormData();
+		var formData2 = new FormData();
+
+		var fileSelect = document.getElementById("inputGroupFile01");
+		var fileSelect2 = document.getElementById("inputGroupFile02");
+
+		if (fileSelect.files && fileSelect.files.length == 1
+				&& fileSelect2.files && fileSelect2.files.length == 1) {
+			var file = fileSelect.files[0]
+			formData.set("file", file, file.name);
+		}
+
+		if (fileSelect2.files && fileSelect2.files.length == 1) {
+			var file2 = fileSelect2.files[0]
+			formData2.set("file", file2, file2.name);
+		}
+
+		var input1 = document.getElementById("forInputGroupFile01");
+		var input2 = document.getElementById("forInputGroupFile02");
+
+		formData.set("forInputGroupFile01", input1.value);
+		formData2.set("forInputGroupFile02", input2.value);
+
+		var request = new XMLHttpRequest();
+		var request2 = new XMLHttpRequest();
+		request.open("POST", "UploadDownloadFileServlet", true);
+		request.send(formData);
+		request2.open("POST", "UploadDownloadFileServlet", true);
+		request2.send(formData2);
+	}
 </script>
 
 <title>Tuition Reimbursement Form</title>
@@ -57,20 +58,22 @@
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-
-				<li class="nav-item"><a class="nav-link" href="/UpGrade/emphome.change">Home </a></li>
-				<li class="nav-item"><a class="nav-link" href="/UpGrade/rules.change">Reimbursement
-						Rules</a></li>
-				<li class="nav-item active"><a class="nav-link" href="/UpGrade/empForm.change">Submission
-						Form <span class="sr-only">(current)</span>
+				<li class="nav-item"><a class="nav-link"
+					href="/UpGrade/emphome.change">Home </a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="/UpGrade/rules.change">Reimbursement Rules</a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="/UpGrade/empForm.change">Submission Form <span
+						class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="/UpGrade/pending.change">Pending
-						Reimbursements</a></li>
-
+				<li class="nav-item"><a class="nav-link"
+					href="/UpGrade/allpending.change">Pending Reimbursements</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="/UpGrade/viewsingle.change">View Reimbursement Details</a></li>
 			</ul>
 			<div class="d-flex justify-content-center">
-				<a href=""><button type="button" class="btn btn-primary">Log
-						Out</button></a>
+				<a href="/UpGrade/logout.change"><button type="button"
+						class="btn btn-primary">Log Out</button></a>
 			</div>
 		</div>
 	</nav>
@@ -79,59 +82,88 @@
 	<div class="container">
 		<div class="row mt-5">
 			<div class="col">
-				<form method="POST" action="/UpGrade/empForm.change">
+				<form method="post" action="/UpGrade/empForm.change">
 					<div class="card-group">
 						<div class="card">
 							<div class="card-body">
-								
+								<div class="row mt-3 d-flex justify-content-center">
+									<div class="col">
+										<input placeholder="First Name" name="firstName"
+											class="form-control">
+									</div>
+									<div class="col">
+										<input placeholder="Last Name" name="lastName"
+											class="form-control">
+									</div>
+									<div class="col">
+										<select class="custom-select" name="department">
+											<option selected disabled value="0">Department Head</option>
+											<option value="6">Gandalf</option>
+											<option value="2">Saruman</option>
+											<option value="3">Ray</option>
+											<option value="4">Tina</option>
+											<option value="5">Boromir</option>
+										</select>
+									</div>
+									<div class="col">
+										<select class="custom-select" name="supervisor">
+											<option selected disabled value="0">Employee Supervisor</option>
+											<option value="3">Ray</option>
+											<option value="4">Tina</option>
+											<option value="6">Gandalf</option>
+										</select>
+									</div>
+								</div>
 								<div class="row d-flex justify-content-center mt-3">
 									<div class="col-md-6">
 										<input placeholder="Event Name" name="eventName"
-											class="form-control" required>
+											class="form-control">
 									</div>
 									<div class="col-md-2">
 										<input type="date" name="date" placeholder="Date"
-											class="form-control" required>
+											class="form-control">
 									</div>
 									<div class="col-md-2">
 										<input type="time" name="time" placeholder="Time"
-											class="form-control" required>
+											class="form-control">
 									</div>
 									<div class="col-md-2">
 										<input placeholder="Location" name="location"
-											class="form-control" required>
+											class="form-control">
 									</div>
 								</div>
 								<div class="row d-flex justify-content-center mt-3">
 									<div class="col-md-6">
 										<input type="text" placeholder="Work Time Missed"
-											name="workTimeMissed" class="form-control" required>
+											name="workTimeMissed" class="form-control">
 									</div>
 									<div class="col-md-6">
-										<textarea class="form-control" name="description" required>Description</textarea>
+										<textarea class="form-control" name="description">Description</textarea>
 									</div>
 								</div>
 								<div class="row d-flex justify-content-center mt-3">
 									<div class="col-md-2">
-										<input placeholder="Cost" name="cost" class="form-control" required>
+										<input placeholder="Cost" name="cost" class="form-control">
 									</div>
 									<div class="col-md-4">
-										<select class="custom-select" name="gradingFormat" required>
-											<option selected disabled>Grading Format</option>
-											<option value="1">Grade</option>
-											<option value="2">Presentation</option>
-										</select> <select class="custom-select mt-1" name="typeOfEvent" required>
-											<option selected disabled>Type of Event</option>
-											<option value="1">University</option>
-											<option value="2">Seminar</option>
-											<option value="3">Certification Preparation</option>
-											<option value="4">Certification</option>
-											<option value="5">Technical Training</option>
-											<option value="6">Other</option>
+										<select class="custom-select" name="gradingFormat">
+											<option selected disabled value="0">Grading Format</option>
+											<option value="Grade">Grade</option>
+											<option value="Presentation">Presentation</option>
+										</select> <select class="custom-select mt-1" name="typeOfEvent">
+											<option selected disabled value="0">Type of Event</option>
+											<option value="University">University</option>
+											<option value="Seminar">Seminar</option>
+											<option value="Certification Preparation">Certification
+												Preparation</option>
+											<option value="Certification">Certification</option>
+											<option value="Technical Training">Technical
+												Training</option>
+											<option value="Other">Other</option>
 										</select>
 									</div>
 									<div class="col-md-6">
-										<textarea class="form-control" name="justification" required>Work Related Justification</textarea>
+										<textarea class="form-control" name="justification">Work Related Justification</textarea>
 									</div>
 								</div>
 								<div class="row d-flex justify-content-center mt-3">
@@ -141,10 +173,9 @@
 												id="inputGroupFile01"
 												aria-describedby="inputGroupFileAddon01"
 												name="attachmentEvent"> <label
-												class="custom-file-label" for="inputGroupFile01"
-												id="forInputGroupFile01">Event Related Attachments</label>
+												class="custom-file-label" for="inputGroupFile01">Event
+												Related Attachments</label>
 										</div>
-										<progress></progress>
 									</div>
 									<div class="col-md-4">
 										<div class="custom-file">
@@ -152,16 +183,16 @@
 												id="inputGroupFile02"
 												aria-describedby="inputGroupFileAddon01"
 												name="attachmentEmail"> <label
-												class="custom-file-label" for="inputGroupFile02"
-												id="forInputGroupFile02">Approval Email Attachments</label>
+												class="custom-file-label" for="inputGroupFile01">Approval
+												Email Attachments</label>
 										</div>
-										<progress></progress>
 									</div>
 									<div class="col-md-4">
-										<select class="custom-select" name="approval" required>
-											<option selected disabled value="0">Type of Approval</option>
+										<select class="custom-select" name="approval">
+											<option selected disabled></option>
 											<option value="1">Direct Supervisor</option>
 											<option value="2">Department Head</option>
+											<option value="3">Both</option>
 										</select>
 									</div>
 								</div>

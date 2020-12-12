@@ -90,6 +90,11 @@ public class RequestHelper {
 		case "/UpGrade/admin.change":
 			System.out.println("in admin.change");
 			return EmpLoginController.adminLogin(req);
+		case "/UpGrade/empLogin.change":
+			return EmpLoginController.empLogin(req);
+		case "/UpGrade/allpending.change":
+			System.out.println("in pending.change");
+			return EmployeePendingController.pendingPage(req);
 		default:
 			System.out.println("in default case");
 			System.out.println(req.getRequestURI());

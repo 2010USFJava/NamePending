@@ -4,7 +4,7 @@
 window.onload = function() {
 	console.log("this baby is working!!");
 	getEmployee();
-}
+};
 
 function getEmployee() {
 	let xhttp = new XMLHttpRequest();
@@ -24,6 +24,13 @@ function getEmployee() {
 
 	xhttp.open("GET", "/UpGrade/getsession.json", false);
 
+	xhttp.send();
+}
+
+function logout(){
+	let xhttp = new XMLHttpRequest();
+	
+	xhttp.open("GET", "/UpGrade/logout.json", false);
 	xhttp.send();
 }
 

@@ -2,12 +2,9 @@
  * 
  */
 let forms;
-let today;
 let i;
 
-
 window.onload = function() {
-	console.log("test onload");
 	getPending();
 }
 
@@ -38,26 +35,18 @@ function loadForms(forms) {
 	}
 }
 
-
-
-function getPending() {
+function getPending(){
 	let xhttp = new XMLHttpRequest();
-
-	xhttp.onreadystatechange = function() {
-		console.log("cmon do the thing")
-		console.log(xhttp.responseText);
-		if (xhttp.readyState == 4 && xhttp.status == 200) {
+	
+	xhttp.onreadystatechange = function () {
+		if(xhttp.readyState == 4 && xhttp.status == 200){
 			forms = JSON.parse(xhttp.responseText);
 			console.log(forms);
-			console.log(forms[0].empObj.firstName);
 			loadForms(forms);
-
 		}
-
 	}
-
-
-	xhttp.open("GET", "/UpGrade/getPending.json", false);
-
+	
+	xhttp.open("GET", "/UpGrade/getDHPending.json", false);
+	
 	xhttp.send();
 }

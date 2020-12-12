@@ -17,31 +17,43 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
 	crossorigin="anonymous"></script>
-
+<script type="text/javascript" src="JS/DHPortal.js"></script>
 
 <title>Department Head Portal</title>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto ml-5">
-				<li class="nav-item active"><a class="nav-link"
-					href="/UpGrade/depthead.change">Dept Head Portal<span
-						class="sr-only">(current)</span></a></li>
-				<li class="nav-item ml-5"><a class="nav-link"
-					href="/UpGrade/presentations.change">Grades and Presentations</a></li>
-				<li class="nav-item ml-5"><a class="nav-link"
-					href="/UpGrade/details.change">Approve Reimbursements</a></li>
-				<li class="nav-item ml-5"><a class="nav-link"
-					href="/UpGrade/reports.change">Reimbursement Reports</a></li>
-				<li class="nav-item ml-5"><a class="nav-link"
-					href="/UpGrade/enterEmployee.change">Enter Employee</a></li>
-			</ul>
-			<div class="d-flex justify-content-center">
+			<div class="col">
+				<h4 class="text-white mt-2">Department Head Portal</h4>
+			</div>
+			<div class="col d-flex justify-content-end">
 				<a href="/UpGrade/logout.change"><button type="button"
-						class="btn btn-primary">Log Out</button></a>
+						class="btn btn-primary d-flex justify-content-center">Log
+						Out</button></a>
 			</div>
 		</div>
 	</nav>
+	<div class="row">
+		<h1 class="m-5">Employee Requests Pending Department Head Approval</h1>
+	</div>
+	<div class="row">
+		<div class="col mx-5">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Employee ID</th>
+						<th>Reimbursement ID</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Event Name</th>
+						<th># Days Left to Approve</th>
+					</tr>
+				</thead>
+				<tbody id="tableData">
+				</tbody>
+			</table>
+		</div>
+	</div>
 </body>
 </html>

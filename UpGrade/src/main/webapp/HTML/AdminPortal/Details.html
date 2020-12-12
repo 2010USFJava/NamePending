@@ -17,8 +17,9 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
 	crossorigin="anonymous"></script>
+<script type="text/javascript" src="JS/Details.js"></script>
 
-<title>Grade and Presentations</title>
+<title>View Employee Details</title>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -28,12 +29,12 @@
 				<li class="nav-item"><a class="nav-link"
 					href="/UpGrade/bencohome.change">Pending Reimbursement Requests
 				</a></li>
+				<li class="nav-item ml-3"><a class="nav-link"
+					href="/UpGrade/presentations.change">Grades and Presentations</a></li>
 				<li class="nav-item active ml-3"><a class="nav-link"
-					href="/UpGrade/presentations.change">Grades and Presentations <span
+					href="/UpGrade/details.change">Approve Reimbursements <span
 						class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item ml-3"><a class="nav-link"
-					href="/UpGrade/details.change">Approve Reimbursements</a></li>
 				<li class="nav-item ml-3"><a class="nav-link"
 					href="/UpGrade/reports.change">Reimbursement Reports</a></li>
 			</ul>
@@ -43,36 +44,19 @@
 			</div>
 		</div>
 	</nav>
-	<div class="row">
-		<h1 class="m-5">Grades and Presentations Pending Approval</h1>
-	</div>
-	<div class="row">
-		<div class="col mx-5">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>Employee ID</th>
-						<th>Reimbursement ID</th>
-						<th>First Name</th>
-						<th>Last Name</th>
-						<th>Event Name</th>
-						<th>Grade or Presentation File</th>
-						<th># Days Left to Approve</th>
-					</tr>
-				</thead>
-				<tbody id="tableData">
-				</tbody>
-			</table>
+	<div class="row mt-5">
+		<div class="col d-flex justify-content-center ">
+			<h3>Search by Reimbursement Request ID:</h3>
 		</div>
 	</div>
-	<div class="col-md-6 d-flex justify-content-center">
-		<h4 class="mr-3 mt-5">Enter ID of Grade or Presentation to Approve:</h4>
-		<form method="post" action=""
-			class="form-inline mt-5">
-			<input class="form-control mr-sm-2" type="text"
-				placeholder="Reimbursement ID" name="rID" aria-label="Search">
-			<button class="btn btn-outline-success my-2 my-sm-0">Submit</button>
-		</form>
+	<div class="row mt-3">
+		<div class="col d-flex justify-content-center">
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="text"
+					placeholder="Reimbursement ID" aria-label="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			</form>
+		</div>
 	</div>
 </body>
 </html>
