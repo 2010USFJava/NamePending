@@ -136,4 +136,42 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 		return rList;
 	}
 	
+	public Reimbursement getOneReimbursement(int rID) {
+		Reimbursement rObj = new Reimbursement();
+		PreparedStatement ps;
+		try {
+			Connection conn = cf.getConnection();
+			String sql = "SELECT * FROM reimbursements where rid = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, rID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				rObj.setEmpID(rs.getInt(1));
+				rObj.setR_ID(rs.getInt(2));
+				rObj.setEventName(rs.getString(3));
+				rObj.setDate(rs.getString(4));
+				rObj.setTime(rs.getString(5));
+				rObj.setLocation(rs.getString(6));
+				rObj.setDescription(rs.getString(7));
+				rObj.setCost(rs.getDouble(8));
+				rObj.setEventFile(rs.getString(9));
+				rObj.setGradingFormat(rs.getString(10));
+				rObj.setEventType(rs.getString(11));
+				rObj.setJustification(rs.getString(12));
+				rObj.setApprovalFile(rs.getString(13));
+				rObj.setDsApproval(rs.getInt(14));
+				rObj.setDhApproval(rs.getInt(15));
+				rObj.setBcApproval(rs.getBoolean(16));
+				rObj.setAlteredAmt(rs.getDouble(17));
+				rObj.setAlteredReason(rs.getString(18));
+				rObj.setExceedingFunds(rs.getBoolean(19));
+				rObj.setAwarded(rs.getBoolean(20));
+				rObj.setDenialReason(rs.getString(21));
+			}
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		return rObj;
+	}
+	
 }

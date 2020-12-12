@@ -98,8 +98,15 @@ public class EmployeeFormController {
 	}
 	
 	public static void getOne(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException {
-		
-		
+		String param = req.getParameter("rID");
+		Integer rid = Integer.valueOf(param);
+		System.out.println("in getOne Employee Form Controller");
+		System.out.println(rid);
+		Reimbursement rObj = new Reimbursement();
+		rObj = reDao.getOneReimbursement(rid);
+		ObjectMapper mapper = new ObjectMapper();
+		System.out.println(new String());
+		res.getWriter().write(mapper.writeValueAsString(rObj));
 	}
 
 }

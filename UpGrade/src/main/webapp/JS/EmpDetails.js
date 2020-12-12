@@ -5,7 +5,7 @@
  let i;
  
  window.onload = function(){
- 	getDetails();
+ 	
  }
  
  function getDetails(){
@@ -19,7 +19,7 @@
  		}
  	}
  	
- 	xhttp.open("GET", "", false);
+ 	xhttp.open("GET", "/UpGrade/getEmpDetails.json", false);
  	
  	xhttp.send();
  }

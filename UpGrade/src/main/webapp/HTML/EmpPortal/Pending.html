@@ -35,8 +35,6 @@
 					href="/UpGrade/allpending.change">Pending Reimbursements <span
 						class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="/UpGrade/viewsingle.change">View Reimbursement Details</a></li>
 			</ul>
 			<div class="d-flex justify-content-center">
 				<a href="/UpGrade/logout.change"><button type="button"
@@ -45,7 +43,18 @@
 		</div>
 	</nav>
 	<div class="row">
-		<h1 class="m-5">Pending Employee Reimbursements</h1>
+		<div class="col-md-6">
+			<h1 class="m-5">Pending Employee Reimbursements</h1>
+		</div>
+		<div class="col-md-6 d-flex justify-content-center">
+			<h4 class="mr-3 mt-5">Search by Reimbursement Request ID:</h4>
+			<form method="post" action="/UpGrade/getEmpDetails.json"
+				class="form-inline mb-3">
+				<input class="form-control mr-sm-2" type="text"
+					placeholder="Reimbursement ID" name="rID" aria-label="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0">Search</button>
+			</form>
+		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-6 ml-5">
@@ -93,11 +102,10 @@
 	<div class="row mt-5">
 		<div class="col ">
 			<div class="row ">
-			<div class="col-md-6"></div>
-			<div class="col-md-6">
-				<h3 class="text-primary d-flex justify-content-start ml-5">
-					Awarded Submissions
-				</h3>
+				<div class="col-md-6"></div>
+				<div class="col-md-6">
+					<h3 class="text-primary d-flex justify-content-start ml-5">
+						Awarded Submissions</h3>
 				</div>
 			</div>
 			<div class="row ">
