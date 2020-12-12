@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.revature.controller.DsDhController;
 import com.revature.controller.EmpLoginController;
 import com.revature.controller.EmployeeController;
 import com.revature.controller.EmployeeFormController;
@@ -30,6 +31,15 @@ public class JSONRequestHelper{
 			break;
 		case "/UpGrade/getEmpDetails.json":
 			EmployeeFormController.getOne(req, res);
+			break;
+		case "/UpGrade/getDSPending.json":
+			DsDhController.getDSPending(req, res);
+			break;
+		case "/UpGrade/getDHPending.json":
+			DsDhController.getDHPending(req, res);
+			break;
+		case "/UpGrade/getEvery.json":
+			EmployeeFormController.getEvery(req, res);
 			break;
 		default:
 			System.out.println("Not twerking");

@@ -108,5 +108,17 @@ public class EmployeeFormController {
 		System.out.println(new String());
 		res.getWriter().write(mapper.writeValueAsString(rObj));
 	}
+	
+	public static void getEvery(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException {
+		List<Reimbursement> rList = new ArrayList<Reimbursement>();
+		Reimbursement rObj = new Reimbursement();
+		rList = reDao.getEveryReimbursement();
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.writeValue(out, rList);
+		byte [] data = out.toByteArray();
+		System.out.println(new String(data));
+		res.getWriter().write(new String(data));
+	}
 
 }

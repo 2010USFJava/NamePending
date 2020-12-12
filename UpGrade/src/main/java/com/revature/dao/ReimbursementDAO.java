@@ -12,4 +12,7 @@ public interface ReimbursementDAO {
 	public List<Pending> getPendingReimbursement();
 	public List<Reimbursement> getAllReimbursement(int empID);
 	public Reimbursement getOneReimbursement(int rID);
+	public List<Pending> getDSReimbursement();
+	public List<Pending> getDHReimbursement();
+	public List<Reimbursement> getEveryReimbursement();
 }

@@ -43,4 +43,14 @@
     <servlet-name>SingleViewController</servlet-name>
     <url-pattern>/SingleViewController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DsDhController</display-name>
+    <servlet-name>DsDhController</servlet-name>
+    <servlet-class>com.revature.controller.DsDhController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DsDhController</servlet-name>
+    <url-pattern>/DsDhController</url-pattern>
+  </servlet-mapping>
 </web-app>
