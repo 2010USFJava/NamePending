@@ -26,6 +26,7 @@ import com.revature.controller.ReportsController;
 import com.revature.controller.RulesController;
 import com.revature.controller.SingleViewController;
 import com.revature.controller.StreetCredsController;
+import com.revature.controller.SupGradesController;
 
 public class RequestHelper {
 
@@ -74,8 +75,6 @@ public class RequestHelper {
 			return StreetCredsController.adminCreds(req);
 		case "/UpGrade/empCredCheck.change":
 			return StreetCredsController.empCreds(req);
-		case "/UpGrade/upload.change":
-			System.out.println("in upload change?");
 		case "/UpGrade/enterEmployee.change":
 			return EnterEmployeeController.home(req);
 		case "/UpGrade/insertEmployee.change":
@@ -94,25 +93,16 @@ public class RequestHelper {
 			return EmpLoginController.adminLogin(req);
 		case "/UpGrade/empLogin.change":
 			return EmpLoginController.empLogin(req);
-		case "/UpGrade/allpending.change":
-			System.out.println("in pending.change");
-			return EmployeePendingController.pendingPage(req);
-			System.out.println("in grades helper");
-			return GradesController.grades(req);
-		case "/UpGrade/reports.change":
-			System.out.println("in request helper");
-			return ReportsController.home(req);
-		case "/UpGrade/admin.change":
-			System.out.println("in admin.change");
-			return EmpLoginController.adminLogin(req);
 		case "/UpGrade/grades.change":
 			return EmpGradesController.grades(req);
 		case "/UpGrade/supgrades.change":
 			return SupGradesController.supgrades(req);
 		case "/UpGrade/awarded.change":
 			return AwardedController.awarded(req);
-		case "/UpGrade/logout.change":
-			return LogOutController.closeSession(req);
+		case "/UpGrade/bencoapprove.change":
+			return BenCoPortalController.approve(req);
+		case "/UpGrade/bencodeny.change":
+			return BenCoPortalController.deny(req);
 		default:
 			System.out.println("in default case");
 			System.out.println(req.getRequestURI());

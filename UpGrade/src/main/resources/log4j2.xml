@@ -18,7 +18,7 @@
 </Console>
 - -
 
--<File name="File" fileName="C:/Users/User/Desktop/Revature Training/NamePending/logging.log">
+-<File name="File" fileName="C:\Users\David's PC\Documents\Project1Workspace\UpGrade\logging.log">
 - -
 
 -<PatternLayout>
@@ -35,7 +35,7 @@
 -<Loggers>
 - -
 
--<Logger name="com.revature.utility.logIt" additivity="false" level="info">
+-<Logger name="com.revature.utility.logit" additivity="false" level="info">
 
 <AppenderRef ref="Console"/>
 
