@@ -9,7 +9,6 @@ public class RulesController {
        
     public RulesController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     public static String rules(HttpServletRequest req) {

@@ -1,5 +1,6 @@
 package com.revature.controller;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -40,6 +41,9 @@ public class EmployeeInsertController {
 		try {
 			logit.LogIt("info", appObj.getUserName() + " has entered " + emp.getFirstName() + " as a new employee");
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "depthead.change";

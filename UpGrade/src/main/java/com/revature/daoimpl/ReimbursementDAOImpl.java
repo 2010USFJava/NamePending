@@ -1,5 +1,6 @@
 package com.revature.daoimpl;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,13 +36,12 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 	}
 
 	@Override
-	public void submitReimbursement(Reimbursement form, Employee emp) {
+	public void submitReimbursement(Reimbursement form) {
 		try {
 			Connection conn = cf.getConnection();
 			String sql = "INSERT INTO reimbursements "
 					+ "(empid, event_name, event_date, event_time, event_location, description, event_cost, event_file, gradingformat, event_type, justification, approval_file)"
 					+ "VALUES (?,?,TO_DATE(?,'YYYY-MM-DD'),TO_TIMESTAMP(?,'HH24:MI:SS'),?,?,?,?,?,?,?,?)";
-
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, form.getEmpID());
 			ps.setString(2, form.getEventName());
@@ -56,16 +56,9 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 			ps.setString(11, form.getJustification());
 			ps.setString(12, "Attachments/" + form.getApprovalFile());
 			ps.execute();
-			String empSql = "UPDATE employees set ds_id = ?, dh_id = ? where empid = ?";
-			PreparedStatement empPs = conn.prepareStatement(empSql);
-			empPs.setInt(1, emp.getSupervisorID());
-			empPs.setInt(2, emp.getDeptHeadID());
-			empPs.setInt(3, emp.getEmpID());
-			empPs.execute();
-
 			logit.LogIt("info",
 					"Reimbursement: " + form.getR_ID() + " for Employee ID: " + form.getEmpID() + " was submitted.");
-		} catch (SQLException e) {
+		} catch (SQLException | IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -135,8 +128,8 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 			ps.setInt(1, rID);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				rObj.setEmpID(rs.getInt(1));
-				rObj.setR_ID(rs.getInt(2));
+				rObj.setEmpID(rs.getInt(2));
+				rObj.setR_ID(rs.getInt(1));
 				rObj.setEventName(rs.getString(3));
 				rObj.setDate(rs.getString(4));
 				rObj.setTime(rs.getString(5));
@@ -226,6 +219,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 		return pendingList;
 	}
 
+
 	@Override
 	public List<Reimbursement> getEveryReimbursement() {
 		List<Reimbursement> rList = new ArrayList<Reimbursement>();
@@ -279,8 +273,8 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 			ps.setInt(1, id);
 			ps.executeUpdate();
 			logit.LogIt("info", "Reimbursement: " + id + " for Employee ID: " + r.getEmpID() + " Was Approved");
-		} catch (SQLException e) {
-			System.out.println("Check reimbursementApproved SQL " + e.getSQLState() + " " + e.getMessage());
+		} catch (SQLException | IOException e) {
+			System.out.println("Check reimbursementApproved SQL " + ((SQLException) e).getSQLState() + " " + e.getMessage());
 		}
 	}
 
@@ -295,8 +289,8 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 			ps.executeUpdate();
 			logit.LogIt("info", "Reimbursement: " + id + " for Employee ID: " + r.getEmpID() + " Was declined due to "
 					+ r.getDenialReason());
-		} catch (SQLException e) {
-			System.out.println("Check reimbursementDenied SQL " + e.getSQLState() + " " + e.getMessage());
+		} catch (SQLException | IOException e) {
+			System.out.println("Check reimbursementDenied SQL " + ((SQLException) e).getSQLState() + " " + e.getMessage());
 		}
 	}
 

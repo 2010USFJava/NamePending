@@ -34,15 +34,13 @@ public class EmployeeFormController {
 		int emp = (int) session.getAttribute("activeemp");
 		Employee empObj = eServ.getSessionEmp(emp);
 		System.out.println(emp);
-		if (!req.getMethod().equals("POST")) {
+		if(!req.getMethod().equals("POST")) {
 			return "HTML/EmpPortal/Form.html";
 		}
-		String firstName = req.getParameter("firstName");
-		String lastName = req.getParameter("lastName");
-		String department = req.getParameter("department");
-		Integer deptheadID = Integer.valueOf(department);
-		String supervisor = req.getParameter("supervisor");
-		Integer supervisorID = Integer.valueOf(supervisor);
+		req.getParameter("firstName");
+		req.getParameter("lastName");
+		req.getParameter("department");
+		req.getParameter("supervisor");
 		String eventName = req.getParameter("eventName");
 		String date = req.getParameter("date");
 		String time = req.getParameter("time");
@@ -57,21 +55,19 @@ public class EmployeeFormController {
 		String attachmentEvent = req.getParameter("attachmentEvent");
 		String attachmentEmail = req.getParameter("attachmentEmail");
 		String approval = req.getParameter("approval");
-
-		boolean exceedsFunds;
-		if (empObj.getAvailableR() > costAmt) {
-			exceedsFunds = false;
-		} else {
-			exceedsFunds = true;
+		
+		if(approval != null) {
+		Integer.valueOf(approval);
 		}
-		Reimbursement form = new Reimbursement(emp, eventName, date, time, location, description, costAmt,
-				attachmentEvent, gradingFormat, typeOfEvent, justification, attachmentEmail, exceedsFunds);
-		Employee eObj = new Employee(emp, supervisorID, deptheadID);
+		
+		Reimbursement form = new Reimbursement(
+				emp,eventName,date,time,location,description,costAmt,attachmentEvent,
+				gradingFormat,typeOfEvent,justification,attachmentEmail);
 		System.out.println("this is the form" + form);
-		reDao.submitReimbursement(form, eObj);
+		reDao.submitReimbursement(form);
 		try {
 			logit.LogIt("info", empObj.getFirstName() + " has submitted a form");
-		} catch (SQLException e) {
+		} catch (SQLException | IOException e) {
 			e.printStackTrace();
 		}
 		return "pending.change";

@@ -1,0 +1,20 @@
+package com.revature.controller;
+
+import javax.servlet.http.HttpServletRequest;
+
+
+public class RulesController {
+       
+    public RulesController() {
+        super();
+<<<<<<< HEAD
+=======
+        // TODO Auto-generated constructor stub
+>>>>>>> origin/NewFoshay
+    }
+
+    public static String rules(HttpServletRequest req) {
+		return "HTML/EmpPortal/Rules.html";
+	}
+
+}

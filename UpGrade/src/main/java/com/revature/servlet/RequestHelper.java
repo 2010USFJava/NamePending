@@ -9,6 +9,7 @@ import com.revature.controller.AppLoginController;
 import com.revature.controller.AwardedController;
 import com.revature.controller.BenCoPortalController;
 import com.revature.controller.DeptHeadPortalController;
+import com.revature.controller.DetailsController;
 import com.revature.controller.DirectSupervisorPortal;
 import com.revature.controller.EmpGradesController;
 import com.revature.controller.EmpLoginController;
@@ -18,14 +19,14 @@ import com.revature.controller.EmployeePendingController;
 import com.revature.controller.EmployeePortalController;
 import com.revature.controller.EnterEmployeeController;
 import com.revature.controller.GradesController;
+import com.revature.controller.IncorrectLoginController;
 import com.revature.controller.LogOutController;
 import com.revature.controller.PendingReqController;
 import com.revature.controller.ReportsController;
 import com.revature.controller.RulesController;
-import com.revature.controller.SupGradesController;
-import com.revature.controller.IncorrectLoginController;
+import com.revature.controller.SingleViewController;
 import com.revature.controller.StreetCredsController;
-
+import com.revature.controller.SupGradesController;
 
 public class RequestHelper {
 
@@ -63,22 +64,9 @@ public class RequestHelper {
 			System.out.println("in alter helper");
 			return PendingReqController.home(req);
 		case "/UpGrade/presentations.change":
-			System.out.println("in grades helper");
 			return GradesController.grades(req);
 		case "/UpGrade/reports.change":
-			System.out.println("in request helper");
 			return ReportsController.home(req);
-		case "/UpGrade/admin.change":
-			System.out.println("in admin.change");
-			return EmpLoginController.adminLogin(req);
-		case "/UpGrade/grades.change":
-			return EmpGradesController.grades(req);
-		case "/UpGrade/supgrades.change":
-			return SupGradesController.supgrades(req);
-		case "/UpGrade/awarded.change":
-			return AwardedController.awarded(req);
-		case "/UpGrade/logout.change":
-			return LogOutController.closeSession(req);
 		case "/UpGrade/wrongcredsAdmin.change":
 			return IncorrectLoginController.wrongAdmin(req);
 		case "/UpGrade/wrongcredsEmp.change":
@@ -87,12 +75,33 @@ public class RequestHelper {
 			return StreetCredsController.adminCreds(req);
 		case "/UpGrade/empCredCheck.change":
 			return StreetCredsController.empCreds(req);
-		case "/UpGrade/upload.change":
-			System.out.println("in upload change?");
 		case "/UpGrade/enterEmployee.change":
 			return EnterEmployeeController.home(req);
 		case "/UpGrade/insertEmployee.change":
 			return EmployeeInsertController.insertEmployee(req);
+		case "/UpGrade/details.change":
+			return DetailsController.details(req);
+		case "/UpGrade/logout.change":
+			return LogOutController.closeSession(req);
+		case "/UpGrade/viewsingle.change":
+			return SingleViewController.single(req);
+		case "/UpGrade/upload.change":
+			System.out.println("in upload change?");
+		case "/UpGrade/admin.change":
+			System.out.println("in admin.change");
+			return EmpLoginController.adminLogin(req);
+		case "/UpGrade/empLogin.change":
+			return EmpLoginController.empLogin(req);
+		case "/UpGrade/grades.change":
+			return EmpGradesController.grades(req);
+		case "/UpGrade/supgrades.change":
+			return SupGradesController.supgrades(req);
+		case "/UpGrade/awarded.change":
+			return AwardedController.awarded(req);
+		case "/UpGrade/bencoapprove.change":
+			return BenCoPortalController.approve(req);
+		case "/UpGrade/bencodeny.change":
+			return BenCoPortalController.deny(req);
 		default:
 			System.out.println("in default case");
 			System.out.println(req.getRequestURI());
