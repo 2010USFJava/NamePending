@@ -1,5 +1,8 @@
 package com.revature.servlet;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 import com.revature.controller.AppLoginController;
@@ -10,18 +13,23 @@ import com.revature.controller.DirectSupervisorPortal;
 import com.revature.controller.EmpGradesController;
 import com.revature.controller.EmpLoginController;
 import com.revature.controller.EmployeeFormController;
+import com.revature.controller.EmployeeInsertController;
 import com.revature.controller.EmployeePendingController;
 import com.revature.controller.EmployeePortalController;
+import com.revature.controller.EnterEmployeeController;
 import com.revature.controller.GradesController;
 import com.revature.controller.LogOutController;
 import com.revature.controller.PendingReqController;
 import com.revature.controller.ReportsController;
 import com.revature.controller.RulesController;
 import com.revature.controller.SupGradesController;
+import com.revature.controller.IncorrectLoginController;
+import com.revature.controller.StreetCredsController;
+
 
 public class RequestHelper {
 
-	public static String process(HttpServletRequest req) {
+	public static String process(HttpServletRequest req) throws IOException, ServletException {
 		
 		System.out.println(req.getRequestURI());
 		switch(req.getRequestURI()) {
@@ -71,8 +79,23 @@ public class RequestHelper {
 			return AwardedController.awarded(req);
 		case "/UpGrade/logout.change":
 			return LogOutController.closeSession(req);
+		case "/UpGrade/wrongcredsAdmin.change":
+			return IncorrectLoginController.wrongAdmin(req);
+		case "/UpGrade/wrongcredsEmp.change":
+			return IncorrectLoginController.wrongEmp(req);
+		case "/UpGrade/adminCredCheck.change":
+			return StreetCredsController.adminCreds(req);
+		case "/UpGrade/empCredCheck.change":
+			return StreetCredsController.empCreds(req);
+		case "/UpGrade/upload.change":
+			System.out.println("in upload change?");
+		case "/UpGrade/enterEmployee.change":
+			return EnterEmployeeController.home(req);
+		case "/UpGrade/insertEmployee.change":
+			return EmployeeInsertController.insertEmployee(req);
 		default:
 			System.out.println("in default case");
+			System.out.println(req.getRequestURI());
 			return "HTML/unsuccesfullogin.html";
 		}
 	}

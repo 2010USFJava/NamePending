@@ -16,7 +16,7 @@ public class AppLoginController {
 		String password = req.getParameter("password");
 		Approver app = aServ.loginGetApp(username, password);
 		if(app==null) {
-			return "wrongcreds.change";
+			return "wrongcredsAdmin.change";
 		} else {
 			req.getSession().setAttribute("activeapp", app.getApproverID());
 			switch(app.getRole()) {
