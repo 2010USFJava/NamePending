@@ -4,7 +4,6 @@ package com.revature.dao;
 import java.io.IOException;
 import java.util.List;
 
-import com.revature.beans.Employee;
 import com.revature.beans.Reimbursement;
 import com.revature.data.Pending;
 
@@ -17,5 +16,5 @@ public interface ReimbursementDAO {
 	public List<Pending> getDHReimbursement();
 	public List<Reimbursement> getEveryReimbursement();
 	public void reimbursementApproved(Reimbursement form);
-	public void reimbursementDenied(Reimbursement form) throws IOException;
+	public void reimbursementDenied(Reimbursement form, String denialReason) throws IOException;
 }

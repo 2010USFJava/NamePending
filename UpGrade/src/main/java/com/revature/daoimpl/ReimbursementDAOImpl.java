@@ -105,7 +105,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 			ps.setInt(1, empID);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				rList.add(new Reimbursement(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4),
+				rList.add(new Reimbursement(rs.getInt(2), rs.getInt(1), rs.getString(3), rs.getString(4),
 						rs.getString(5), rs.getString(6), rs.getString(7), rs.getDouble(8), rs.getString(9),
 						rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getInt(14),
 						rs.getInt(15), rs.getBoolean(16), rs.getDouble(17), rs.getString(18), rs.getBoolean(19),
@@ -263,34 +263,129 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 		return null;
 	}
 
-	// update reimbursement to approved
+	// updated reimbursement to deny form and adjust employee total available
 	public void reimbursementApproved(Reimbursement r) {
+		Connection conn = cf.getConnection();
 		int id = r.getR_ID();
-		String sql = "UPDATE reimbursements SET bc_approve = true  where rid = ? ";
-
+		String sql = "UPDATE reimbursements SET bc_approve = true where rid = ? ";
+		String sqlemp = "UPDATE employees SET available_reimbursement = ?::NUMERIC where empid = ?";
+		Employee emp = new Employee();
+		EmployeeDAO empDao = new EmployeeDAOImpl();
+		emp = empDao.getEmployeeById(r.getEmpID());
+		double request = r.getCost();
+		double available = emp.getAvailableR();
+		double newAvailable;
+		PreparedStatement ps;
 		try {
-			PreparedStatement ps = Stmnt.makePrStmnt(sql);
+			ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
 			ps.executeUpdate();
-			logit.LogIt("info", "Reimbursement: " + id + " for Employee ID: " + r.getEmpID() + " Was Approved");
-		} catch (SQLException | IOException e) {
-			System.out.println("Check reimbursementApproved SQL " + ((SQLException) e).getSQLState() + " " + e.getMessage());
+		} catch (SQLException e1) {
+			e1.printStackTrace();
 		}
+		PreparedStatement psemp;
+		if (request <= available) {
+			switch (r.getEventType()) {
+			
+			case "University":
+				newAvailable = available - (request * .8);
+				try {
+					psemp = conn.prepareStatement(sqlemp);
+					psemp.setDouble(1, newAvailable);
+					psemp.setInt(2, emp.getEmpID());
+					psemp.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}	
+				break;
+			case "Seminar":
+				newAvailable = available - (request * .6);
+				try {
+					psemp = conn.prepareStatement(sqlemp);
+					psemp.setDouble(1, newAvailable);
+					psemp.setInt(2, emp.getEmpID());
+					psemp.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				break;
+			case "Certification Preparation":
+				newAvailable = available - (request * .6);
+				try {
+					psemp = conn.prepareStatement(sqlemp);
+					psemp.setDouble(1, newAvailable);
+					psemp.setInt(2, emp.getEmpID());
+					psemp.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				break;
+			case "Certification":
+				newAvailable = available - (request * .75);
+				try {
+					psemp = conn.prepareStatement(sqlemp);
+					psemp.setDouble(1, newAvailable);
+					psemp.setInt(2, emp.getEmpID());
+					psemp.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				break;
+			case "Technical Training":
+				newAvailable = available - (request * .7);
+				try {
+					psemp = conn.prepareStatement(sqlemp);
+					psemp.setDouble(1, newAvailable);
+					psemp.setInt(2, emp.getEmpID());
+					psemp.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				break;
+			case "Other":
+				newAvailable = available - (request * .3);
+				try {
+					psemp = conn.prepareStatement(sqlemp);
+					psemp.setDouble(1, newAvailable);
+					psemp.setInt(2, emp.getEmpID());
+					psemp.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				break;
+			default:
+				break;
+			}
+			
+		} else {
+			request = available;
+			newAvailable = 0;
+			try {
+				psemp = conn.prepareStatement(sqlemp);
+				psemp.setDouble(1, newAvailable);
+				psemp.setInt(2, emp.getEmpID());
+				psemp.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+			
 	}
 
-	// update reimbursement to denied
-	public void reimbursementDenied(Reimbursement r) {
+	// update reimbursement to denied, updated to insert denial reason
+	public void reimbursementDenied(Reimbursement r, String denialReason) throws IOException {
 		int id = r.getR_ID();
-		String sql = "UPDATE reimbursements SET bc_approve = false, awarded = false, denial_reason = ? where rid = ?";
+		String sql = "UPDATE reimbursements SET bc_approve = false, bc_awarded = false, denial_reason =? where rid = ?";
 		try {
-			PreparedStatement ps = Stmnt.makePrStmnt(sql);
-			ps.setString(1, r.getDenialReason());
+			Connection conn = cf.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, denialReason);
 			ps.setInt(2, id);
 			ps.executeUpdate();
 			logit.LogIt("info", "Reimbursement: " + id + " for Employee ID: " + r.getEmpID() + " Was declined due to "
 					+ r.getDenialReason());
-		} catch (SQLException | IOException e) {
-			System.out.println("Check reimbursementDenied SQL " + ((SQLException) e).getSQLState() + " " + e.getMessage());
+		} catch (SQLException e) {
+			System.out.println("Check reimbursementDenied SQL " + e.getSQLState() + " " + e.getMessage());
 		}
 	}
 
