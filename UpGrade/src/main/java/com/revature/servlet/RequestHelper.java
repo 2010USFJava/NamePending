@@ -24,7 +24,6 @@ import com.revature.controller.LogOutController;
 import com.revature.controller.PendingReqController;
 import com.revature.controller.ReportsController;
 import com.revature.controller.RulesController;
-import com.revature.controller.SingleViewController;
 import com.revature.controller.StreetCredsController;
 import com.revature.controller.SupGradesController;
 
@@ -83,8 +82,6 @@ public class RequestHelper {
 			return DetailsController.details(req);
 		case "/UpGrade/logout.change":
 			return LogOutController.closeSession(req);
-		case "/UpGrade/viewsingle.change":
-			return SingleViewController.single(req);
 		case "/UpGrade/upload.change":
 			System.out.println("in upload change?");
 		case "/UpGrade/admin.change":
