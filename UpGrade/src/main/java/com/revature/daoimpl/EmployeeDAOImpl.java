@@ -41,14 +41,15 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	public void insertEmployee(Employee emp) {	
 		try {
 			Connection conn = cf.getConnection();
-			String sql = "INSERT INTO employees values(?,?,?,?,?,?)";
+			String sql = "INSERT INTO employees values(DEFAULT,?,?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, emp.getEmpID());
-			ps.setString(2, emp.getFirstName());
-			ps.setString(3, emp.getLastName());
-			ps.setString(4, emp.getUserName());
-			ps.setString(5, emp.getPassword());
-			ps.setDouble(6, emp.getAvailableR());
+			ps.setString(1, emp.getFirstName());
+			ps.setString(2, emp.getLastName());
+			ps.setString(3, emp.getUserName());
+			ps.setString(4, emp.getPassword());
+			ps.setDouble(5, emp.getAvailableR());
+			ps.setInt(6, emp.getSupervisorID());
+			ps.setInt(7, emp.getDeptHeadID());
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();

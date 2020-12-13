@@ -31,4 +31,8 @@ public class EmpLoginController {
 		System.out.println("in emp login controller");
 		return AppLoginController.login(req);
 	}
+	
+	public static String empLogin(HttpServletRequest req) {
+		return "HTML/Login/EmpLogin.html";
+	}
 }

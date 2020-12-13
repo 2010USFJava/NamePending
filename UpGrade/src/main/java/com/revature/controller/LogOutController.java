@@ -19,6 +19,4 @@ public class LogOutController {
     		return EmpLoginController.login(req);
     	
     }
-
-
 }

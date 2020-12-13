@@ -1,0 +1,20 @@
+
+µ
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ä€ÏðýÿÿÿÿH£RCRITICALZ
+CODE_SMELL
+N
+java:S1118"Hide this public constructor.(ä€ÏðýÿÿÿÿH¤RMAJORZ
+CODE_SMELL
+[
+java:S1172
+"*Remove this unused method parameter "req".(•‡—ŸýÿÿÿÿH¥RMAJORZ
+CODE_SMELL
+j
+java:S3400"9Remove this method and declare a constant for this value.(öö­ÌýÿÿÿÿH§RMINORZ
+CODE_SMELL
+[
+java:S1172"*Remove this unused method parameter "req".(¥Ëá€ÿÿÿÿÿH¨RMAJORZ
+CODE_SMELL
+e
+java:S3400"9Remove this method and declare a constant for this value.(Åª§¯HªRMINORZ
+CODE_SMELL

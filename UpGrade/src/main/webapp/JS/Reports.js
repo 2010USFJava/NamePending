@@ -71,4 +71,3 @@ function getForms(){
 	xhttp.open("GET", "/UpGrade/getEvery.json", false);
 	xhttp.send();
 }
-
