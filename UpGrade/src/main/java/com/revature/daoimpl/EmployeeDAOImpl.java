@@ -41,7 +41,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	public void insertEmployee(Employee emp) {	
 		try {
 			Connection conn = cf.getConnection();
-			String sql = "INSERT INTO employees values(?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO employees values(?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, emp.getEmpID());
 			ps.setString(2, emp.getFirstName());
@@ -49,8 +49,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			ps.setString(4, emp.getUserName());
 			ps.setString(5, emp.getPassword());
 			ps.setDouble(6, emp.getAvailableR());
-			ps.setInt(7, emp.getSupervisorID());
-			ps.setInt(8, emp.getDeptHeadID());
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -82,5 +80,26 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		}
 		return emp;
 	}
-
+	
+	@Override
+	public Employee getEmployeeById(int empID) {
+		PreparedStatement ps;
+		Employee emp = null;
+		try {
+			Connection conn = cf.getConnection();
+			String sql = "SELECT * FROM employees WHERE empid=?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, empID);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				emp = new Employee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getInt(7), rs.getInt(8));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return emp;
+	}
 }

@@ -35,4 +35,8 @@ public class ApproverService {
 	public void insertNewApp(Approver app) {
 		appDao.insertApprover(app);
 	}
+	
+	public Approver getSessionApp(int appID) {
+		return appDao.getApproverById(appID);
+	}
 }

@@ -35,4 +35,16 @@ public class EmployeeService {
 	public void insertNewEmp(Employee emp) {
 		empDao.insertEmployee(emp);
 	}
+	
+	public int loginGetEmpID() {
+		if(loginVerify(null, null)==true) {
+			return empDao.getEmployeeByUsername(null).getEmpID();
+		}
+		return 0;
+	}
+	
+	public Employee getSessionEmp(int empID) {
+		return empDao.getEmployeeById(empID);
+	}
+	
 }
