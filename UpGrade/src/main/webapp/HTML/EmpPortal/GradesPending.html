@@ -18,7 +18,7 @@
 	integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
 	crossorigin="anonymous"></script>
 
-<title>Insert title here</title>
+<title>Grades Submission and Pending Approval</title>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -31,8 +31,13 @@
 				<li class="nav-item"><a class="nav-link"
 					href="/UpGrade/empForm.change">Submission Form </a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="/UpGrade/allpending.change">Pending Reimbursements
+					href="/UpGrade/pending.change">Pending Reimbursements </a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="/UpGrade/grades.change">Grade Submission and Pending
+						Approval <span class="sr-only">(current)</span>
 				</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="/UpGrade/awarded.change">Awarded Reimbursements </a></li>
 			</ul>
 			<div class="d-flex justify-content-center">
 				<a href="/UpGrade/logout.change"><button type="button"
@@ -40,13 +45,43 @@
 			</div>
 		</div>
 	</nav>
-		<div class="row mt-5">
-		<div class="col d-flex justify-content-center ">
-			
+	<div class="row">
+		<h1 class="m-5">Grades Pending Approval</h1>
+	</div>
+	<div class="row">
+		<div class="col mx-5">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Event Name</th>
+						<th>Grade Submission</th>
+						<th>Supervisor Approval</th>
+						<th>BenCo Approval</th>
+					</tr>
+				</thead>
+				<tbody id="tableData">
+				</tbody>
+			</table>
 		</div>
 	</div>
-	<div class="row mt-3">
-		
+	<div class="row">
+		<div class="col d-flex justify-content-center">
+			<h4 class="text-primary mr-3 mt-5">Grade File Submission:</h4>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col d-flex justify-content-center mt-3">
+			<form method="post" action="/UpGrade/getEmpDetails.json"
+				class="form-inline mb-3">
+				<div class="custom-file">
+					<input type="file" class="custom-file-input" id="inputGroupFile01"
+						aria-describedby="inputGroupFileAddon01" name="attachmentEmail">
+					<label class="custom-file-label" for="inputGroupFile01">Grade File Submission</label>
+				</div>
+				<button class="btn btn-outline-success mt-3">Submit</button>
+			</form>
+		</div>
 	</div>
 </body>
 </html>

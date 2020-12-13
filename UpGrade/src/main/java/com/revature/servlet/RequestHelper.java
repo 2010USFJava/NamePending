@@ -3,10 +3,11 @@ package com.revature.servlet;
 import javax.servlet.http.HttpServletRequest;
 
 import com.revature.controller.AppLoginController;
+import com.revature.controller.AwardedController;
 import com.revature.controller.BenCoPortalController;
 import com.revature.controller.DeptHeadPortalController;
-import com.revature.controller.DetailsController;
 import com.revature.controller.DirectSupervisorPortal;
+import com.revature.controller.EmpGradesController;
 import com.revature.controller.EmpLoginController;
 import com.revature.controller.EmployeeFormController;
 import com.revature.controller.EmployeePendingController;
@@ -16,7 +17,7 @@ import com.revature.controller.LogOutController;
 import com.revature.controller.PendingReqController;
 import com.revature.controller.ReportsController;
 import com.revature.controller.RulesController;
-import com.revature.controller.SingleViewController;
+import com.revature.controller.SupGradesController;
 
 public class RequestHelper {
 
@@ -39,7 +40,7 @@ public class RequestHelper {
 		case "/UpGrade/empForm.change":
 			System.out.println("in empForm.change");
 			return EmployeeFormController.submission(req);
-		case "/UpGrade/allpending.change":
+		case "/UpGrade/pending.change":
 			System.out.println("in pending.change");
 			return EmployeePendingController.pendingPage(req);
 		case "/UpGrade/rules.change":
@@ -59,13 +60,15 @@ public class RequestHelper {
 		case "/UpGrade/reports.change":
 			System.out.println("in request helper");
 			return ReportsController.home(req);
-		case "/UpGrade/details.change":
-			return DetailsController.details(req);
 		case "/UpGrade/admin.change":
 			System.out.println("in admin.change");
 			return EmpLoginController.adminLogin(req);
-		case "/UpGrade/viewsingle.change":
-			return SingleViewController.single(req);
+		case "/UpGrade/grades.change":
+			return EmpGradesController.grades(req);
+		case "/UpGrade/supgrades.change":
+			return SupGradesController.supgrades(req);
+		case "/UpGrade/awarded.change":
+			return AwardedController.awarded(req);
 		case "/UpGrade/logout.change":
 			return LogOutController.closeSession(req);
 		default:
