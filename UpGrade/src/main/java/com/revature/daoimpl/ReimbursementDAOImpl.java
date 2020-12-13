@@ -36,7 +36,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 	}
 
 	@Override
-	public void submitReimbursement(Reimbursement form, Employee emp) {
+	public void submitReimbursement(Reimbursement form) {
 		try {
 			Connection conn = cf.getConnection();
 			String sql = "INSERT INTO reimbursements "
@@ -56,12 +56,6 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 			ps.setString(11, form.getJustification());
 			ps.setString(12, form.getApprovalFile());
 			ps.execute();
-			String empSql = "UPDATE employees set ds_id = ?, dh_id = ? where empid = ?";
-			PreparedStatement empPs = conn.prepareStatement(empSql);
-			empPs.setInt(1, emp.getSupervisorID());
-			empPs.setInt(2, emp.getDeptHeadID());
-			empPs.setInt(3, emp.getEmpID());
-			empPs.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -244,23 +238,111 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 
 	// update reimbursement to approved
 	public void reimbursementApproved(Reimbursement r) {
+		Connection conn = cf.getConnection();
 		int id = r.getR_ID();
-		String sql = "UPDATE reimbursements SET bc_approve = true  where rid = ? ";
-
+		String sql = "UPDATE reimbursements SET bc_approve = true where rid = ? ";
+		String sqlemp = "UPDATE employees SET available_reimbursement = ?::NUMERIC where empid = ?";
+		Employee emp = new Employee();
+		EmployeeDAO empDao = new EmployeeDAOImpl();
+		emp = empDao.getEmployeeById(r.getEmpID());
+		double request = r.getCost();
+		double available = emp.getAvailableR();
+		double newAvailable;
+		PreparedStatement ps;
 		try {
-			PreparedStatement ps = Stmnt.makePrStmnt(sql);
+			ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
 			ps.executeUpdate();
-
-		} catch (SQLException e) {
-			// System.out.println("Check reimbursementApproved SQL " + e.getSQLState() + " "
-			// + e.getMessage());
+		} catch (SQLException e1) {
+			e1.printStackTrace();
 		}
-		try {
-			logit.LogIt("info", "Reimbursement: " + id + " for Employee ID: " + r.getEmpID() + " Was Approved");
-		} catch (IOException e) {
-		} catch (SQLException e) {
+		PreparedStatement psemp;
+		if (request <= available) {
+			switch (r.getEventType()) {
+			
+			case "University":
+				newAvailable = available - (request * .8);
+				try {
+					psemp = conn.prepareStatement(sqlemp);
+					psemp.setDouble(1, newAvailable);
+					psemp.setInt(2, emp.getEmpID());
+					psemp.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}	
+				break;
+			case "Seminar":
+				newAvailable = available - (request * .6);
+				try {
+					psemp = conn.prepareStatement(sqlemp);
+					psemp.setDouble(1, newAvailable);
+					psemp.setInt(2, emp.getEmpID());
+					psemp.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				break;
+			case "Certification Preparation":
+				newAvailable = available - (request * .6);
+				try {
+					psemp = conn.prepareStatement(sqlemp);
+					psemp.setDouble(1, newAvailable);
+					psemp.setInt(2, emp.getEmpID());
+					psemp.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				break;
+			case "Certification":
+				newAvailable = available - (request * .75);
+				try {
+					psemp = conn.prepareStatement(sqlemp);
+					psemp.setDouble(1, newAvailable);
+					psemp.setInt(2, emp.getEmpID());
+					psemp.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				break;
+			case "Technical Training":
+				newAvailable = available - (request * .7);
+				try {
+					psemp = conn.prepareStatement(sqlemp);
+					psemp.setDouble(1, newAvailable);
+					psemp.setInt(2, emp.getEmpID());
+					psemp.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				break;
+			case "Other":
+				newAvailable = available - (request * .3);
+				try {
+					psemp = conn.prepareStatement(sqlemp);
+					psemp.setDouble(1, newAvailable);
+					psemp.setInt(2, emp.getEmpID());
+					psemp.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				break;
+			default:
+				break;
+			}
+			
+		} else {
+			request = available;
+			newAvailable = 0;
+			try {
+				psemp = conn.prepareStatement(sqlemp);
+				psemp.setDouble(1, newAvailable);
+				psemp.setInt(2, emp.getEmpID());
+				psemp.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
+			
 	}
 
 	// update reimbursement to denied

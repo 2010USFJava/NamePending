@@ -39,17 +39,15 @@ public class EmployeeFormController {
 		if(!req.getMethod().equals("POST")) {
 			return "HTML/EmpPortal/Form.html";
 		}
-		String firstName = req.getParameter("firstName");
-		String lastName = req.getParameter("lastName");
-		String department = req.getParameter("department");
-		Integer deptheadID = Integer.valueOf(department);
-		String supervisor = req.getParameter("supervisor");
-		Integer supervisorID = Integer.valueOf(supervisor);
+		req.getParameter("firstName");
+		req.getParameter("lastName");
+		req.getParameter("department");
+		req.getParameter("supervisor");
 		String eventName = req.getParameter("eventName");
 		String date = req.getParameter("date");
 		String time = req.getParameter("time");
 		String location = req.getParameter("location");
-		String workTimeMissed = req.getParameter("workTimeMissed");
+		req.getParameter("workTimeMissed");
 		String description = req.getParameter("description");
 		String cost = req.getParameter("cost");
 		Double costAmt = Double.valueOf(cost);
@@ -60,15 +58,14 @@ public class EmployeeFormController {
 		String attachmentEmail = req.getParameter("attachmentEmail");
 		String approval = req.getParameter("approval");
 		if(approval != null) {
-		Integer approvalType = Integer.valueOf(approval);
+		Integer.valueOf(approval);
 		}
 		
 		Reimbursement form = new Reimbursement(
 				emp,eventName,date,time,location,description,costAmt,attachmentEvent,
 				gradingFormat,typeOfEvent,justification,attachmentEmail);
-		Employee empObj = new Employee(emp, supervisorID, deptheadID);
 		System.out.println("this is the form" + form);
-		reDao.submitReimbursement(form, empObj);
+		reDao.submitReimbursement(form);
 		
 		return "pending.change";
 	}
@@ -115,7 +112,7 @@ public class EmployeeFormController {
 	
 	public static void getEvery(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException {
 		List<Reimbursement> rList = new ArrayList<Reimbursement>();
-		Reimbursement rObj = new Reimbursement();
+		new Reimbursement();
 		rList = reDao.getEveryReimbursement();
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		ObjectMapper mapper = new ObjectMapper();

@@ -9,7 +9,7 @@ import com.revature.beans.Reimbursement;
 import com.revature.data.Pending;
 
 public interface ReimbursementDAO {
-	public void submitReimbursement(Reimbursement form, Employee emp);
+	public void submitReimbursement(Reimbursement form);
 	public List<Pending> getPendingReimbursement();
 	public List<Reimbursement> getAllReimbursement(int empID);
 	public Reimbursement getOneReimbursement(int rID);

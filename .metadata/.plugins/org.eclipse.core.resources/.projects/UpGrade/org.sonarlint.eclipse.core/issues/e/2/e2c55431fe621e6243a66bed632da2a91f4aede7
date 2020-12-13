@@ -1,0 +1,32 @@
+
+e
+java:S1118":Add a private constructor to hide the implicit public one.(ö∫Ø`H≠RMAJORZ
+CODE_SMELL
+d	java:S106"9Replace this use of System.out or System.err by a logger.(ŒïëªHÆRMAJORZ
+CODE_SMELL
+~	java:S128H"LEnd this switch case with an unconditional break, return or throw statement.(°◊¢Ÿ¸ˇˇˇˇHØRBLOCKERZ
+CODE_SMELL
+d	java:S106 "9Replace this use of System.out or System.err by a logger.(ÌÆ€ÍH∞RMAJORZ
+CODE_SMELL
+i	java:S106#"9Replace this use of System.out or System.err by a logger.(Õô”ä˚ˇˇˇˇH±RMAJORZ
+CODE_SMELL
+d	java:S106&"9Replace this use of System.out or System.err by a logger.(ÌÆ€ÍH≤RMAJORZ
+CODE_SMELL
+d	java:S106)"9Replace this use of System.out or System.err by a logger.(Øπä¥H≥RMAJORZ
+CODE_SMELL
+d	java:S106,"9Replace this use of System.out or System.err by a logger.(Äà∂±H¥RMAJORZ
+CODE_SMELL
+d	java:S106/"9Replace this use of System.out or System.err by a logger.(®∏⁄‡HµRMAJORZ
+CODE_SMELL
+d	java:S1064"9Replace this use of System.out or System.err by a logger.(Åπ†ﬂH∂RMAJORZ
+CODE_SMELL
+d	java:S1067"9Replace this use of System.out or System.err by a logger.(ôñÿâH∑RMAJORZ
+CODE_SMELL
+c	java:S106:"9Replace this use of System.out or System.err by a logger.(Úé∂NH∏RMAJORZ
+CODE_SMELL
+d	java:S106I"9Replace this use of System.out or System.err by a logger.(¢Ì›ÜHπRMAJORZ
+CODE_SMELL
+i	java:S106O"9Replace this use of System.out or System.err by a logger.(÷÷È¡˙ˇˇˇˇH∫RMAJORZ
+CODE_SMELL
+d	java:S106P"9Replace this use of System.out or System.err by a logger.(ŒïëªHªRMAJORZ
+CODE_SMELL

@@ -6,7 +6,7 @@
   </welcome-file-list>
   <context-param>
     <param-name>tempfile.dir</param-name>
-    <param-value>../Project1Workspace/UpGrade/src/main/webapp/Attachments</param-value>
+    <param-value>../stsworkspaces/UpGrade/src/main/webapp/Attachments</param-value>
   </context-param>
   <servlet>
     <servlet-name>MasterServlet</servlet-name>
