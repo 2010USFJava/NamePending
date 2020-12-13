@@ -16,7 +16,7 @@
  	for (i = 0; i < forms.length; i++){
  		let row = pendingTable.insertRow();
 		let rID = row.insertCell(0);
-		rID.innerHTML = forms[i].r_ID;
+		rID.innerHTML = forms[i].empID;
 		let event = row.insertCell(1);
 		event.innerHTML = forms[i].eventName;
 		

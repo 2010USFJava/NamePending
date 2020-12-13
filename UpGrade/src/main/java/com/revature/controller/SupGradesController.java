@@ -3,17 +3,18 @@ package com.revature.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-public class SingleViewController {
-    public SingleViewController() {
+public class SupGradesController {
+    public SupGradesController() {
     }
 
-    public static String single(HttpServletRequest req) {
-		System.out.println("in Single View Controller");
+	public static String supgrades(HttpServletRequest req) {
+		System.out.println("in Sup Grades Controller");
 		HttpSession session = req.getSession(false);
 		if(session != null) {
-			return "HTML/EmpPortal/SingleView.html";
+			return "HTML/AdminPortal/SupGrades.html";
 		} else {
 			return "HTML/Login/EmpLogin.html";
 		}
 	}
+
 }

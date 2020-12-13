@@ -136,4 +136,144 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 		return rList;
 	}
 	
+	@Override
+	public Reimbursement getOneReimbursement(int rID) {
+		Reimbursement rObj = new Reimbursement();
+		PreparedStatement ps;
+		try {
+			Connection conn = cf.getConnection();
+			String sql = "SELECT * FROM reimbursements where rid = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, rID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				rObj.setEmpID(rs.getInt(1));
+				rObj.setR_ID(rs.getInt(2));
+				rObj.setEventName(rs.getString(3));
+				rObj.setDate(rs.getString(4));
+				rObj.setTime(rs.getString(5));
+				rObj.setLocation(rs.getString(6));
+				rObj.setDescription(rs.getString(7));
+				rObj.setCost(rs.getDouble(8));
+				rObj.setEventFile(rs.getString(9));
+				rObj.setGradingFormat(rs.getString(10));
+				rObj.setEventType(rs.getString(11));
+				rObj.setJustification(rs.getString(12));
+				rObj.setApprovalFile(rs.getString(13));
+				rObj.setDsApproval(rs.getInt(14));
+				rObj.setDhApproval(rs.getInt(15));
+				rObj.setBcApproval(rs.getBoolean(16));
+				rObj.setAlteredAmt(rs.getDouble(17));
+				rObj.setAlteredReason(rs.getString(18));
+				rObj.setExceedingFunds(rs.getBoolean(19));
+				rObj.setAwarded(rs.getBoolean(20));
+				rObj.setDenialReason(rs.getString(21));
+			}
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		return rObj;
+	}
+	
+	@Override
+	public List<Pending> getDSReimbursement() {
+		List<Pending> pendingList = new ArrayList<Pending>();
+		PreparedStatement ps;
+		try {
+			Connection conn = cf.getConnection();
+			String sql = "select rid, reimbursements.empid, first_name, last_name, event_name, event_date, dh_approve, bc_approve from reimbursements inner join employees on reimbursements.empid = employees.empid where ds_approve is null";
+			ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			System.out.println(rs);
+			while(rs.next()) {
+				Employee emp = new Employee();
+				Reimbursement r = new Reimbursement();
+				emp.setEmpID(rs.getInt(2));
+				emp.setFirstName(rs.getString(3));
+				emp.setLastName(rs.getString(4));
+				r.setR_ID(rs.getInt(1));
+				r.setEventName(rs.getString(5));
+				r.setDate(rs.getString(6));
+				r.setDsApproval(rs.getInt(7));
+				r.setDhApproval(rs.getInt(8));
+				pendingList.add(new Pending(emp, r));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println(pendingList);
+		return pendingList;
+	}
+	
+	@Override 
+	public List<Pending> getDHReimbursement(){
+		List<Pending> pendingList = new ArrayList<Pending>();
+		PreparedStatement ps;
+		try {
+			Connection conn = cf.getConnection();
+			String sql = "select rid, reimbursements.empid, first_name, last_name, event_name, event_date, ds_approve, bc_approve from reimbursements inner join employees on reimbursements.empid = employees.empid where dh_approve is null";
+			ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			System.out.println(rs);
+			while(rs.next()) {
+				Employee emp = new Employee();
+				Reimbursement r = new Reimbursement();
+				emp.setEmpID(rs.getInt(2));
+				emp.setFirstName(rs.getString(3));
+				emp.setLastName(rs.getString(4));
+				r.setR_ID(rs.getInt(1));
+				r.setEventName(rs.getString(5));
+				r.setDate(rs.getString(6));
+				r.setDsApproval(rs.getInt(7));
+				r.setDhApproval(rs.getInt(8));
+				pendingList.add(new Pending(emp, r));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println(pendingList);
+		return pendingList;
+	}
+	
+	@Override
+	public List<Reimbursement> getEveryReimbursement(){
+		List<Reimbursement> rList = new ArrayList<Reimbursement>();
+		PreparedStatement ps;
+		try {
+			Connection conn = cf.getConnection();
+			String sql = "SELECT * FROM reimbursements";
+			ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				rList.add(new Reimbursement(
+						rs.getInt(1),
+						rs.getInt(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getString(5),
+						rs.getString(6),
+						rs.getString(7),
+						rs.getDouble(8),
+						rs.getString(9),
+						rs.getString(10),
+						rs.getString(11),
+						rs.getString(12),
+						rs.getString(13),
+						rs.getInt(14),
+						rs.getInt(15),
+						rs.getBoolean(16),
+						rs.getDouble(17),
+						rs.getString(18),
+						rs.getBoolean(19),
+						rs.getBoolean(20),
+						rs.getString(21)
+						));
+			}
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		return rList;
+	}
 }
