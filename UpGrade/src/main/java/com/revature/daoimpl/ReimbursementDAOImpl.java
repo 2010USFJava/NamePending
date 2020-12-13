@@ -248,7 +248,6 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 		return rList;
 	}
 
-}
 
 	// search reimbursements by ID
 	public Reimbursement getReimbursementByID(int id) {
