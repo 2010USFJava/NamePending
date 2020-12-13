@@ -36,11 +36,12 @@ public class BenCoPortalController {
 	}
 	
 	public static String deny(HttpServletRequest req) throws IOException {
+		String denialReason = req.getParameter("denialReason");
 		String deny = req.getParameter("rIDdeny");
 		Integer denyForm = Integer.parseInt(deny);
 		Reimbursement form = new Reimbursement();
 		form = reDao.getOneReimbursement(denyForm);
-		reDao.reimbursementDenied(form);
+		reDao.reimbursementDenied(form, denialReason);
 		return "bencohome.change";
 	}
 }

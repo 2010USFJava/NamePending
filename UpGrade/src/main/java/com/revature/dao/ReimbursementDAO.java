@@ -17,5 +17,5 @@ public interface ReimbursementDAO {
 	public List<Pending> getDHReimbursement();
 	public List<Reimbursement> getEveryReimbursement();
 	public void reimbursementApproved(Reimbursement form);
-	public void reimbursementDenied(Reimbursement form) throws IOException;
+	public void reimbursementDenied(Reimbursement form, String denialReason) throws IOException;
 }
