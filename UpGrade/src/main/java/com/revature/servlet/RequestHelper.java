@@ -6,10 +6,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 import com.revature.controller.AppLoginController;
+import com.revature.controller.AwardedController;
 import com.revature.controller.BenCoPortalController;
 import com.revature.controller.DeptHeadPortalController;
 import com.revature.controller.DetailsController;
 import com.revature.controller.DirectSupervisorPortal;
+import com.revature.controller.EmpGradesController;
 import com.revature.controller.EmpLoginController;
 import com.revature.controller.EmployeeFormController;
 import com.revature.controller.EmployeeInsertController;
@@ -95,6 +97,22 @@ public class RequestHelper {
 		case "/UpGrade/allpending.change":
 			System.out.println("in pending.change");
 			return EmployeePendingController.pendingPage(req);
+			System.out.println("in grades helper");
+			return GradesController.grades(req);
+		case "/UpGrade/reports.change":
+			System.out.println("in request helper");
+			return ReportsController.home(req);
+		case "/UpGrade/admin.change":
+			System.out.println("in admin.change");
+			return EmpLoginController.adminLogin(req);
+		case "/UpGrade/grades.change":
+			return EmpGradesController.grades(req);
+		case "/UpGrade/supgrades.change":
+			return SupGradesController.supgrades(req);
+		case "/UpGrade/awarded.change":
+			return AwardedController.awarded(req);
+		case "/UpGrade/logout.change":
+			return LogOutController.closeSession(req);
 		default:
 			System.out.println("in default case");
 			System.out.println(req.getRequestURI());

@@ -31,6 +31,7 @@ public class EmployeeFormController {
 	static ReimbursementDAO reDao =new ReimbursementDAOImpl();
 	static EmployeeService eServ = new EmployeeService();
 	
+	
 	public static String submission(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		int emp = (int) session.getAttribute("activeemp");
@@ -74,15 +75,54 @@ public class EmployeeFormController {
 	
 	
 	public static void getPending(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException {
-		List<Pending>forms = new ArrayList<>();
+		List<Pending> forms = new ArrayList<Pending>();
 		forms = reDao.getPendingReimbursement();
+		System.out.println(forms);
 		System.out.println("getting pending forms");
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.writeValue(out, forms);
 		byte [] data = out.toByteArray();
-		res.getWriter().write("{\"forms\":" + new String(data) + "}");
 		System.out.println(new String(data));
+		res.getWriter().write(new String(data));
+		
+	}
+	
+	public static void getAll(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException {
+		HttpSession session = req.getSession();
+		int emp = (int) session.getAttribute("activeemp");
+		List<Reimbursement> rList = new ArrayList<Reimbursement>();
+		rList = reDao.getAllReimbursement(emp);
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.writeValue(out, rList);
+		byte [] data = out.toByteArray();
+		System.out.println(new String(data));
+		res.getWriter().write(new String(data));
+	}
+	
+	public static void getOne(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException {
+		String param = req.getParameter("rID");
+		Integer rid = Integer.valueOf(param);
+		System.out.println("in getOne Employee Form Controller");
+		System.out.println(rid);
+		Reimbursement rObj = new Reimbursement();
+		rObj = reDao.getOneReimbursement(rid);
+		ObjectMapper mapper = new ObjectMapper();
+		System.out.println(new String());
+		res.getWriter().write(mapper.writeValueAsString(rObj));
+	}
+	
+	public static void getEvery(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException {
+		List<Reimbursement> rList = new ArrayList<Reimbursement>();
+		Reimbursement rObj = new Reimbursement();
+		rList = reDao.getEveryReimbursement();
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.writeValue(out, rList);
+		byte [] data = out.toByteArray();
+		System.out.println(new String(data));
+		res.getWriter().write(new String(data));
 	}
 	
 	public static void getAll(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException {

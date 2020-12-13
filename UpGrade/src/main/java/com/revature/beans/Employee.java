@@ -89,6 +89,16 @@ public class Employee {
 		this.deptHeadID = deptHeadID;
 	}
 	
+	public Employee(int empID, String firstName, String lastName, String userName, String password, double availableR) {
+		super();
+		this.empID = empID;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.userName = userName;
+		this.password = password;
+		this.availableR = availableR;
+	}
+	
 	public Employee(int empID, int supervisorID, int deptHeadID) {
 		super();
 		this.empID = empID;

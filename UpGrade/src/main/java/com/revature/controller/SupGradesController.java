@@ -1,21 +1,20 @@
 package com.revature.controller;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-public class EmployeePortalController {
+public class SupGradesController {
+    public SupGradesController() {
+    }
 
-	public EmployeePortalController() {
-		super();
-		
-	}
-	
-	public static String home(HttpServletRequest req) {
+	public static String supgrades(HttpServletRequest req) {
+		System.out.println("in Sup Grades Controller");
 		HttpSession session = req.getSession(false);
 		if(session != null) {
-			return "HTML/EmpPortal/EmpPortal.html";
+			return "HTML/AdminPortal/SupGrades.html";
 		} else {
 			return "HTML/Login/EmpLogin.html";
 		}
-		
 	}
+
 }

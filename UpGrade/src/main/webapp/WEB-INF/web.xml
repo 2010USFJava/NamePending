@@ -29,12 +29,62 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>RulesController</display-name>
-    <servlet-name>RulesController</servlet-name>
-    <servlet-class>com.revature.controller.RulesController</servlet-class>
+    <display-name>DetailsController</display-name>
+    <servlet-name>DetailsController</servlet-name>
+    <servlet-class>com.revature.controller.DetailsController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>RulesController</servlet-name>
-    <url-pattern>/RulesController</url-pattern>
+    <servlet-name>DetailsController</servlet-name>
+    <url-pattern>/DetailsController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SingleViewController</display-name>
+    <servlet-name>SingleViewController</servlet-name>
+    <servlet-class>com.revature.controller.SingleViewController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SingleViewController</servlet-name>
+    <url-pattern>/SingleViewController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DsDhController</display-name>
+    <servlet-name>DsDhController</servlet-name>
+    <servlet-class>com.revature.controller.DsDhController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DsDhController</servlet-name>
+    <url-pattern>/DsDhController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EmpGradesController</display-name>
+    <servlet-name>EmpGradesController</servlet-name>
+    <servlet-class>com.revature.controller.EmpGradesController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EmpGradesController</servlet-name>
+    <url-pattern>/EmpGradesController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AwardedController</display-name>
+    <servlet-name>AwardedController</servlet-name>
+    <servlet-class>com.revature.controller.AwardedController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AwardedController</servlet-name>
+    <url-pattern>/AwardedController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SupGradesController</display-name>
+    <servlet-name>SupGradesController</servlet-name>
+    <servlet-class>com.revature.controller.SupGradesController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SupGradesController</servlet-name>
+    <url-pattern>/SupGradesController</url-pattern>
   </servlet-mapping>
 </web-app>

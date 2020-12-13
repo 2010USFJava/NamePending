@@ -1,4 +1,4 @@
-package com.revature.controller;
+spackage com.revature.controller;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

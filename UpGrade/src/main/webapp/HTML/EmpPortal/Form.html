@@ -66,14 +66,17 @@
 					href="/UpGrade/empForm.change">Submission Form <span
 						class="sr-only">(current)</span>
 				</a></li>
+				<li class="nav-item"><a class="nav-link" href="/UpGrade/pending.change">Pending
+						Reimbursements</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="/UpGrade/allpending.change">Pending Reimbursements</a></li>
+					href="/UpGrade/grades.change">Grade Submission and Pending Approval
+					</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="/UpGrade/viewsingle.change">View Reimbursement Details</a></li>
+					href="/UpGrade/awarded.change">Awarded Reimbursements
+					</a></li>
 			</ul>
 			<div class="d-flex justify-content-center">
-				<a href="/UpGrade/logout.change"><button type="button"
-						class="btn btn-primary">Log Out</button></a>
+				<a href="/UpGrade/logout.change"><button type="button" class="btn btn-primary">Log Out</button></a>
 			</div>
 		</div>
 	</nav>
@@ -147,7 +150,6 @@
 									</div>
 									<div class="col-md-4">
 										<select class="custom-select" name="gradingFormat">
-											<option selected disabled value="0">Grading Format</option>
 											<option value="Grade">Grade</option>
 											<option value="Presentation">Presentation</option>
 										</select> <select class="custom-select mt-1" name="typeOfEvent">
@@ -160,18 +162,6 @@
 											<option value="Technical Training">Technical
 												Training</option>
 											<option value="Other">Other</option>
-										</select>
-									</div>
-									<div class="col-md-6">
-										<textarea class="form-control" name="justification">Work Related Justification</textarea>
-									</div>
-								</div>
-								<div class="row d-flex justify-content-center mt-3">
-									<div class="col-md-4">
-										<div class="custom-file">
-											<input type="file" class="custom-file-input"
-												id="inputGroupFile01"
-												aria-describedby="inputGroupFileAddon01"
 												name="attachmentEvent"> <label
 												class="custom-file-label" for="inputGroupFile01">Event
 												Related Attachments</label>
