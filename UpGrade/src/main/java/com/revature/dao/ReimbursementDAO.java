@@ -17,4 +17,5 @@ public interface ReimbursementDAO {
 	public List<Reimbursement> getEveryReimbursement();
 	public void reimbursementApproved(Reimbursement form);
 	public void reimbursementDenied(Reimbursement form, String denialReason) throws IOException;
+	public List<Reimbursement> getPendingGrades(int empID);
 }

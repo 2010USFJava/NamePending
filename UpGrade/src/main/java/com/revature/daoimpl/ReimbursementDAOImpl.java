@@ -38,10 +38,14 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 	@Override
 	public void submitReimbursement(Reimbursement form) {
 		try {
+			double r = reimbursementAmountApproved(form);
+			System.out.println(r);
 			Connection conn = cf.getConnection();
 			String sql = "INSERT INTO reimbursements "
-					+ "(empid, event_name, event_date, event_time, event_location, description, event_cost, event_file, gradingformat, event_type, justification, approval_file)"
-					+ "VALUES (?,?,TO_DATE(?,'YYYY-MM-DD'),TO_TIMESTAMP(?,'HH24:MI:SS'),?,?,?,?,?,?,?,?)";
+					+ "(empid, event_name, event_date, event_time, event_location, description,"
+					+ " event_cost, event_file, gradingformat, event_type, justification, approval_file,"
+					+ " ds_approve, dh_approve, bc_approve, altered_amt, altered_reason, exceeding_funds, bc_awarded, denial_reason, ds_awarded, projected)"
+					+ " VALUES (?,?,TO_DATE(?,'YYYY-MM-DD'),TO_TIMESTAMP(?,'HH24:MI:SS'),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, form.getEmpID());
 			ps.setString(2, form.getEventName());
@@ -55,12 +59,49 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 			ps.setString(10, form.getEventType());
 			ps.setString(11, form.getJustification());
 			ps.setString(12, "Attachments/" + form.getApprovalFile());
+			ps.setNull(13, java.sql.Types.INTEGER);
+			ps.setNull(14, java.sql.Types.INTEGER);
+			ps.setNull(15, java.sql.Types.BOOLEAN);
+			ps.setNull(16, java.sql.Types.INTEGER);
+			ps.setNull(17, java.sql.Types.VARCHAR);
+			ps.setNull(18, java.sql.Types.BOOLEAN);
+			ps.setNull(19, java.sql.Types.BOOLEAN);
+			ps.setNull(20, java.sql.Types.VARCHAR);
+			ps.setNull(21, java.sql.Types.BOOLEAN);
+			ps.setDouble(22, r);
 			ps.execute();
-			logit.LogIt("info",
-					"Reimbursement: " + form.getR_ID() + " for Employee ID: " + form.getEmpID() + " was submitted.");
-		} catch (SQLException | IOException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public List<Reimbursement> getPendingGrades(int empID) {
+		List<Reimbursement> pendingList = new ArrayList<Reimbursement>();
+		PreparedStatement ps;
+		try {
+			Connection conn = cf.getConnection();
+			String sql = "select rid, empid, event_name, gradingformat, ds_awarded, bc_awarded from reimbursements where bc_approve = true and empid = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, empID);
+			ResultSet rs = ps.executeQuery();
+			System.out.println(rs);
+			while (rs.next()) {
+				Reimbursement r = new Reimbursement();
+				r.setR_ID(rs.getInt(1));
+				r.setEmpID(rs.getInt(2));
+				r.setEventName(rs.getString(3));
+				r.setGradingFormat(rs.getString(4));
+				r.setDs_awarded(rs.getBoolean(5));
+				r.setBc_awarded(rs.getBoolean(6));
+				pendingList.add(r);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println(pendingList);
+		return pendingList;
 	}
 
 	@Override
@@ -105,11 +146,11 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 			ps.setInt(1, empID);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				rList.add(new Reimbursement(rs.getInt(2), rs.getInt(1), rs.getString(3), rs.getString(4),
+				rList.add(new Reimbursement(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4),
 						rs.getString(5), rs.getString(6), rs.getString(7), rs.getDouble(8), rs.getString(9),
 						rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getInt(14),
 						rs.getInt(15), rs.getBoolean(16), rs.getDouble(17), rs.getString(18), rs.getBoolean(19),
-						rs.getBoolean(20), rs.getString(21)));
+						rs.getBoolean(20), rs.getString(21), rs.getBoolean(22), rs.getInt(23)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -147,8 +188,10 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 				rObj.setAlteredAmt(rs.getDouble(17));
 				rObj.setAlteredReason(rs.getString(18));
 				rObj.setExceedingFunds(rs.getBoolean(19));
-				rObj.setAwarded(rs.getBoolean(20));
+				rObj.setBc_awarded(rs.getBoolean(20));
 				rObj.setDenialReason(rs.getString(21));
+				rObj.setDs_awarded(rs.getBoolean(22));
+				rObj.setProjected(rs.getInt(23));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -162,7 +205,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 		PreparedStatement ps;
 		try {
 			Connection conn = cf.getConnection();
-			String sql = "select rid, reimbursements.empid, first_name, last_name, event_name, event_date, dh_approve, bc_approve from reimbursements inner join employees on reimbursements.empid = employees.empid where ds_approve is null";
+			String sql = "select rid, reimbursements.empid, first_name, last_name, event_name, event_date from reimbursements inner join employees on reimbursements.empid = employees.empid where ds_approve is null";
 			ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			System.out.println(rs);
@@ -175,8 +218,6 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 				r.setR_ID(rs.getInt(1));
 				r.setEventName(rs.getString(5));
 				r.setDate(rs.getString(6));
-				r.setDsApproval(rs.getInt(7));
-				r.setDhApproval(rs.getInt(8));
 				pendingList.add(new Pending(emp, r));
 			}
 
@@ -194,7 +235,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 		PreparedStatement ps;
 		try {
 			Connection conn = cf.getConnection();
-			String sql = "select rid, reimbursements.empid, first_name, last_name, event_name, event_date, ds_approve, bc_approve from reimbursements inner join employees on reimbursements.empid = employees.empid where dh_approve is null";
+			String sql = "select rid, reimbursements.empid, first_name, last_name, event_name, event_date from reimbursements inner join employees on reimbursements.empid = employees.empid where dh_approve is null and ds_approve is not null";
 			ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			System.out.println(rs);
@@ -207,8 +248,6 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 				r.setR_ID(rs.getInt(1));
 				r.setEventName(rs.getString(5));
 				r.setDate(rs.getString(6));
-				r.setDsApproval(rs.getInt(7));
-				r.setDhApproval(rs.getInt(8));
 				pendingList.add(new Pending(emp, r));
 			}
 
@@ -218,7 +257,6 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 		System.out.println(pendingList);
 		return pendingList;
 	}
-
 
 	@Override
 	public List<Reimbursement> getEveryReimbursement() {
@@ -234,14 +272,13 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 						rs.getString(5), rs.getString(6), rs.getString(7), rs.getDouble(8), rs.getString(9),
 						rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getInt(14),
 						rs.getInt(15), rs.getBoolean(16), rs.getDouble(17), rs.getString(18), rs.getBoolean(19),
-						rs.getBoolean(20), rs.getString(21)));
+						rs.getBoolean(20), rs.getString(21), rs.getBoolean(22), rs.getInt(23)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return rList;
 	}
-
 
 	// search reimbursements by ID
 	public Reimbursement getReimbursementByID(int id) {
@@ -260,7 +297,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 			System.out.println("Check getReimbursementByID SQL " + e.getSQLState() + " " + e.getMessage());
 		}
 
-		return null;
+		return r;
 	}
 
 	// updated reimbursement to deny form and adjust employee total available
@@ -268,13 +305,11 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 		Connection conn = cf.getConnection();
 		int id = r.getR_ID();
 		String sql = "UPDATE reimbursements SET bc_approve = true where rid = ? ";
-		String sqlemp = "UPDATE employees SET available_reimbursement = ?::NUMERIC where empid = ?";
+		String sqlemp = "UPDATE employees SET available_reimbursement = ? where empid = ?";
 		Employee emp = new Employee();
 		EmployeeDAO empDao = new EmployeeDAOImpl();
 		emp = empDao.getEmployeeById(r.getEmpID());
-		double request = r.getCost();
-		double available = emp.getAvailableR();
-		double newAvailable;
+		double newAvailable = emp.getAvailableR() - r.getProjected();
 		PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
@@ -284,92 +319,16 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 			e1.printStackTrace();
 		}
 		PreparedStatement psemp;
-		if (request <= available) {
-			switch (r.getEventType()) {
-			
-			case "University":
-				newAvailable = available - (request * .8);
-				try {
-					psemp = conn.prepareStatement(sqlemp);
-					psemp.setDouble(1, newAvailable);
-					psemp.setInt(2, emp.getEmpID());
-					psemp.executeUpdate();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}	
-				break;
-			case "Seminar":
-				newAvailable = available - (request * .6);
-				try {
-					psemp = conn.prepareStatement(sqlemp);
-					psemp.setDouble(1, newAvailable);
-					psemp.setInt(2, emp.getEmpID());
-					psemp.executeUpdate();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				break;
-			case "Certification Preparation":
-				newAvailable = available - (request * .6);
-				try {
-					psemp = conn.prepareStatement(sqlemp);
-					psemp.setDouble(1, newAvailable);
-					psemp.setInt(2, emp.getEmpID());
-					psemp.executeUpdate();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				break;
-			case "Certification":
-				newAvailable = available - (request * .75);
-				try {
-					psemp = conn.prepareStatement(sqlemp);
-					psemp.setDouble(1, newAvailable);
-					psemp.setInt(2, emp.getEmpID());
-					psemp.executeUpdate();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				break;
-			case "Technical Training":
-				newAvailable = available - (request * .7);
-				try {
-					psemp = conn.prepareStatement(sqlemp);
-					psemp.setDouble(1, newAvailable);
-					psemp.setInt(2, emp.getEmpID());
-					psemp.executeUpdate();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				break;
-			case "Other":
-				newAvailable = available - (request * .3);
-				try {
-					psemp = conn.prepareStatement(sqlemp);
-					psemp.setDouble(1, newAvailable);
-					psemp.setInt(2, emp.getEmpID());
-					psemp.executeUpdate();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				break;
-			default:
-				break;
-			}
-			
-		} else {
-			request = available;
-			newAvailable = 0;
-			try {
-				psemp = conn.prepareStatement(sqlemp);
-				psemp.setDouble(1, newAvailable);
-				psemp.setInt(2, emp.getEmpID());
-				psemp.executeUpdate();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+		try {
+			psemp = conn.prepareStatement(sqlemp);
+			psemp.setDouble(1, newAvailable);
+			psemp.setInt(2, emp.getEmpID());
+			psemp.executeUpdate();
+		} catch (SQLException e2) {
+			e2.printStackTrace();
 		}
-			
+	
+
 	}
 
 	// update reimbursement to denied, updated to insert denial reason
@@ -389,49 +348,50 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 		}
 	}
 
-	public double reimbursementAmountApproved( Reimbursement r) {
+	public double reimbursementAmountApproved(Reimbursement r) {
 		EmployeeDAOImpl eImp = new EmployeeDAOImpl();
 		Employee ex = eImp.getEmployeeById(r.getEmpID());
-		double cost = r.getCost(); //full cost of th event
-		double amount = 0;        // amount awarded
-		double available = ex.getAvailableR(); //available 
-		double pendingTotal =0 ;// pending requests from other reimbursement requests
-		
-		
-	if (cost > 0 ) {	
-		// applies the percentage of amount covered per event type
-		String type = r.getEventType();
-		  switch (type) {
-		  case"University": 
-			  amount = amount*.8;
-			  break;
-		  case"Seminar": 
-			  amount = amount*.6;
-			  break;
-		  case"Certification Preparation": 
-			  amount = amount*.75;
-			  break;
-		  case"Certification": 
-			  amount = amount;
-			  break;
-		  case"Technical Training": 
-			  amount = amount*.9;
-			  break;
-		  case"Other": 
-			  amount = amount*.3;
-			  break;
-					  
-		  }
-		if (amount <= available) {
-		ex.setAvailableR(available - amount);
-		
+		double cost = r.getCost(); // full cost of the event
+		double amount = 0; // amount awarded
+		//double available = ex.getAvailableR(); // available
+		//double pendingTotal = 0;// pending requests from other reimbursement requests
+		System.out.println(cost);
+		//if (cost > 0) {
+			// applies the percentage of amount covered per event type
+			String type = r.getEventType();
+			switch (type) {
+			case "University":
+				amount = cost * .8;
+				break;
+			case "Seminar":
+				amount = cost * .6;
+				break;
+			case "Certification Preparation":
+				amount = cost * .75;
+				break;
+			case "Certification":
+				amount = cost;
+				break;
+			case "Technical Training":
+				amount = cost * .9;
+				break;
+			case "Other":
+				amount = cost * .3;
+				break;
+
+			}
+			//if (amount <= available) {
+				//ex.setAvailableR(available - amount);
+
+				//return amount;
+			//} else if (available < amount) {
+				//ex.setAvailableR(0);
+				//return available;
+			//} else {
+				//return 0;
+			//}
+		//}
+
 		return amount;
-	} else if (available < amount) {
-		ex.setAvailableR(0);
-		return available;
-	}else { return 0;}
-	}
-	
-	return 0 ;
 	}
 }

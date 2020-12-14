@@ -37,6 +37,9 @@ public class JSONRequestHelper{
 		case "/UpGrade/getEvery.json":
 			EmployeeFormController.getEvery(req, res);
 			break;
+		case "/UpGrade/getGrades.json":
+			DsDhController.getGrades(req, res);
+			break;
 		default:
 			System.out.println("Not twerking");
 			EmployeeController.getSessionEmp(req, res);

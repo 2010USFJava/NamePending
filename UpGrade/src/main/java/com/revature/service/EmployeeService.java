@@ -3,8 +3,11 @@ package com.revature.service;
 import java.util.List;
 
 import com.revature.beans.Employee;
+import com.revature.beans.Reimbursement;
 import com.revature.dao.EmployeeDAO;
+import com.revature.dao.ReimbursementDAO;
 import com.revature.daoimpl.EmployeeDAOImpl;
+import com.revature.daoimpl.ReimbursementDAOImpl;
 
 public class EmployeeService {
 	
@@ -44,7 +47,8 @@ public class EmployeeService {
 	}
 	
 	public Employee getSessionEmp(int empID) {
-		return empDao.getEmployeeById(empID);
+		Employee emp = empDao.getEmployeeById(empID);
+		return emp;
 	}
 	
 }

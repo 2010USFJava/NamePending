@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.beans.Employee;
+import com.revature.beans.Reimbursement;
 import com.revature.dao.EmployeeDAO;
+import com.revature.dao.ReimbursementDAO;
 import com.revature.utility.ConnFactory;
 
 public class EmployeeDAOImpl implements EmployeeDAO {
@@ -84,6 +86,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	
 	@Override
 	public Employee getEmployeeById(int empID) {
+		ReimbursementDAO rDao = new ReimbursementDAOImpl();
+		List<Reimbursement> rList = rDao.getAllReimbursement(empID);
 		PreparedStatement ps;
 		Employee emp = null;
 		try {
@@ -97,7 +101,13 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 				emp = new Employee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getInt(7), rs.getInt(8));
 				
 			}
-			
+			double x = emp.getAvailableR();
+			for (Reimbursement r : rList) {
+				if(r.isBc_awarded() == false) {
+					x -= r.getCost();
+					}
+				}
+			emp.setAvailableR(x);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
