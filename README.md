@@ -18,21 +18,20 @@
 <h2>Features</h2>
 <p>List of features ready and TODOs for future development:</p>
 <ul>
-  <li>users are able to login</li>
-  <li>Users are able to apply for an account</li>
-  <li>Userss are able to see their feed which consists of their posts and others on their app</li>
-  <li>Users are able to create their own profile and see their posts in their profile</li>
-</ul>
-
-<p>To-Do list:</p>
-<ul>
-  <li>Connect an email feature</li>
+  <li>Employees are able to login</li>
+  <li>Employees are able to apply for a reimbursement</li>
+  <li>Employees can view pending reimbursements</li>
+  <li>Admins can view pending reimbursements</li>
+  <li>Admins can approve or deny reimbursements</li>
 </ul>
 
 <h2>Getting Started</h2>
 <p>Git clone</p>
 <p>Open SpringSTS</p>
 <p>Run on Server, created using TomCat</p>
+<p>For Employee login screen /Login/EmpLogin.html</p>
+<p>For Employee login screen /Login/AdminLogin.html</p>
+
 
 <h2>Contributors</h2>
 <p>Stephanie Foshay, David Mejia, Donna Bond</p>
